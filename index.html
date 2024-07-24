@@ -1,6 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="UTF-8">
+<html lang="en-US">
+
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
 <title>Paolo Pangrazi</title>
 <link rel="canonical" href="/">
 
@@ -11,10 +18,10 @@
 <link rel="me" href="https://google.com/">
 
 <style>
-    @font-face { font-family: 'Avenir'; font-weight: normal; font-style: normal; 
-                 src: url('/cv/Avenir-Book.woff'); }
-    @font-face { font-family: 'Avenir'; font-weight: bold; font-style: normal; 
-                 src: url('/cv/Avenir-Medium.woff'); }
+    @font-face { font-family: 'Red+Hat+Display'; font-weight: normal; font-style: normal; 
+                  }
+    @font-face { font-family: 'Red+Hat+Display'; font-weight: bold; font-style: normal; 
+                 }
     * { margin:0; padding:0; }
     html { overflow-x:hidden; }
     body { background:#10183a; color: #ace; font: normal 13px/1.2 "Avenir", sans-serif; }
@@ -41,7 +48,9 @@
     const match = window.location.hash && window.location.hash.match(/^#!\d?(\/.*)/);
     if (match) { window.location.href = match[1]; }
 </script>
-</head><body>
+</head>
+    
+<body>
 <div class="everything">
 <img class="windmill" src="/cv/windmill.png" alt="" width="412" height="510">
 <img class="rider" src="/cv/rider.png" alt="" width="336" height="278">
