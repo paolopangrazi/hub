@@ -2,177 +2,293 @@
 <html lang="en-US">
 
 <head>
-<meta charset="UTF-8">
-<meta name="author" content="Paolo Pangrazi">
-<meta name="description" content="Time, space have been provided.">
-	
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<link rel="canonical" href="/">
-<link rel="alternate" href="/feed.xml" type="application/atom+xml" title="Atom">
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="me" href="https://google.com/">
+	<meta charset="UTF-8">
+	<meta name="author" content="Paolo Pangrazi">
+	<meta name="description" content="Time, space have been provided.">
 
-<title>Paolo Pangrazi</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+		integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link rel="canonical" href="/">
+	<link rel="alternate" href="/feed.xml" type="application/atom+xml" title="Atom">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="me" href="https://google.com/">
 
-<style>
-    @font-face { font-family: 'Red Hat Display'; font-weight: normal; font-style: normal; }
-    @font-face { font-family: 'Red Hat Display'; font-weight: bold; font-style: normal; }
-    * { margin:0; padding:0; }
-    html { overflow-x:hidden; }
-    body { background:#10183a; color: #ace; font: normal 18px/1.2 "Red Hat Display", sans-serif; }
-    body { padding:30px; padding-bottom:0px; overflow-x:hidden; }
-    body { -webkit-text-size-adjust:none; -moz-text-size-adjust:none; text-size-adjust:none; }
-    .everything { position:relative; margin-left: auto; margin-right: auto; max-width: 560px; }
-    h1 { text-transform:uppercase; color:#fff; margin-bottom:0px; font-weight: bold; font-size:25px;  }
-    h2 { color:#fff; margin-bottom:20px; font-weight: normal; font-size:22px; }
-	h3 { color:#fff; margin-bottom:20px; font-weight: normal; font-size:20px; }
-    p  { margin-top:12px; margin-bottom:12px; }
-    ul { list-style-type:none; margin-left: 70px; margin-top:10px; margin-bottom:10px; }
-    a  { color:#fff; font-weight:normal; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    li { color:#fff; margin-bottom: 2px; }
-    .good { color:#ff0; }
-	.greenish { color:#AAEEAA; }
-	.brownish { color:#EECCAA; }
-    .section { margin-top:26px; }
-    .drop { margin-bottom:18px; }
-    .bio { color:#fff; font-size:16px; margin-bottom:22px; }
-    hr { border: none; border-top: 3px solid #ff0; margin-top: 26px; margin-bottom: 26px; }
-   
-	.iconhover ul {
-	  margin: 0;
-	  margin-top:56px;
-	  padding: 0;
-	  display: flex;
-	  top: 50%;
-	  left: 50%;
-	  transform: translate(-50%, -50%);
-	  position:relative; 
-	  margin-right: auto; 
-	  max-width: 560px;
-	}
+	<title>Paolo Pangrazi</title>
 
-	.iconhover ul li {
-	  list-style: none;
-	  margin: 0 15px;
-	}
+	<style>
+		@font-face {
+			font-family: 'Red Hat Display';
+			font-weight: normal;
+			font-style: normal;
+		}
 
-	.iconhover ul li a {
-	  position: relative; 
-	  display: block;
-	  width: 60px;
-	  height: 60px;
-	  text-align: center;
-	  line-height: 63px;
-	  background: #333;
-	  border-radius: 50%;
-	  font-size: 30px;
-	  color: #666;
-	  transition: .5s;
-	}
+		@font-face {
+			font-family: 'Red Hat Display';
+			font-weight: bold;
+			font-style: normal;
+		}
 
-	.iconhover ul li a::before {
-	  content: '';
-	  position: absolute;
-	  top: 0;
-	  left: 0;
-	  width: 100%;
-	  height: 100%;
-	  border-radius: 50%;
-	  background: #ffee10;
-	  transition: .5s;
-	  transform: scale(.9);
-	  z-index: -1;
-	}
+		* {
+			margin: 0;
+			padding: 0;
+		}
 
-	.iconhover ul li a:hover::before {
-	  transform: scale(1.1);
-	  box-shadow: 0 0 15px #ffee10;
-	}
+		html {
+			overflow-x: hidden;
+		}
 
-	.iconhover ul li a:hover {
-	  color: #ffee10;
-	  box-shadow: 0 0 5px #ffee10;
-	  text-shadow: 0 0 5px #ffee10;
-	}
-	
-</style>
-<script>
-    const match = window.location.hash && window.location.hash.match(/^#!\d?(\/.*)/);
-    if (match) { window.location.href = match[1]; }
-</script>
+		body {
+			background: #10183a;
+			color: #ace;
+			font: normal 18px/1.2 "Red Hat Display", sans-serif;
+		}
+
+		body {
+			padding: 30px;
+			padding-bottom: 0px;
+			overflow-x: hidden;
+		}
+
+		body {
+			-webkit-text-size-adjust: none;
+			-moz-text-size-adjust: none;
+			text-size-adjust: none;
+		}
+
+		.everything {
+			position: relative;
+			margin-left: auto;
+			margin-right: auto;
+			max-width: 560px;
+		}
+
+		h1 {
+			text-transform: uppercase;
+			color: #fff;
+			margin-bottom: 0px;
+			font-weight: bold;
+			font-size: 25px;
+		}
+
+		h2 {
+			color: #fff;
+			margin-bottom: 20px;
+			font-weight: normal;
+			font-size: 22px;
+		}
+
+		h3 {
+			color: #fff;
+			margin-bottom: 20px;
+			font-weight: normal;
+			font-size: 20px;
+		}
+
+		p {
+			margin-top: 12px;
+			margin-bottom: 12px;
+		}
+
+		ul {
+			list-style-type: none;
+			margin-left: 70px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		a {
+			color: #fff;
+			font-weight: normal;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		li {
+			color: #fff;
+			margin-bottom: 2px;
+		}
+
+		.good {
+			color: #ff0;
+		}
+
+		.greenish {
+			color: #AAEEAA;
+		}
+
+		.brownish {
+			color: #EECCAA;
+		}
+
+		.section {
+			margin-top: 26px;
+		}
+
+		.drop {
+			margin-bottom: 18px;
+		}
+
+		.bio {
+			color: #fff;
+			font-size: 16px;
+			margin-bottom: 22px;
+		}
+
+		hr {
+			border: none;
+			border-top: 3px solid #ff0;
+			margin-top: 26px;
+			margin-bottom: 26px;
+		}
+
+		.iconhover ul {
+			margin: 0;
+			margin-top: 56px;
+			padding: 0;
+			display: flex;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			position: relative;
+			margin-right: auto;
+			max-width: 560px;
+		}
+
+		.iconhover ul li {
+			list-style: none;
+			margin: 0 15px;
+		}
+
+		.iconhover ul li a {
+			position: relative;
+			display: block;
+			width: 60px;
+			height: 60px;
+			text-align: center;
+			line-height: 63px;
+			background: #333;
+			border-radius: 50%;
+			font-size: 30px;
+			color: #666;
+			transition: .5s;
+		}
+
+		.iconhover ul li a::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			background: #ffee10;
+			transition: .5s;
+			transform: scale(.9);
+			z-index: -1;
+		}
+
+		.iconhover ul li a:hover::before {
+			transform: scale(1.1);
+			box-shadow: 0 0 15px #ffee10;
+		}
+
+		.iconhover ul li a:hover {
+			color: #ffee10;
+			box-shadow: 0 0 5px #ffee10;
+			text-shadow: 0 0 5px #ffee10;
+		}
+	</style>
+	<script>
+		const match = window.location.hash && window.location.hash.match(/^#!\d?(\/.*)/);
+		if (match) { window.location.href = match[1]; }
+	</script>
 </head>
-    
+
 <body>
-<div class="everything">
+	<div class="everything">
 
-<h1>Paolo Pangrazi</h1>
-<h2>Another brick in the wall.</h2>
+		<h1>Paolo Pangrazi</h1>
+		<h2>Another brick in the wall.</h2>
 
-<h3>Fixing things, analysing data, consulting people, developing software. Learning.</h3>
-<hr>
-<p class="section">// PROFESSIONAL BIO.</p>
+		<h3>Fixing things, analysing data, consulting people, developing software.</h3>
+		<h3>Learning.</h3>
+		<hr>
+		<p class="section">// PROFESSIONAL BIO.</p>
 
-<div class="bio">
-<p>Currently working as <b class="greenish">Senior Service Manager</b> for the Legal Innovation team at Novartis Headquarters.</p>
+		<div class="bio">
+			<p>Currently working as <b class="greenish">Senior Service Manager</b> for the Legal Innovation team at
+				Novartis Headquarters.</p>
 
-<p>Previously at Alcatel/Lucent (now Nokia) as <b class="greenish">Software Developer</b> in C++ and Java.</p>
+			<p>Previously at Alcatel/Lucent (now Nokia) as <b class="greenish">Software Developer</b> in C++ and Java.
+			</p>
 
-<p>BS Degree in Computer Science.</p>
-</div>
-<p class="section">// EDUCATION.</p>
-<div class="bio">
-<p>BS - Computer Science / Informatics.</p>
-</div>
-<hr>
-<p class="section">// BOOKS.</p>
-<h3>Top 3</h3>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/The_C_Programming_Language" target="_blank">1. 1984 - George Orwell</a></li>
-<li><a href="https://en.wikipedia.org/wiki/The_Pillars_of_the_Earth" target="_blank">2. The Pillars of the Earth - Ken Follett</a></li>
-<li><a href="https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach" target="_blank">3. Gödel, Escher, Bach: an Eternal Golden Braid - Douglas Hofstadter</a></li>
-</ul>
-<br>
-<h3>Computer Science</h3>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/The_C_Programming_Language" target="_blank">The C Programming Language</a></li>
-<li><a href="https://github.com/eherbold/berkeleytextbooks/blob/7b9196f9b5fb66dc0686852522badfcc9007fc89/Algorithms%20-%20Sanjoy%20Dasgupta%2C%20Christos%20H.%20Papadimitriou%2C%20and%20Umesh%20V.%20Vazirani.pdf
+			<p>BS Degree in Computer Science.</p>
+		</div>
+		<p class="section">// EDUCATION.</p>
+		<div class="bio">
+			<p>BS - Computer Science / Informatics.</p>
+		</div>
+		<hr>
+		<p class="section">// BOOKS.</p>
+		<h3>Top 3</h3>
+		<ul>
+			<li><a href="https://en.wikipedia.org/wiki/The_C_Programming_Language" target="_blank">1. 1984 - George
+					Orwell</a></li>
+			<li><a href="https://en.wikipedia.org/wiki/The_Pillars_of_the_Earth" target="_blank">2. The Pillars of the
+					Earth - Ken Follett</a></li>
+			<li><a href="https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach" target="_blank">3. Gödel, Escher, Bach:
+					an Eternal Golden Braid - Douglas Hofstadter</a></li>
+		</ul>
+		<br>
+		<h3>Computer Science</h3>
+		<ul>
+			<li><a href="https://en.wikipedia.org/wiki/The_C_Programming_Language" target="_blank">The C Programming
+					Language</a></li>
+			<li><a href="https://github.com/eherbold/berkeleytextbooks/blob/7b9196f9b5fb66dc0686852522badfcc9007fc89/Algorithms%20-%20Sanjoy%20Dasgupta%2C%20Christos%20H.%20Papadimitriou%2C%20and%20Umesh%20V.%20Vazirani.pdf
 " target="_blank">Algorithms - Dasgupta, Papadimitriou, V. Vazirani</a></li>
-</ul>
+		</ul>
 
 
-<p class="section">// LANGUAGES.</p>
-<ul>
-<li><progress value="100" max="100"></progress>  Italian</li>
-<li><progress value="80" max="100"></progress>  German</li>
-<li><progress value="80" max="100"></progress>  English</li>
-<li><progress value="80" max="100"></progress>  Spanish</li>
-</ul>
+		<p class="section">// LANGUAGES.</p>
+		<ul>
+			<li><progress value="100" max="100"></progress> Italian</li>
+			<li><progress value="80" max="100"></progress> German</li>
+			<li><progress value="80" max="100"></progress> English</li>
+			<li><progress value="80" max="100"></progress> Spanish</li>
+		</ul>
 
-<p class="section">// HOBBIES.</p>
-<ul>
-<li>Electric Guitars: <a href="https://ibanez.fandom.com/wiki/MSM1" target="_blank">Ibanez MSM1</a> // <a href="https://ibanez.fandom.com/wiki/UV70P" target="_blank">Ibanez UV70P</a> // <a href="https://www.fender.com/en-US/electric-guitars/stratocaster/jimi-hendrix-stratocaster/0145802305.html" target="_blank">Fender Stratocaster JH</a></li>
-<li>Chess</li>
-<li>Tennis</li>
-</ul>
-    
-<hr>
+		<p class="section">// HOBBIES.</p>
+		<ul>
+			<li>Electric Guitars: <a href="https://ibanez.fandom.com/wiki/MSM1" target="_blank">Ibanez MSM1</a> // <a
+					href="https://ibanez.fandom.com/wiki/UV70P" target="_blank">Ibanez UV70P</a> // <a
+					href="https://www.fender.com/en-US/electric-guitars/stratocaster/jimi-hendrix-stratocaster/0145802305.html"
+					target="_blank">Fender Stratocaster JH</a></li>
+			<li>Chess</li>
+			<li>Tennis</li>
+		</ul>
 
-<p>Contact & Links:</p>
-</div>
+		<hr>
 
-<div class="iconhover">
- <ul>
-  <li>
-    <a href="https://ch.linkedin.com/in/paolopangrazi" target="_blank" rel="noreferrer noopener">
-      <i class="fab fa-linkedin"></i>
-    </a>
-  </li>
-</ul>
-</div>
-   
+		<p>Contact & Links:</p>
+	</div>
+
+	<div class="iconhover">
+		<ul>
+			<li>
+				<a href="https://ch.linkedin.com/in/paolopangrazi" target="_blank" rel="noreferrer noopener">
+					<i class="fab fa-linkedin"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+
 </body>
+
 </html>
