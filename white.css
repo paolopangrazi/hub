@@ -34,13 +34,6 @@ body {
     max-width: 560px;
 }
 
-/* Add a media query to disable max-width for mobile and smaller screens */
-@media screen and (max-width: 600px) {
-    .everything {
-        max-width: none;
-    }
-}
-
 h1 {
     text-transform: uppercase;
     color: #10183a;
@@ -130,4 +123,14 @@ hr {
     border-top: 3px solid #0000FF;
     margin-top: 26px;
     margin-bottom: 26px;
+}
+
+/* Add a media query to disable max-width for mobile and smaller screens */
+@media screen and (max-width: 600px) {
+    .everything {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+    }
 }
