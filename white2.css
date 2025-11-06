@@ -77,13 +77,13 @@ ul {
 }
 
 a {
-    color: #10183a;
+    color: #0000FF;
     font-weight: normal;
     text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: underline double;
     color: #0000FF;
 }
 
