@@ -61,6 +61,24 @@
 				margin-top: 26px;
 				margin-bottom: 26px;
 			}
+			.bits-marquee {
+				overflow: hidden;
+				white-space: nowrap;
+				width: 100%;
+			}
+			.bits-marquee__track {
+				display: inline-block;
+				animation: bits-scroll 40s linear infinite;
+				will-change: transform;
+			}
+			.bits-marquee__track > span {
+				display: inline-block;
+				padding-right: 2em;
+			}
+			@keyframes bits-scroll {
+				from { transform: translateX(0); }
+				to   { transform: translateX(-50%); }
+			}
 		}
 	</style>
 
@@ -121,6 +139,7 @@
 	<div class="everything">
 
 		<h1 class="dm-mono inline-block !text-5xl !font-medium uppercase tracking-[0.15em] !text-[#10183a] border-0 border-b-[6px] border-solid border-[#00FA9A] pb-2 !mb-6">Computer_Science</h1>
+		<div class="bits-marquee dm-mono"><div class="bits-marquee__track"><span>01 01 0101100101001 01 1 0 1 10 0101 11 001 0 1 01100 1001 010 1 11 0 0101 1100 10 01 001 1 0 1 010011 1 0 0101 1 00 1 010 110 01 0 1 001 1 0 11 010 0 1 01 0110010 1 00 1 01 1 0</span><span>01 01 0101100101001 01 1 0 1 10 0101 11 001 0 1 01100 1001 010 1 11 0 0101 1100 10 01 001 1 0 1 010011 1 0 0101 1 00 1 010 110 01 0 1 001 1 0 11 010 0 1 01 0110010 1 00 1 01 1 0</span></div></div>
 		<hr class="rule-pixel">
 
 		<div class="cs-layout">
