@@ -126,6 +126,10 @@ hr {
     margin-bottom: 26px;
 }
 
+footer {
+    text-align: center;
+}
+
 /* Add a media query to disable max-width for mobile and smaller screens */
 @media screen and (max-width: 600px) {
     .everything {

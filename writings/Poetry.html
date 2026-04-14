@@ -22,6 +22,22 @@
 
 	<link rel='stylesheet' type='text/css' href='../white.css'>
 
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = { corePlugins: { preflight: false } }
+	</script>
+
+	<style type="text/tailwindcss">
+		@layer components {
+			.link {
+				@apply text-blue-700 underline decoration-solid hover:decoration-double;
+			}
+			.rule {
+				@apply border-0 border-t-[3px] border-blue-700 my-6;
+			}
+		}
+	</style>
+
 </head>
 
 <body>
@@ -30,7 +46,7 @@
 		<h1>Poetry</h1>
 		<br>
 		<h3>A poem is a rythmical dance of images and words. - <i>(PP)</i></h3>
-		<hr>
+		<hr class="rule">
 		<p class="section">SOLE</p>
 		<div class="section-content">
 			<p> Il sole, così in alto,<br>
@@ -65,7 +81,7 @@
 			</p>
 			<p><i>(en)</i></p>
 		</div>
-		<hr>
+		<hr class="rule">
 		<p class="section">11 MARZO 2011</p>
 		<div class="section-content">
 			<p> Terra tremante,<br>
@@ -88,7 +104,7 @@
 			</p>
 			<p><i>(en)</i></p>
 		</div>
-		<hr>
+		<hr class="rule">
 		<p class="section">REGIMI</p>
 		<div class="section-content">
 			<p> Sul palco un susseguirsi di grandi attori,<br>
@@ -101,7 +117,7 @@
 				di poter cambiare in una sola infinita ora.<br>
 			</p>
 		</div>
-		<hr>
+		<hr class="rule">
 		<p>© Paolo Pangrazi. All rights reserved.</p>
 	</div>
 </body>

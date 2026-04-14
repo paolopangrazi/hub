@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="author" content="Paolo Pangrazi">
+	<meta name="description" content="Computer Science.">
+	<meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- FAVICON SETTINGS -->
+	<link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+	<link rel="manifest" href="../favicon/site.webmanifest">
+	<link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
+	<title>Computer Science - Paolo Pangrazi</title>
+
+	<link rel='stylesheet' type='text/css' href='../white2.css'>
+
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = { corePlugins: { preflight: false } }
+	</script>
+
+	<style type="text/tailwindcss">
+		@layer components {
+			.link {
+				@apply text-blue-700 underline decoration-solid hover:decoration-double;
+			}
+			.rule {
+				@apply border-0 border-t-[3px] border-blue-700 my-6;
+			}
+			.highlight {
+				@apply bg-[#00FA9A] text-[#10183a] px-1;
+			}
+			.accomplish {
+				@apply font-bold no-underline border-b-4 border-[#00FA9A];
+			}
+		}
+	</style>
+
+	<style>
+		.everything {
+			max-width: none;
+			margin: 0;
+			padding: 20px 30px;
+		}
+
+		.cs-layout {
+			display: flex;
+			gap: 40px;
+			align-items: flex-start;
+		}
+
+		.cs-sidebar {
+			position: sticky;
+			top: 30px;
+			flex: 0 0 220px;
+			border-right: 3px solid #0000FF;
+			padding-right: 20px;
+		}
+
+		.cs-sidebar ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.cs-sidebar li {
+			margin-bottom: 10px;
+		}
+
+		.cs-content {
+			flex: 1;
+			min-width: 0;
+		}
+
+		@media screen and (max-width: 600px) {
+			.cs-layout {
+				flex-direction: column;
+			}
+			.cs-sidebar {
+				position: static;
+				flex: 1 1 auto;
+				border-right: none;
+				border-bottom: 3px solid #0000FF;
+				padding-right: 0;
+				padding-bottom: 10px;
+				width: 100%;
+			}
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="everything">
+
+		<h1 class="!text-6xl !font-black tracking-tight bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 bg-clip-text text-transparent drop-shadow-sm !mb-2">Computer Science</h1>
+		<p><a class="link" href="../index.html">&larr; Back to home</a></p>
+		<hr class="rule">
+
+		<div class="cs-layout">
+
+			<nav class="cs-sidebar">
+				<h3><p class="section">// INDEX.</p></h3>
+				<ul>
+					<li><a class="link" href="#data-structures">Data Structures</a></li>
+					<li><a class="link" href="#algorithms">Algorithms</a></li>
+				</ul>
+			</nav>
+
+			<main class="cs-content">
+
+				<section id="data-structures">
+					<h3><p class="section">// DATA STRUCTURES.</p></h3>
+					<div class="section-content">
+					</div>
+				</section>
+				<hr class="rule">
+
+				<section id="algorithms">
+					<h3><p class="section">// ALGORITHMS.</p></h3>
+					<div class="section-content">
+					</div>
+				</section>
+				<hr class="rule">
+
+			</main>
+
+		</div>
+
+	</div>
+  </body>
+	<footer>
+		<hr>
+		<p>© 2026 Paolo Pangrazi. All rights reserved.</p>
+	</footer>
+</html>

@@ -22,6 +22,22 @@
 
 	<link rel='stylesheet' type='text/css' href='../white.css'>
 
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = { corePlugins: { preflight: false } }
+	</script>
+
+	<style type="text/tailwindcss">
+		@layer components {
+			.link {
+				@apply text-blue-700 underline decoration-solid hover:decoration-double;
+			}
+			.rule {
+				@apply border-0 border-t-[3px] border-blue-700 my-6;
+			}
+		}
+	</style>
+
 </head>
 
 <body>
@@ -31,7 +47,7 @@
 		<br>
 		<h3>Dopo aver letto tutti i libri di Alessandro Bergonzoni e dopo aver visto i suoi spettacoli, la mia contorta
 			mente ha partorito fisicamente il seguente breve racconto…</h3>
-		<hr>
+		<hr class="rule">
 		<p class="section">Introduzione – L’assopirsi</p>
 		<div class="section-content">
 			<p> Domare è l’arte di fare case o di amare il Do al mare? Perchè assopirsi appartiene concettualmente solo
@@ -154,7 +170,7 @@
 				soprattutto grazie alle multe zuccherate nel fiume Ium. Tali casse erano esageratamente grasse e
 				gradasse. Le casse grasse piacevano molto agli assi, che non erano ne grassi ne gradassi. </p>
 		</div>
-		<hr>
+		<hr class="rule">
 		ENIF / FINE</a><br>
 		<p><i>Conceptualized and written in 2013</i></p><br>
 		<p>© Paolo Pangrazi. All rights reserved.</p>

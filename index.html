@@ -23,6 +23,28 @@
 
 	<link rel='stylesheet' type='text/css' href='./white2.css'>
 
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = { corePlugins: { preflight: false } }
+	</script>
+
+	<style type="text/tailwindcss">
+		@layer components {
+			.link {
+				@apply text-blue-700 underline decoration-solid hover:decoration-double;
+			}
+			.rule {
+				@apply border-0 border-t-[3px] border-blue-700 my-6;
+			}
+			.highlight {
+				@apply bg-[#00FA9A] text-[#10183a] px-1;
+			}
+			.accomplish {
+				@apply font-bold no-underline border-b-4 border-[#00FA9A];
+			}
+		}
+	</style>
+
 </head>
 
 <body>
@@ -44,40 +66,39 @@
 		<h3>Speaking and writing in German · English · Italian · Spanish</h3>
 		<h3>I love <b>getting things done</b>.</h3>
 		<h3>Constantly learning.</h3>
-		<hr>
+		<hr class="rule">
 
 		<h3><p class="section">// INDEX.</p></h3>
 		<div class="section-content">
 			<p class="p-indented">
-				<u><a href="#pro">Professional Summary</a></u><br>
-				<u><a href="#novartis">=> Novartis</a></u><br>
-				<u><a href="#aisco">=> AISCO Firetrainer</a></u><br>
-				<u><a href="#alcatel-lucent">=> Alcatel-Lucent (Nokia)</a></u>
+				<a class="link" href="#pro">Professional Summary</a><br>
+				<a class="link" href="#novartis">=> Novartis</a><br>
+				<a class="link" href="#aisco">=> AISCO Firetrainer</a><br>
+				<a class="link" href="#alcatel-lucent">=> Alcatel-Lucent (Nokia)</a>
 				<br><br>
-				<u><a href="#books">🕮 Books</a></u><br>
-				<u><a href="#languages">🗪 Languages</a></u><br>
-				<u><a href="#hobbies">♖ Hobbies</a></u><br>
-				<u><a href="#creative-corner">🖊 Creative Corner</a></u>
+				<a class="link" href="#books">🕮 Books</a><br>
+				<a class="link" href="#languages">🗪 Languages</a><br>
+				<a class="link" href="#hobbies">♖ Hobbies</a><br>
+				<a class="link" href="#creative-corner">🖊 Creative Corner</a><br>
+				<a class="link" href="./cs/index.html">💻 Computer Science</a>
 			</p>
 		</div>
-		<hr>
+		<hr class="rule">
 
         <section id="pro">
         <h3><p class="section">// PROFESSIONAL SUMMARY.</p></h3>
 		<embed
-        src="./files/CV_Paolo_Pangrazi__VisualOverview.pdf" 
-        type="application/pdf" 
-        width="100%" 
-        height="600px"
-        style="border: 1px solid #ccc;">
+        src="./files/CV_Paolo_Pangrazi__VisualOverview.pdf#toolbar=0&navpanes=0&scrollbar=0&view=Fit"
+        type="application/pdf"
+        style="border: 1px solid #ccc; width: 100%; aspect-ratio: 841.92 / 595.32;">
 		</section>
-		<hr>
+		<hr class="rule">
 		<section id="novartis">
 	        <h3><p class="section">// NOVARTIS</p></h3>
 			<p><i><b>2008 - present</b></i></p>
 			<div class="section-content">
 			<b>Summary</b><br>
-			<b style="background-color:MediumSpringGreen;">Getting things done.</b><br>
+			<b class="highlight">Getting things done.</b><br>
 			<br>
 			<b>Daily Activities</b><br>
 			<b>Innovation, Operations and Project Management</b><br>
@@ -92,10 +113,10 @@
 			<b>Acquisitions and divestments projects</b><br>
 			• Data analysis, cleanup, verification and migration into IPMS for acquisitions and divestments projects.<br>
 			• Documents, data and metadata verification, review and migration into IPMS according to business requirements.<br>
-			=> <b style="text-decoration: none; border-bottom: 4px solid MediumSpringGreen;">Accomplishments</b>: Alcon integration (2010-11), Alcon divestment (2018-19), Sandoz spin-off (2023-24)<br>
+			=> <b class="accomplish">Accomplishments</b>: Alcon integration (2010-11), Alcon divestment (2018-19), Sandoz spin-off (2023-24)<br>
 			<br>
 			<b>IPMS System Functionality & Customization</b><br>
-			• Technical consultant for <u><a href="https://clarivate.com/intellectual-property/ip-management-software/memotech/" target="_blank">Clarivate IPMS Memotech</a></u>, enhancements, data analysis, design and customization (900 users, 10 sites).<br>
+			• Technical consultant for <a class="link" href="https://clarivate.com/intellectual-property/ip-management-software/memotech/" target="_blank">Clarivate IPMS Memotech</a>, enhancements, data analysis, design and customization (900 users, 10 sites).<br>
 			• User requirements or functional specifications gathering.<br>
 			• Design, development, testing, maintenance, monitoring, review and documentation of customized SQL / Oracle PL/SQL objects: packages, procedures, functions, scheduled jobs, pipelined functions, tables, views, triggers, etc. (107k lines of source code).<br>
 			• Tools used: Toad, SQL Developer, SQL Plus.<br>
@@ -123,7 +144,7 @@
 			• Creation and maintenance of relevant enterprise ICE / ISRM documentation, including functional specifications, design specifications, IQ, OQ, PQ, DO.<br>
 			<br>
 			<b>Migration Project from Memotech to Anaqua AQX</b><br>
-			As a key contributor to the enterprise-wide migration of the Intellectual Property Management System (IPMS) from <u><a href="https://clarivate.com/intellectual-property/ip-management-software/memotech/" target="_blank">Clarivate Memotech</a></u> to <u><a href="https://www.anaqua.com/aqx-corporate/" target="_blank">Anaqua AQX</a></u>, I played a pivotal role in modernizing the Novartis IP portfolio operations over several years of hands-on expertise with the legacy platform. Leading technical efforts in a high-stakes project, I collaborated cross-functionally to ensure seamless data integrity, system interoperability, and enhanced reporting capabilities.<br>
+			As a key contributor to the enterprise-wide migration of the Intellectual Property Management System (IPMS) from <a class="link" href="https://clarivate.com/intellectual-property/ip-management-software/memotech/" target="_blank">Clarivate Memotech</a> to <a class="link" href="https://www.anaqua.com/aqx-corporate/" target="_blank">Anaqua AQX</a>, I played a pivotal role in modernizing the Novartis IP portfolio operations over several years of hands-on expertise with the legacy platform. Leading technical efforts in a high-stakes project, I collaborated cross-functionally to ensure seamless data integrity, system interoperability, and enhanced reporting capabilities.<br>
 			<br>
 			Activities:<br>
 			- RFI and RFP technical core member<br>
@@ -137,13 +158,13 @@
 			- Development of hundreds of custom merge codes<br>
 			- Technical consultancy<br>
 			- Reporting and benchmarks<br>
-			- Communication with vendor (<u><a href="https://www.anaqua.com/aqx-corporate/" target="_blank">Anaqua</a></u>) and stakeholders (Novartis)<br>
+			- Communication with vendor (<a class="link" href="https://www.anaqua.com/aqx-corporate/" target="_blank">Anaqua</a>) and stakeholders (Novartis)<br>
 			- Member of the "accelerators" team<br>
 			<br>
-			<b style="text-decoration: none; border-bottom: 4px solid MediumSpringGreen;">Accomplishment</b>: successful go-live of <u><a href="https://www.anaqua.com/aqx-corporate/" target="_blank">Anaqua AQX</a></u><br>
+			<b class="accomplish">Accomplishment</b>: successful go-live of <a class="link" href="https://www.anaqua.com/aqx-corporate/" target="_blank">Anaqua AQX</a><br>
 			<br>
 			<br>			
-			<b style="text-decoration: none; border-bottom: 4px solid MediumSpringGreen;">Accomplishments</b><br>
+			<b class="accomplish">Accomplishments</b><br>
 			2023 - 2025 : Lead technical member of the successful IPMS migration project from Memotech to Anaqua AQX.<br>
 			<br>
 			2020 - 2021 : Full automated trademarks maintenance monitoring process design and development.<br>
@@ -158,13 +179,13 @@
 			2013 : Member of the Novartis IT team rewarded with the "NI IT & Group IGM Innovator Award 2013"<br>
 			</div>
 		</section>
-		<hr>
+		<hr class="rule">
 		<section id="aisco">
 	        <h3><p class="section">// AISCO Firetrainer</p></h3>
 			<p><i><b>2020 - 2023</b></i></p>
 			<div class="section-content">
 			<b>Summary</b><br>
-            <b style="background-color:MediumSpringGreen;">Hardware-Software Lead Architect, project management, design, invention and development of a digital software-based fire trainer system</b> with top-notch modern graphics and realistic fire simulation, propagation and behaviour based on physics and particle systems laws. This product is designed to train companies, employees, and individuals on effectively managing various types of fires.<br>
+            <b class="highlight">Hardware-Software Lead Architect, project management, design, invention and development of a digital software-based fire trainer system</b> with top-notch modern graphics and realistic fire simulation, propagation and behaviour based on physics and particle systems laws. This product is designed to train companies, employees, and individuals on effectively managing various types of fires.<br>
 			<br>
 			<b>Tasks</b><br>
 			• Business requirements gathering and brainstorming with the company executive board<br>  
@@ -182,18 +203,18 @@
 		    • Ensuring project deliveries<br> 
 			• Project supervision up to the final product launch<br>
 			<br>
-			<b style="text-decoration: none; border-bottom: 4px solid MediumSpringGreen;">Accomplishments</b><br>			
-			• 2020 - patent granted: <u><a href="https://patentscope.wipo.int/search/en/detail.jsf?docId=EP320899875" target="_blank">EP3795219</a></u><br>
-			• 2023 - next generation fire trainer successfully launched: <u><a href="https://aisco-firetrainer.com/products/aisco-indoortrainer" target="_blank">Indoor Fire Trainer</a></u><br>
+			<b class="accomplish">Accomplishments</b><br>			
+			• 2020 - patent granted: <a class="link" href="https://patentscope.wipo.int/search/en/detail.jsf?docId=EP320899875" target="_blank">EP3795219</a><br>
+			• 2023 - next generation fire trainer successfully launched: <a class="link" href="https://aisco-firetrainer.com/products/aisco-indoortrainer" target="_blank">Indoor Fire Trainer</a><br>
 			</div>
 		</section>
-		<hr>
+		<hr class="rule">
         <section id="alcatel-lucent">
 	        <h3><p class="section">// ALCATEL-LUCENT (NOKIA)</p></h3>
 			<p><i><b>2006 - 2008</b></i></p>
 			<div class="section-content">
 			<b>Summary</b><br>
-			<b style="background-color:MediumSpringGreen;">Design, development and maintenance of C++ & Java software</b> components within the Network Management System dedicated to the management of <u><a href="https://documentation.nokia.com/html/365-372-400R7.2/1850TSS-5/7.2.2/webdocs-enus/365-372-400R7-2/index.html?u=qzx89.html," target="_blank">Ethernet over SDH networks</a></u> and devices, especially about service provisioning, maintenance and performance monitoring in Metro Area Network environment.<br>
+			<b class="highlight">Design, development and maintenance of C++ & Java software</b> components within the Network Management System dedicated to the management of <a class="link" href="https://documentation.nokia.com/html/365-372-400R7.2/1850TSS-5/7.2.2/webdocs-enus/365-372-400R7-2/index.html?u=qzx89.html," target="_blank">Ethernet over SDH networks</a> and devices, especially about service provisioning, maintenance and performance monitoring in Metro Area Network environment.<br>
 			<br>
 			<b>Daily Activities</b><br>
 			• Requirements and specifications analysis<br>
@@ -205,15 +226,15 @@
 			• IBM Rational Clearcase configuration management<br>
 			• English technical documentation drafting and review<br>
 			<br>
-			<b style="text-decoration: none; border-bottom: 4px solid MediumSpringGreen;">Accomplishments</b><br>
+			<b class="accomplish">Accomplishments</b><br>
 			• C++ full redesign and refactoring of SDH network topology nodes resynchronization leading to 100% performance increase.<br> 
 			  Complexity Algorithm: Before: O(n3) => After: O(n2)<br>
-			• C++ implementation of Link Aggregation Protocol for SDH networks based on <u><a href="https://en.wikipedia.org/wiki/Link_aggregation" target="_blank">IEEE 802.3ad</a></u><br>
+			• C++ implementation of Link Aggregation Protocol for SDH networks based on <a class="link" href="https://en.wikipedia.org/wiki/Link_aggregation" target="_blank">IEEE 802.3ad</a><br>
 			</div>
 		</section>		
-		<hr>
-		<p>Contact & Links: <u><a href="https://ch.linkedin.com/in/paolopangrazi" target="_blank" rel="noreferrer noopener">LinkedIn</a></u></p>
-		<hr>
+		<hr class="rule">
+		<p>Contact & Links: <a class="link" href="https://ch.linkedin.com/in/paolopangrazi" target="_blank" rel="noreferrer noopener">LinkedIn</a></p>
+		<hr class="rule">
 		<section id="books">
 		<h3><p class="section">// BOOKS.</p></h3>
 		<div class="section-content">
@@ -222,27 +243,27 @@
 			   I usually read in the original language of the author, I believe that translation is a really hard job.<br>
 			   Nuances sometimes got unfortunately lost in the translation process, hence it is always a good idea to get the book in the original langauge.<br><br>
 			   I try to extend constantly my perspective and mindset reading about different topics and area:<br>
-			   - Psychology: every book of <u><a href="https://powerseductionandwar.com/" target="_blank">Robert Greene</a></u> is a masterpiece.<br>
-			   - Design (product design, typography, UI/UX) - Recommendation: all books of <u><a href="https://www.edwardtufte.com/" target="_blank">Edward Tufte</a></u>.<br> 
+			   - Psychology: every book of <a class="link" href="https://powerseductionandwar.com/" target="_blank">Robert Greene</a> is a masterpiece.<br>
+			   - Design (product design, typography, UI/UX) - Recommendation: all books of <a class="link" href="https://www.edwardtufte.com/" target="_blank">Edward Tufte</a>.<br> 
 			   - Computer science - well, the list here is too long, maybe I will create an extra section for it.<br>
 			   - Historical books - Ken Follett, how to teach history from middle age down to modern history.<br>
 		       - Trading and market analysis - Elliot Wave Principle (Frost, Prechter)
 			<p>These are (at the moment) my favourite books:<br></p>
 			<p class="p-indented">
-				<u><a href="https://en.wikipedia.org/wiki/Nineteen_Eighty-Four" target="_blank">1. 1984 - George Orwell</a></u><br>
-				<u><a href="https://en.wikipedia.org/wiki/The_Pillars_of_the_Earth" target="_blank">2. The Pillars of the Earth - Ken Follett</a></u><br>
-				<u><a href="https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach" target="_blank">3. Gödel, Escher, Bach: an Eternal Golden Braid - Douglas Hofstadter</a></u>
+				<a class="link" href="https://en.wikipedia.org/wiki/Nineteen_Eighty-Four" target="_blank">1. 1984 - George Orwell</a><br>
+				<a class="link" href="https://en.wikipedia.org/wiki/The_Pillars_of_the_Earth" target="_blank">2. The Pillars of the Earth - Ken Follett</a><br>
+				<a class="link" href="https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach" target="_blank">3. Gödel, Escher, Bach: an Eternal Golden Braid - Douglas Hofstadter</a>
 			</p>
 		</div>		
 		<div class="section-content">
 			<p>Computer Science<br></p>
 			<p class="p-indented">
-				<u><a href="https://en.wikipedia.org/wiki/The_C_Programming_Language" target="_blank">The C Programming Language</a></u>, the real GOAT book for any serious software developer.<br>
-				<u><a href="https://github.com/eherbold/berkeleytextbooks/blob/7b9196f9b5fb66dc0686852522badfcc9007fc89/Algorithms%20-%20Sanjoy%20Dasgupta%2C%20Christos%20H.%20Papadimitriou%2C%20and%20Umesh%20V.%20Vazirani.pdf" target="_blank">Algorithms - Dasgupta, Papadimitriou, V. Vazirani</a></u><br>
+				<a class="link" href="https://en.wikipedia.org/wiki/The_C_Programming_Language" target="_blank">The C Programming Language</a>, the real GOAT book for any serious software developer.<br>
+				<a class="link" href="https://github.com/eherbold/berkeleytextbooks/blob/7b9196f9b5fb66dc0686852522badfcc9007fc89/Algorithms%20-%20Sanjoy%20Dasgupta%2C%20Christos%20H.%20Papadimitriou%2C%20and%20Umesh%20V.%20Vazirani.pdf" target="_blank">Algorithms - Dasgupta, Papadimitriou, V. Vazirani</a><br>
 			</p>
 		</div>
 		</section>
-		<hr>
+		<hr class="rule">
 		
 		<section id="languages">
 		<h3><p class="section">// LANGUAGES.</p></h3>
@@ -258,7 +279,7 @@
 			</p>
 		</div>
 		</section>
-		<hr>
+		<hr class="rule">
 
 		<section id="hobbies">
 		<h3><p class="section">// HOBBIES.</p></h3>
@@ -268,25 +289,25 @@
 			</p>
 			<p>Electric Guitars<br></p>
 			<p class="p-indented">
-				<u><a href="https://ibanez.fandom.com/wiki/RG270_(1998%E2%80%932002,_Korea)" target="_blank">Ibanez RG 270 Black (sold)</a></u><br>
-				<u><a href="https://godinguitars.com/manuals/hsheet08_frwayclass.pdf" target="_blank">Godin Freeway Classic (sold)</a></u><br>
-				<u><a href="https://ibanez.fandom.com/wiki/MSM1" target="_blank">Ibanez MSM1</a></u><br>
-				<u><a href="https://ibanez.fandom.com/wiki/UV70P" target="_blank">Ibanez UV70P</a></u><br>
-				<u><a href="https://www.fender.com/en-US/electric-guitars/stratocaster/jimi-hendrix-stratocaster/0145802305.html" target="_blank">Fender Stratocaster JH</a></u>
+				<a class="link" href="https://ibanez.fandom.com/wiki/RG270_(1998%E2%80%932002,_Korea)" target="_blank">Ibanez RG 270 Black (sold)</a><br>
+				<a class="link" href="https://godinguitars.com/manuals/hsheet08_frwayclass.pdf" target="_blank">Godin Freeway Classic (sold)</a><br>
+				<a class="link" href="https://ibanez.fandom.com/wiki/MSM1" target="_blank">Ibanez MSM1</a><br>
+				<a class="link" href="https://ibanez.fandom.com/wiki/UV70P" target="_blank">Ibanez UV70P</a><br>
+				<a class="link" href="https://www.fender.com/en-US/electric-guitars/stratocaster/jimi-hendrix-stratocaster/0145802305.html" target="_blank">Fender Stratocaster JH</a>
 			</p>
 			<p>Chess<br></p>
 			<p>Tennis<br></p>
 		</div>
 		</section>
-		<hr>
+		<hr class="rule">
 
 		<section id="creative-corner">
 		<h3><p class="section">// CREATIVE CORNER.</p></h3>
 		<div class="section-content">
 			<p>Whenever I have time and mood, I like to write down some toughts or just create someting for the sake of "creating", no matter what definition you can apply to it.</p>
-			<p>A crazy short story about a fictional king. Written in italian. >> <u><a href="./writings/IlReRe.html" target="_blank" rel="noreferrer noopener">Il Re Re</a></u>
+			<p>A crazy short story about a fictional king. Written in italian. >> <a class="link" href="./writings/IlReRe.html" target="_blank" rel="noreferrer noopener">Il Re Re</a>
 			</p>
-			<p>A poem is a rythmical dance of images in words. >> <u><a href="./writings/Poetry.html" target="_blank" rel="noreferrer noopener">Poetry</a></u>
+			<p>A poem is a rythmical dance of images in words. >> <a class="link" href="./writings/Poetry.html" target="_blank" rel="noreferrer noopener">Poetry</a>
 			</p>
 		</div>
 		</section>
@@ -294,7 +315,7 @@
 	</div>
   </body>
 	<footer>
-		<hr>
+		<hr class="rule">
 		<p>© 2026 Paolo Pangrazi. All rights reserved.</u></p>
 	</footer>
 </html>
