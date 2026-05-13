@@ -23,6 +23,31 @@
 
 	<link rel='stylesheet' type='text/css' href='./white2.css'>
 
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+
+	<style>
+		.bits-marquee {
+			overflow: hidden;
+			white-space: nowrap;
+			width: 100%;
+		}
+		.bits-marquee__track {
+			display: inline-block;
+			animation: bits-scroll 40s linear infinite;
+			will-change: transform;
+		}
+		.bits-marquee__track > span {
+			display: inline-block;
+			padding-right: 2em;
+		}
+		@keyframes bits-scroll {
+			from { transform: translateX(0); }
+			to   { transform: translateX(-50%); }
+		}
+	</style>
+
 	<script src="https://cdn.tailwindcss.com"></script>
 	<script>
 		tailwind.config = { corePlugins: { preflight: false } }
@@ -310,6 +335,11 @@
 
 		<section id="cs">
 		<h3><p class="section">// COMPUTER SCIENCE.</p></h3>
+		<div class="bits-marquee" style="font-family:'DM Mono',monospace; font-size:13px; color:#10183a; margin-bottom:12px;">
+			<div class="bits-marquee__track">
+				<span>01 01 0101100101001 01 1 0 1 10 0101 11 001 0 1 01100 1001 010 1 11 0 0101 1100 10 01 001 1 0 1 010011 1 0 0101 1 00 1 010 110 01 0 1 001 1 0 11 010 0 1 01 0110010 1 00 1 01 1 0</span><span>01 01 0101100101001 01 1 0 1 10 0101 11 001 0 1 01100 1001 010 1 11 0 0101 1100 10 01 001 1 0 1 010011 1 0 0101 1 00 1 010 110 01 0 1 001 1 0 11 010 0 1 01 0110010 1 00 1 01 1 0</span>
+			</div>
+		</div>
 		<div class="section-content">
 			<b class="highlight">C. Raw. Fast. Unforgiving. Beautiful.</b>
 			<br><br>
