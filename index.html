@@ -79,7 +79,8 @@
 				<a class="link" href="#books">🕮 Books</a><br>
 				<a class="link" href="#languages">🗪 Languages</a><br>
 				<a class="link" href="#hobbies">♖ Hobbies</a><br>
-				<a class="link" href="#creative-corner">🖊 Creative Corner</a>
+				<a class="link" href="#creative-corner">🖊 Creative Corner</a><br><br>
+				<a class="link" href="#cs">⌨ Computer Science</a>
 			</p>
 		</div>
 		<hr class="rule">
@@ -310,7 +311,36 @@
 			</p>
 		</div>
 		</section>
-	
+		<hr class="rule">
+
+		<section id="cs">
+		<h3><p class="section">// COMPUTER SCIENCE.</p></h3>
+		<div class="section-content">
+			<b class="highlight">C. Raw. Fast. Unforgiving. Beautiful.</b>
+			<br><br>
+			There is something deeply satisfying about writing code that runs close to the metal.
+			No garbage collector whispering in the background. No framework doing the heavy lifting.
+			Just you, the compiler, and the hardware.<br>
+			<br>
+			<b>LiAM — Like Another Mail</b> — is a minimal multithreaded SMTP + POP3 mail server written entirely in C for Linux.
+			No third-party libraries. No shortcuts. Built from scratch as a university assignment, it implements two foundational internet mail protocols right down to the RFC.<br>
+			<br>
+			<b>What's inside</b><br>
+			• A full SMTP state machine (<code>HELO → MAIL FROM → RCPT TO → DATA → QUIT</code>), <a class="link" href="https://www.rfc-editor.org/rfc/rfc5321" target="_blank" rel="noreferrer noopener">RFC 5321</a> compliant<br>
+			• A POP3 server with authorization state, in-memory message index, and session-scoped deletion, <a class="link" href="https://www.rfc-editor.org/rfc/rfc1939" target="_blank" rel="noreferrer noopener">RFC 1939</a> compliant<br>
+			• Per-mailbox <code>pthread_mutex_t</code> locking — two threads cannot touch the same mailbox simultaneously. No races. No corruption.<br>
+			• Flat mbox storage, temp files written during live SMTP sessions, credential files — all wired together by hand<br>
+			• Two independent listener threads running side by side from a single process<br>
+			<br>
+			Why C? Because C is humbling and rewarding in equal measure.
+			You manage your own memory. You design your own abstractions.
+			You understand every byte that moves across the wire.
+			It is the language that taught me to think in systems — and every hour spent in it made me a sharper engineer in every other language too.<br>
+			<br>
+			<a class="link accomplish" href="https://github.com/paolopangrazi/liam" target="_blank" rel="noreferrer noopener">→ Full source on GitHub: paolopangrazi/liam</a>
+		</div>
+		</section>
+
 	</div>
   </body>
 	<footer>
