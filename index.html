@@ -467,6 +467,27 @@ for (NodeId current; !queue.empty(); ) {
 		</section>
 
 	</div>
+
+	<!-- Floating navigation button -->
+	<div id="fab-container" style="position:fixed;bottom:24px;right:24px;z-index:1000;font-family:'DM Mono',monospace;font-size:0.85em;">
+	  <div id="fab-menu" style="display:none;position:absolute;bottom:52px;right:0;background:#fff;border:2px solid #00FA9A;padding:14px 18px;white-space:nowrap;min-width:220px;box-shadow:0 4px 16px rgba(0,0,0,0.1);">
+	    <p style="margin:0 0 10px 0;font-weight:bold;border-bottom:2px solid #00FA9A;padding-bottom:6px;">// INDEX.</p>
+	    <a class="link" href="#pro" onclick="closeFab()">Professional Summary</a><br>
+	    <span style="color:#00FA9A;">▸</span> <a class="link" href="#novartis" onclick="closeFab()">Novartis</a><br>
+	    <span style="color:#00FA9A;">▸</span> <a class="link" href="#aisco" onclick="closeFab()">AISCO Firetrainer</a><br>
+	    <span style="color:#00FA9A;">▸</span> <a class="link" href="#alcatel-lucent" onclick="closeFab()">Alcatel-Lucent (Nokia)</a><br>
+	    <br>
+	    <a class="link" href="#books" onclick="closeFab()">🕮 Books</a><br>
+	    <a class="link" href="#languages" onclick="closeFab()">🗪 Languages</a><br>
+	    <a class="link" href="#hobbies" onclick="closeFab()">♖ Hobbies</a><br>
+	    <a class="link" href="#creative-corner" onclick="closeFab()">🖊 Creative Corner</a><br>
+	    <a class="link" href="#cs" onclick="closeFab()">⌨ Computer Science</a>
+	  </div>
+	  <button onclick="toggleFab()" style="background:#00FA9A;color:#10183a;border:2px solid #10183a;width:44px;height:44px;font-size:1.3em;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Navigation">☰</button>
+	</div>
+
+	<script src="./fab.js"></script>
+
   </body>
 	<footer>
 		<hr class="rule">
