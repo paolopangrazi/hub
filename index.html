@@ -254,53 +254,7 @@
 			<b class="accomplish">Accomplishments</b><br>
 			• <b>C++ — SDH Network Topology Nodes Resynchronization</b><br>
 			  <br>
-			  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 230" style="width:100%;max-width:640px;display:block;margin:12px 0;" font-family="'DM Mono',monospace" font-size="11">
-			    <rect width="560" height="230" rx="6" fill="#f4f4f4"/>
-			    <rect x="0" y="0" width="279" height="230" rx="6" fill="#fff0f0"/>
-			    <rect x="281" y="0" width="279" height="230" rx="6" fill="#f0fff8"/>
-			    <line x1="280" y1="0" x2="280" y2="230" stroke="#ccc" stroke-width="1.5" stroke-dasharray="4,3"/>
-			    <text x="140" y="22" text-anchor="middle" fill="#c0392b" font-size="12" font-weight="bold">⬅️ Before · O(n³)</text>
-			    <text x="420" y="22" text-anchor="middle" fill="#1a7a4a" font-size="12" font-weight="bold">➡️ After · O(n²) · BFS</text>
-			    <!-- LEFT: all-pairs red chaos lines — nodes: A(70,120) B(140,68) C(220,72) D(225,150) E(135,158) -->
-			    <line x1="70" y1="120" x2="140" y2="68" stroke="#e74c3c" stroke-width="1.5" opacity="0.6"/>
-			    <line x1="70" y1="120" x2="220" y2="72" stroke="#e74c3c" stroke-width="1.5" opacity="0.6"/>
-			    <line x1="70" y1="120" x2="225" y2="150" stroke="#e74c3c" stroke-width="1.5" opacity="0.6"/>
-			    <line x1="70" y1="120" x2="135" y2="158" stroke="#e74c3c" stroke-width="1.5" opacity="0.6"/>
-			    <line x1="140" y1="68" x2="220" y2="72" stroke="#e74c3c" stroke-width="1.5" opacity="0.6"/>
-			    <line x1="140" y1="68" x2="225" y2="150" stroke="#e74c3c" stroke-width="1.5" opacity="0.6"/>
-			    <line x1="140" y1="68" x2="135" y2="158" stroke="#e74c3c" stroke-width="1.5" opacity="0.6"/>
-			    <line x1="220" y1="72" x2="225" y2="150" stroke="#e74c3c" stroke-width="1.5" opacity="0.6"/>
-			    <line x1="220" y1="72" x2="135" y2="158" stroke="#e74c3c" stroke-width="1.5" opacity="0.6"/>
-			    <line x1="225" y1="150" x2="135" y2="158" stroke="#e74c3c" stroke-width="1.5" opacity="0.6"/>
-			    <circle cx="70" cy="120" r="16" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
-			    <text x="70" y="125" text-anchor="middle" fill="#10183a" font-weight="bold">A</text>
-			    <circle cx="140" cy="68" r="16" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
-			    <text x="140" y="73" text-anchor="middle" fill="#10183a" font-weight="bold">B</text>
-			    <circle cx="220" cy="72" r="16" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
-			    <text x="220" y="77" text-anchor="middle" fill="#10183a" font-weight="bold">C</text>
-			    <circle cx="225" cy="150" r="16" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
-			    <text x="225" y="155" text-anchor="middle" fill="#10183a" font-weight="bold">D</text>
-			    <circle cx="135" cy="158" r="16" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
-			    <text x="135" y="163" text-anchor="middle" fill="#10183a" font-weight="bold">E</text>
-			    <text x="140" y="210" text-anchor="middle" fill="#c0392b" font-size="10">all node combinations checked — O(n³)</text>
-			    <!-- RIGHT: BFS tree — nodes: A(355,120) B(425,68) C(505,72) D(505,155) E(420,158) -->
-			    <line x1="355" y1="120" x2="425" y2="68" stroke="#00a86b" stroke-width="2.5"/>
-			    <line x1="355" y1="120" x2="420" y2="158" stroke="#00a86b" stroke-width="2.5"/>
-			    <line x1="425" y1="68" x2="505" y2="72" stroke="#00a86b" stroke-width="2.5"/>
-			    <line x1="420" y1="158" x2="505" y2="155" stroke="#00a86b" stroke-width="2.5"/>
-			    <circle cx="355" cy="120" r="16" fill="#00FA9A" stroke="#10183a" stroke-width="2"/>
-			    <text x="355" y="125" text-anchor="middle" fill="#10183a" font-weight="bold">A</text>
-			    <text x="334" y="123" text-anchor="end" fill="#10183a" font-size="9">start</text>
-			    <circle cx="425" cy="68" r="16" fill="#00FA9A" stroke="#10183a" stroke-width="2"/>
-			    <text x="425" y="73" text-anchor="middle" fill="#10183a" font-weight="bold">B</text>
-			    <circle cx="505" cy="72" r="16" fill="#00FA9A" stroke="#10183a" stroke-width="2"/>
-			    <text x="505" y="77" text-anchor="middle" fill="#10183a" font-weight="bold">C</text>
-			    <circle cx="505" cy="155" r="16" fill="#00FA9A" stroke="#10183a" stroke-width="2"/>
-			    <text x="505" y="160" text-anchor="middle" fill="#10183a" font-weight="bold">D</text>
-			    <circle cx="420" cy="158" r="16" fill="#00FA9A" stroke="#10183a" stroke-width="2"/>
-			    <text x="420" y="163" text-anchor="middle" fill="#10183a" font-weight="bold">E</text>
-			    <text x="420" y="210" text-anchor="middle" fill="#1a7a4a" font-size="10">each node visited exactly once — O(n²)</text>
-			  </svg>
+			  <img src="./images/sdh-resync.svg" alt="SDH nodes resynchronization: O(n³) before vs O(n²) BFS after" style="width:100%;max-width:640px;display:block;margin:12px 0;">
 			  <br>
 			  <b>🔧 What.</b> Full algorithmic redesign and C++ reimplementation of the network topology resynchronization engine inside the Network Management System for Ethernet over SDH.<br>
 			  <br>
@@ -345,34 +299,7 @@ for (NodeId current; !queue.empty(); ) {
 			  <br>
 			• <b>C++ implementation of Link Aggregation Protocol for SDH networks based on <a class="link" href="https://en.wikipedia.org/wiki/Link_aggregation" target="_blank">IEEE 802.3ad</a></b><br>
 			  <br>
-			  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 210" style="width:100%; max-width:620px; display:block; margin:12px 0;" font-family="'DM Mono',monospace" font-size="11">
-			    <rect width="560" height="210" rx="6" fill="#f4f4f4"/>
-			    <text x="280" y="22" text-anchor="middle" fill="#10183a" font-size="12" font-weight="bold">Link Aggregation Group (LAG) — IEEE 802.3ad</text>
-			    <!-- Switch A -->
-			    <rect x="15" y="38" width="95" height="110" rx="5" fill="#10183a" stroke="#00FA9A" stroke-width="2"/>
-			    <text x="62" y="90" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">Switch</text>
-			    <text x="62" y="110" text-anchor="middle" fill="#00FA9A" font-size="16" font-weight="bold">A</text>
-			    <!-- Switch B -->
-			    <rect x="450" y="38" width="95" height="110" rx="5" fill="#10183a" stroke="#00FA9A" stroke-width="2"/>
-			    <text x="497" y="90" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">Switch</text>
-			    <text x="497" y="110" text-anchor="middle" fill="#00FA9A" font-size="16" font-weight="bold">B</text>
-			    <!-- Link 1 -->
-			    <text x="280" y="68" text-anchor="middle" fill="#4a9eff">link 1 · 1 Gbps</text>
-			    <line x1="110" y1="75" x2="447" y2="75" stroke="#4a9eff" stroke-width="3"/>
-			    <polygon points="443,71 453,75 443,79" fill="#4a9eff"/>
-			    <!-- Link 2 -->
-			    <text x="280" y="93" text-anchor="middle" fill="#28a87a">link 2 · 1 Gbps</text>
-			    <line x1="110" y1="100" x2="447" y2="100" stroke="#00FA9A" stroke-width="3"/>
-			    <polygon points="443,96 453,100 443,104" fill="#00FA9A"/>
-			    <!-- Link 3 -->
-			    <text x="280" y="118" text-anchor="middle" fill="#cc7a2a">link 3 · 1 Gbps</text>
-			    <line x1="110" y1="125" x2="447" y2="125" stroke="#ff9f43" stroke-width="3"/>
-			    <polygon points="443,121 453,125 443,129" fill="#ff9f43"/>
-			    <!-- Bracket converging -->
-			    <path d="M110,152 L280,168 L450,152" fill="none" stroke="#10183a" stroke-width="1.5"/>
-			    <!-- Result -->
-			    <text x="280" y="193" text-anchor="middle" fill="#10183a" font-size="11" font-weight="bold">⇒ 1 Logical Link · 3 Gbps total · fault tolerant</text>
-			  </svg>
+			  <img src="./images/link-aggregation.svg" alt="Link Aggregation Group: 3 physical links bundled into 1 logical link" style="width:100%;max-width:620px;display:block;margin:12px 0;">
 			  <br>
 			  <b>What is Link Aggregation?</b> Imagine you have four physical cables connecting two network devices. Normally only one is active — the others sit idle as backup. Link Aggregation bundles them all into a single logical link: the bandwidth adds up, and if one cable dies, traffic automatically flows through the remaining ones. More speed, zero single point of failure.<br>
 			  <br>
@@ -425,7 +352,7 @@ for (NodeId current; !queue.empty(); ) {
 
 		<section id="hobbies">
 		<h3><p class="section">// HOBBIES.</p></h3>
-		<img src="./files/guitar.jpeg" alt="Guitarist" style="width:100%; max-width:700px; display:block; margin-bottom:16px;">
+		<img src="./images/guitar.jpeg" alt="Guitarist" style="width:100%; max-width:700px; display:block; margin-bottom:16px;">
 		<div class="section-content">
 			<p>Guitars and music of any form and type are following my life, starting back from the good 90s.<br>
 			   Music is not just music, it is art and therapy.
