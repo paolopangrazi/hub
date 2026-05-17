@@ -40,9 +40,9 @@ class BookShelf extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this._books = null;
     this._offset = 0;
-    this._spineW = 52;
-    this._coverW = 320;
-    this._viewportW = 580;
+    this._spineW = 44;
+    this._coverW = 200;
+    this._viewportW = 360;
   }
 
   /* ── Attribute / property bridge ── */
@@ -101,8 +101,7 @@ class BookShelf extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>${this._css()}</style>
       <div class="container">
-        <h2>${heading}</h2>
-        <div class="shelf-wrapper">
+<div class="shelf-wrapper">
           <div class="arrow arrow-left" id="arrowLeft">&#8249;</div>
           <div class="shelf-viewport">
             <div class="shelf" id="shelf">
@@ -112,7 +111,6 @@ class BookShelf extends HTMLElement {
           <div class="arrow arrow-right" id="arrowRight">&#8250;</div>
         </div>
         <div class="book-info">
-          <div class="hint" id="hint">Click a spine to know more</div>
           <div class="book-description" id="desc"></div>
         </div>
       </div>
@@ -156,76 +154,98 @@ class BookShelf extends HTMLElement {
   _bind() {
     const root = this.shadowRoot;
     const shelf = root.getElementById('shelf');
-    const hint = root.getElementById('hint');
     const desc = root.getElementById('desc');
 
+    const openSlot = (slot) => {
+      if (slot.classList.contains('active')) return;
+
+      root.querySelectorAll('.book-slot.active').forEach(s => s.classList.remove('active'));
+      slot.classList.add('active');
+
+      const idx = parseInt(slot.dataset.index);
+      const book = this._books[idx];
+
+      desc.textContent = book.description || book.blurb || '';
+
+      const slots = Array.from(root.querySelectorAll('.book-slot'));
+      let slotLeft = 0;
+      for (const s of slots) {
+        if (s === slot) break;
+        slotLeft += this._spineW;
+      }
+      const slotRight = slotLeft + this._coverW;
+      const vpW = this._liveViewportW();
+      if (slotRight > this._offset + vpW) {
+        this._offset = slotRight - vpW;
+      }
+      if (slotLeft < this._offset) {
+        this._offset = slotLeft;
+      }
+      shelf.style.transform = `translateX(-${this._offset}px)`;
+      this._updateArrows();
+    };
+
     root.querySelectorAll('.book-slot').forEach(slot => {
-      slot.addEventListener('click', () => {
-        const wasActive = slot.classList.contains('active');
-
-        // Close all
-        root.querySelectorAll('.book-slot.active').forEach(s => s.classList.remove('active'));
-
-        if (!wasActive) {
-          slot.classList.add('active');
-          const idx = parseInt(slot.dataset.index);
-          const book = this._books[idx];
-
-          // Show description
-          hint.classList.add('hidden');
-          desc.textContent = book.description || book.blurb || '';
-          requestAnimationFrame(() => desc.classList.add('visible'));
-
-          // Auto-scroll to fit cover
-          const slots = Array.from(root.querySelectorAll('.book-slot'));
-          let slotLeft = 0;
-          for (const s of slots) {
-            if (s === slot) break;
-            slotLeft += this._spineW;
-          }
-          const slotRight = slotLeft + this._coverW;
-          if (slotRight > this._offset + this._viewportW) {
-            this._offset = slotRight - this._viewportW;
-          }
-          if (slotLeft < this._offset) {
-            this._offset = slotLeft;
-          }
-        } else {
-          desc.classList.remove('visible');
-          hint.classList.remove('hidden');
-        }
-        shelf.style.transform = `translateX(-${this._offset}px)`;
-      });
+      slot.addEventListener('click', () => openSlot(slot));
     });
 
     root.getElementById('arrowLeft').addEventListener('click', () => this._scroll(-1));
     root.getElementById('arrowRight').addEventListener('click', () => this._scroll(1));
+
+    // Open GEB by default
+    const defaultSlot = root.querySelector('.book-slot[data-index="2"]');
+    if (defaultSlot) openSlot(defaultSlot);
+
+    this._updateArrows();
+
+    // Re-evaluate arrows on resize (orientation change, window resize)
+    new ResizeObserver(() => this._updateArrows()).observe(this);
+  }
+
+  _liveViewportW() {
+    const vp = this.shadowRoot.querySelector('.shelf-viewport');
+    return vp ? vp.offsetWidth : this._viewportW;
+  }
+
+  _updateArrows() {
+    const root = this.shadowRoot;
+    const slots = root.querySelectorAll('.book-slot');
+    const vpW = this._liveViewportW();
+    let totalW = 0;
+    slots.forEach(s => {
+      totalW += s.classList.contains('active') ? this._coverW : this._spineW;
+    });
+    const visible = totalW <= vpW;
+    root.getElementById('arrowLeft').style.display  = visible ? 'none' : 'flex';
+    root.getElementById('arrowRight').style.display = visible ? 'none' : 'flex';
   }
 
   _scroll(dir) {
     const root = this.shadowRoot;
     const shelf = root.getElementById('shelf');
     const slots = root.querySelectorAll('.book-slot');
+    const vpW = this._liveViewportW();
     let totalW = 0;
     slots.forEach(s => {
       totalW += s.classList.contains('active') ? this._coverW : this._spineW;
     });
-    const maxOffset = Math.max(0, totalW - this._viewportW);
+    const maxOffset = Math.max(0, totalW - vpW);
     this._offset = Math.min(maxOffset, Math.max(0, this._offset + dir * this._spineW * 3));
     shelf.style.transform = `translateX(-${this._offset}px)`;
+    this._updateArrows();
   }
 
   /* ── All CSS (encapsulated in Shadow DOM) ── */
 
   _css() {
     return `
-      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@400;500;600&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&display=swap');
 
       :host {
         display: block;
-        --shelf-bg: #1b1b2f;
-        font-family: 'DM Sans', sans-serif;
-        color: #fff;
+        --shelf-bg: #ffffff;
+        font-family: 'Inter', serif;
+        color: #10183a;
       }
 
       * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -233,94 +253,71 @@ class BookShelf extends HTMLElement {
       .container {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 60px 20px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 32px 20px;
         background: var(--shelf-bg);
-        background-image:
-          radial-gradient(ellipse at 30% 40%, rgba(80,50,120,0.18) 0%, transparent 60%),
-          radial-gradient(ellipse at 70% 60%, rgba(25,55,85,0.22) 0%, transparent 55%);
-        border-radius: 12px;
       }
 
-      h2 {
-        font-family: 'Playfair Display', serif;
-        font-weight: 700;
-        font-size: 28px;
-        margin-bottom: 40px;
-        letter-spacing: 1px;
-        color: rgba(255,255,255,0.85);
-      }
-
-      /* ─── Shelf ─── */
+/* ─── Shelf ─── */
       .shelf-wrapper { display: flex; align-items: center; gap: 24px; }
 
       .arrow {
         width: 44px; height: 44px; border-radius: 50%;
-        border: 1.5px solid rgba(255,255,255,0.15);
-        background: rgba(255,255,255,0.04);
-        color: rgba(255,255,255,0.5);
+        border: 1.5px solid rgba(16,24,58,0.2);
+        background: rgba(16,24,58,0.04);
+        color: rgba(16,24,58,0.45);
         font-size: 20px; cursor: pointer;
         display: flex; align-items: center; justify-content: center;
         transition: all 0.3s ease; flex-shrink: 0; user-select: none;
       }
       .arrow:hover {
-        border-color: rgba(255,255,255,0.35);
-        background: rgba(255,255,255,0.08);
-        color: rgba(255,255,255,0.85);
+        border-color: rgba(16,24,58,0.4);
+        background: rgba(16,24,58,0.08);
+        color: #10183a;
       }
 
-      .shelf-viewport { width: 580px; overflow: hidden; position: relative; }
+      .shelf-viewport { width: 100%; overflow: hidden; position: relative; }
 
       .shelf {
         display: flex; align-items: flex-end; gap: 0;
-        transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
         padding-bottom: 4px;
       }
 
       .shelf-viewport::after {
-        content: ''; position: absolute; bottom: 0; left: -20px; right: -20px;
+        content: ''; position: absolute; bottom: 0; left: 0; right: 0;
         height: 6px;
-        background: linear-gradient(180deg, #5a3e28, #3d2915);
+        background: linear-gradient(180deg, #1a1aff, #0000cc);
         border-radius: 2px;
         box-shadow: 0 3px 12px rgba(0,0,0,0.4);
       }
 
       /* ─── Book slot ─── */
       .book-slot {
-        flex-shrink: 0; width: 52px; height: 480px;
-        perspective: 1400px; cursor: pointer;
-        transition: width 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+        flex-shrink: 0; width: 44px; height: 300px;
+        cursor: pointer;
       }
-      .book-slot.active { width: 320px; }
+      .book-slot.active { width: 200px; }
 
       .book {
-        width: 52px; height: 100%; position: relative;
-        transform-style: preserve-3d;
+        width: 100%; height: 100%; position: relative;
       }
 
       /* ─── Spine ─── */
       .spine {
-        position: absolute; width: 52px; height: 100%;
+        position: absolute; width: 44px; height: 100%;
         display: flex; flex-direction: column; align-items: center; justify-content: center;
-        border-radius: 3px 0 0 3px; z-index: 2;
+        z-index: 2; overflow: hidden;
         background: linear-gradient(180deg, var(--spine-grad));
-        transition: opacity 0.35s ease;
       }
       .book-slot.active .spine { opacity: 0; pointer-events: none; }
 
-      .spine::before, .spine::after {
-        content: ''; position: absolute; left: 9px; right: 9px;
-        height: 1.5px; background: var(--accent-dim);
-      }
-      .spine::before { top: 22px; }
-      .spine::after  { bottom: 22px; }
 
       .spine-title {
         writing-mode: vertical-rl; text-orientation: mixed;
         font-family: 'Playfair Display', serif; font-weight: 700;
         font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase;
-        color: var(--accent); max-height: 380px; overflow: hidden;
+        color: var(--accent); max-height: 200px; overflow: hidden;
       }
       .spine-author {
         writing-mode: vertical-rl; text-orientation: mixed;
@@ -330,74 +327,56 @@ class BookShelf extends HTMLElement {
 
       /* ─── Cover ─── */
       .cover {
-        position: absolute; width: 320px; height: 100%; left: 0;
-        transform-origin: left center;
-        opacity: 0; transform: rotateY(90deg);
-        backface-visibility: hidden; border-radius: 5px; overflow: hidden;
-        transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.3s ease;
+        position: absolute; width: 100%; height: 100%; left: 0;
+        opacity: 0; overflow: hidden;
       }
-      .book-slot.active .cover { transform: rotateY(0deg); opacity: 1; }
+      .book-slot.active .cover { opacity: 1; }
 
       .cover-art {
         width: 100%; height: 100%;
         display: flex; flex-direction: column; justify-content: flex-end;
-        padding: 36px 28px; position: relative; overflow: hidden;
+        padding: 22px 18px; position: relative; overflow: hidden;
         background: linear-gradient(145deg, var(--cover-grad));
       }
 
       .cover-orb {
-        position: absolute; top: -70px; right: -70px; width: 300px; height: 300px;
+        position: absolute; top: -50px; right: -50px; width: 200px; height: 200px;
         border-radius: 50%;
         background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 65%);
       }
 
       .cover-title {
         font-family: 'Playfair Display', serif; font-weight: 900;
-        font-size: 32px; line-height: 1.15; color: var(--accent);
+        font-size: 20px; line-height: 1.15; color: var(--accent);
         position: relative; z-index: 1;
       }
       .cover-subtitle {
-        font-size: 11px; color: rgba(255,255,255,0.4);
-        margin-top: 8px; letter-spacing: 3px; text-transform: uppercase;
+        font-size: 9px; color: rgba(255,255,255,0.4);
+        margin-top: 6px; letter-spacing: 2px; text-transform: uppercase;
         position: relative; z-index: 1;
       }
       .cover-author {
-        font-family: 'Playfair Display', serif; font-size: 14px;
-        color: rgba(255,255,255,0.6); margin-top: 20px; padding-top: 14px;
+        font-family: 'Playfair Display', serif; font-size: 11px;
+        color: rgba(255,255,255,0.6); margin-top: 12px; padding-top: 10px;
         border-top: 1px solid rgba(255,255,255,0.15);
         position: relative; z-index: 1;
       }
       .cover-blurb {
-        font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.4);
-        margin-top: 14px; position: relative; z-index: 1;
+        font-size: 10px; line-height: 1.5; color: rgba(255,255,255,0.4);
+        margin-top: 10px; position: relative; z-index: 1;
       }
 
       /* ─── Info area ─── */
       .book-info {
-        margin-top: 44px; text-align: center;
-        max-width: 520px; min-height: 80px; position: relative;
+        margin-top: 28px; text-align: left;
+        max-width: 360px; min-height: 60px; position: relative;
       }
-
-      .hint {
-        color: rgba(255,255,255,0.25); font-size: 12px;
-        letter-spacing: 3.5px; text-transform: uppercase;
-        animation: pulse 2.5s ease-in-out infinite;
-        transition: opacity 0.4s ease;
-      }
-      .hint.hidden { opacity: 0; pointer-events: none; position: absolute; }
 
       .book-description {
-        color: rgba(255,255,255,0.55); font-size: 14px;
-        line-height: 1.7; letter-spacing: 0.2px;
-        opacity: 0; transform: translateY(8px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
+        color: #10183a; font-size: 16px;
+        line-height: 1.5; letter-spacing: 0;
       }
-      .book-description.visible { opacity: 1; transform: translateY(0); }
 
-      @keyframes pulse {
-        0%, 100% { opacity: 0.25; }
-        50%      { opacity: 0.45; }
-      }
     `;
   }
 }

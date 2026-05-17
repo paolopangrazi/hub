@@ -394,6 +394,7 @@ for (NodeId current; !queue.empty(); ) {
 				<a class="link" href="https://en.wikipedia.org/wiki/The_Pillars_of_the_Earth" target="_blank">2. The Pillars of the Earth - Ken Follett</a><br>
 				<a class="link" href="https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach" target="_blank">3. Gödel, Escher, Bach: an Eternal Golden Braid - Douglas Hofstadter</a>
 			</p>
+			<book-shelf id="fav-bookshelf" books='[]'></book-shelf>
 		</div>		
 		<div class="section-content">
 			<p>Computer Science books have their own home now. → <a class="link" href="#cs-books">Computer Science Books & Literature</a></p>
@@ -545,6 +546,41 @@ for (NodeId current; !queue.empty(); ) {
 	</div>
 
 	<script src="./js/fab.js"></script>
+	<script src="./js/bookshelf.js"></script>
+	<script>
+		document.getElementById('fav-bookshelf').books = [
+			{
+				spine: '1984',
+				author: 'G. Orwell',
+				title: '1984',
+				subtitle: 'A Novel',
+				fullAuthor: 'George Orwell',
+				blurb: "In a totalitarian future, truth is whatever the Party says it is.",
+				description: "A chilling masterpiece of dystopian fiction. In a world where Big Brother watches everything and the past is rewritten daily, Winston Smith dares to remember — and to feel. Orwell's vision of total surveillance, doublethink, and the annihilation of the individual remains one of the most powerful and prophetic novels ever written.",
+				theme: { spine: '#6b1414, #3d0a0a', cover: '#6b1414, #8b1a1a, #3d0a0a', accent: '#e4c87a' }
+			},
+			{
+				spine: 'The Pillars of the Earth',
+				author: 'K. Follett',
+				title: 'The Pillars<br>of the Earth',
+				subtitle: 'A Novel',
+				fullAuthor: 'Ken Follett',
+				blurb: "A cathedral rises from medieval chaos — and so does a cast of unforgettable lives.",
+				description: "Set in 12th-century England during civil war and upheaval, this epic follows the building of a Gothic cathedral across decades. Follett weaves the lives of a master builder, a prior, a noblewoman, and a monk into a sweeping story of art, power, faith, and human endurance. A masterpiece of historical fiction.",
+				theme: { spine: '#1e3a1e, #0d1e0d', cover: '#1e3a1e, #2e5a2e, #0d1e0d', accent: '#d4a853' }
+			},
+			{
+				spine: 'Gödel, Escher, Bach',
+				author: 'D. Hofstadter',
+				title: 'Gödel,<br>Escher, Bach',
+				subtitle: 'An Eternal Golden Braid',
+				fullAuthor: 'Douglas Hofstadter',
+				blurb: "A playful exploration of mind, meaning, and self-reference through math, music, and art.",
+				description: "A Pulitzer Prize-winning tour de force that uses the works of Gödel, Escher, and Bach as jumping-off points to explore consciousness, self-reference, and formal systems. Part puzzle book, part philosophy, part sheer delight — GEB is like no other book ever written.",
+				theme: { spine: '#1a2855, #0a1428', cover: '#1a2855, #243570, #0a1428', accent: '#c8d8f0' }
+			}
+		];
+	</script>
 
   </body>
 	<footer>
