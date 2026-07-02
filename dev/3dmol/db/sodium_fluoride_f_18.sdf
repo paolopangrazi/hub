@@ -1,0 +1,15 @@
+
+     RDKit          2D
+
+  2  0  0  0  0  0  0  0  0  0999 V2000
+   -0.5708   -1.1542    0.0000 Na  0  0  0  0  0 15  0  0  0  0  0  0
+    0.5875   -1.1542    0.0000 F   0  0  0  0  0  0  0  0  0  0  0  0
+M  CHG  2   1   1   2  -1
+M  ISO  1   2  18
+M  END
+> <chembl_id>
+CHEMBL1200744
+
+> <chembl_pref_name>
+SODIUM FLUORIDE F 18
+M  END

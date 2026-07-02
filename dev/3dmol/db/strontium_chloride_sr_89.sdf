@@ -1,0 +1,16 @@
+
+     RDKit          2D
+
+  3  0  0  0  0  0  0  0  0  0999 V2000
+    2.0250   -4.2042    0.0000 Sr  0  0  0  0  0 15  0  0  0  0  0  0
+    0.7750   -4.2167    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    3.1500   -4.2167    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+M  CHG  3   1   2   2  -1   3  -1
+M  ISO  1   1  89
+M  END
+> <chembl_id>
+CHEMBL1200625
+
+> <chembl_pref_name>
+STRONTIUM CHLORIDE SR 89
+M  END

@@ -1,0 +1,14 @@
+
+     RDKit          2D
+
+  2  1  0  0  0  0  0  0  0  0999 V2000
+    4.8167   -4.8250    0.0000 Mg  0  0  0  0  0  2  0  0  0  0  0  0
+    5.5292   -4.8250    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  2  1  2  0
+M  END
+> <chembl_id>
+CHEMBL1200572
+
+> <chembl_pref_name>
+MAGNESIUM OXIDE
+M  END

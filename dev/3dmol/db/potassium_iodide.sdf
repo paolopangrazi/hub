@@ -1,0 +1,14 @@
+
+     RDKit          2D
+
+  2  0  0  0  0  0  0  0  0  0999 V2000
+    2.2417   -5.7792    0.0000 K   0  0  0  0  0 15  0  0  0  0  0  0
+    3.3042   -5.7417    0.0000 I   0  0  0  0  0  0  0  0  0  0  0  0
+M  CHG  2   1   1   2  -1
+M  END
+> <chembl_id>
+CHEMBL1141
+
+> <chembl_pref_name>
+POTASSIUM IODIDE
+M  END
