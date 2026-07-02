@@ -215,6 +215,13 @@
     text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.62rem;
   }
   .nb-val { font-family: monospace; word-break: break-all; line-height: 1.35; min-width: 0; }
+  .nb-copy {
+    flex-shrink: 0; align-self: center; margin-left: auto;
+    background: none; border: none; color: var(--muted);
+    cursor: pointer; padding: 2px 4px; line-height: 0; border-radius: 4px;
+  }
+  .nb-copy:hover { color: var(--fg); background: var(--btn-bg); }
+  .nb-copy.copied { color: #3fb950; }
   #chembl-link { color: var(--link); text-decoration: none; font-size: 0.72rem; display: block; margin-top: 10px; }
   #chembl-link:hover { text-decoration: underline; }
 
@@ -474,6 +481,28 @@
   notationToggle.addEventListener("click", toggleNotation);
   document.getElementById("notation-rail").addEventListener("click", toggleNotation);
 
+  // Copy SMILES / SELFIES to the clipboard from the per-row copy buttons.
+  async function copyText(text) {
+    try { await navigator.clipboard.writeText(text); return true; }
+    catch {
+      const ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      let ok = false; try { ok = document.execCommand("copy"); } catch {}
+      ta.remove(); return ok;
+    }
+  }
+  document.getElementById("notation-content").addEventListener("click", async ev => {
+    const btn = ev.target.closest(".nb-copy");
+    if (!btn) return;
+    const val = btn.closest(".nb-item").querySelector(".nb-val").textContent;
+    if (await copyText(val)) {
+      btn.classList.add("copied");
+      const prev = btn.title; btn.title = "Copied!";
+      setTimeout(() => { btn.classList.remove("copied"); btn.title = prev; }, 1200);
+    }
+  });
+
   const viewer = $3Dmol.createViewer("viewer", { backgroundColor: THEME[theme].bg });
 
   const STYLES = {
@@ -593,7 +622,12 @@
       ["SELFIES", e.selfies],
     ].map(([label, val]) => val
       ? `<div class="nb-item"><span class="nb-label">${label}${tip(label)}</span>`
-        + `<span class="nb-val">${val}</span></div>`
+        + `<span class="nb-val">${val}</span>`
+        + `<button class="nb-copy" title="Copy ${label}" aria-label="Copy ${label}">`
+        + `<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">`
+        + `<rect x="9" y="9" width="11" height="11" rx="2"/>`
+        + `<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>`
+        + `</svg></button></div>`
       : "").join("");
 
     table.onclick = ev => {
