@@ -90,24 +90,50 @@
   #pane-toggle-left {
     position: absolute; top: 10px; left: 2px; z-index: 2;
     background: none; border: none; color: var(--muted);
-    cursor: pointer; font-size: 1rem; line-height: 1; padding: 0 2px;
+    cursor: pointer; font-size: 0.8rem; line-height: 1; padding: 0 2px;
   }
   #pane-toggle-left:hover { color: var(--fg); }
   body.hide-left #left-sidebar { width: 22px; padding: 0; overflow: hidden; }
   body.hide-left #left-sidebar .section { display: none; }
   body.hide-left #pane-toggle-left { left: 0; right: 0; text-align: center; }
+  /* Fingerprint hint icon shown only on the collapsed rail, below the arrow */
+  #left-rail-icon {
+    display: none; position: absolute; top: 34px; left: 0; right: 0;
+    z-index: 2; text-align: center; font-size: 1rem; line-height: 0;
+    color: var(--muted); cursor: pointer;
+  }
+  #left-rail-icon:hover { color: var(--fg); }
+  body.hide-left #left-rail-icon { display: flex; flex-direction: column-reverse; align-items: center; gap: 6px; }
+  #left-rail-label {
+    writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg);
+    font-size: 0.62rem; letter-spacing: 0.12em; font-weight: 600;
+    color: var(--muted);
+  }
   /* Descriptors pane collapse handle — absolutely placed so it takes no space */
   #sidebar { position: relative; }
   #pane-toggle {
     position: absolute; top: 10px; right: 8px; z-index: 2;
     background: none; border: none; color: var(--muted);
-    cursor: pointer; font-size: 1rem; line-height: 1; padding: 2px;
+    cursor: pointer; font-size: 0.8rem; line-height: 1; padding: 2px;
   }
   #pane-toggle:hover { color: var(--fg); }
   /* Collapsed: pane shrinks to a thin rail holding only the handle */
   body.hide-desc #sidebar { width: 22px; padding: 0; overflow: hidden; }
   body.hide-desc #sidebar #desc-section { display: none; }
   body.hide-desc #pane-toggle { left: 0; right: 0; text-align: center; }
+  /* Descriptors hint icon shown only on the collapsed rail, below the arrow */
+  #right-rail-icon {
+    display: none; position: absolute; top: 34px; left: 0; right: 0;
+    z-index: 2; text-align: center; font-size: 1rem; line-height: 0;
+    color: var(--muted); cursor: pointer;
+  }
+  #right-rail-icon:hover { color: var(--fg); }
+  body.hide-desc #right-rail-icon { display: flex; flex-direction: column-reverse; align-items: center; gap: 6px; }
+  #right-rail-label {
+    writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg);
+    font-size: 0.62rem; letter-spacing: 0.12em; font-weight: 600;
+    color: var(--muted);
+  }
   #left-sidebar .section:first-child,
   #sidebar .section:first-child { margin-top: 0; border-top: none; padding-top: 0; }
   #sidebar h2, #left-sidebar h2 {
@@ -159,7 +185,7 @@
   #notation-toggle {
     display: block; width: 100%;
     background: none; border: none; color: var(--muted);
-    cursor: pointer; font-size: 0.75rem; line-height: 1; padding: 3px 0;
+    cursor: pointer; font-size: 0.8rem; line-height: 1; padding: 3px 0;
   }
   #notation-toggle:hover { color: var(--fg); }
   #notation-content {
@@ -168,6 +194,21 @@
     font-size: 0.72rem;
   }
   body.hide-notation #notation-content { display: none; }
+  /* Annotations hint label shown only when the bottom bar is collapsed */
+  #notation-bar { position: relative; }
+  #notation-rail {
+    display: none; position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+    align-items: center; justify-content: center; gap: 6px;
+    color: var(--muted); cursor: pointer;
+  }
+  #notation-rail:hover { color: var(--fg); }
+  body.hide-notation #notation-rail { display: flex; }
+  /* Keep the full-width button clickable but hide its glyph; the rail draws the arrow */
+  body.hide-notation #notation-toggle { color: transparent; }
+  #notation-rail-arrow { font-size: 0.8rem; line-height: 1; }
+  #notation-rail-label {
+    font-size: 0.62rem; letter-spacing: 0.12em; font-weight: 600;
+  }
   .nb-item { display: flex; gap: 10px; align-items: baseline; }
   .nb-label {
     flex-shrink: 0; width: 52px; color: var(--muted);
@@ -273,7 +314,7 @@
   #ep-close:hover { color: var(--fg); background: var(--btn-hover); }
 </style>
 </head>
-<body class="hide-desc hide-left hide-notation">
+<body class="hide-left">
   <div id="toolbar">
     <label>Molecule:</label>
     <select id="molSelect"><option>Loading…</option></select>
@@ -294,7 +335,18 @@
   <div id="tooltip"></div>
   <div id="main">
     <div id="left-sidebar">
-      <button id="pane-toggle-left" title="Show fingerprints">›</button>
+      <button id="pane-toggle-left" title="Show fingerprints">▸</button>
+      <div id="left-rail-icon" title="MACCS fingerprint">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 4a8 8 0 0 0-8 8v3"/>
+          <path d="M12 8a4 4 0 0 0-4 4v6"/>
+          <path d="M12 12v6"/>
+          <path d="M16 12a4 4 0 0 0-4-4"/>
+          <path d="M20 12a8 8 0 0 0-3-6.2"/>
+          <path d="M16 14v3"/>
+        </svg>
+        <span id="left-rail-label">FINGERPRINTS</span>
+      </div>
       <div id="fp-section" class="section">
         <div class="section-head">
           <h2>MACCS fingerprint <span class="caret">▾</span></h2>
@@ -329,12 +381,33 @@
         </div>
       </div>
       <div id="notation-bar">
-        <button id="notation-toggle" title="Show notations">▴</button>
+        <button id="notation-toggle" title="Hide notations">▾</button>
         <div id="notation-content"></div>
+        <div id="notation-rail" title="Annotations">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 3v4a1 1 0 0 0 1 1h4"/>
+            <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/>
+            <line x1="9" y1="13" x2="15" y2="13"/>
+            <line x1="9" y1="17" x2="13" y2="17"/>
+          </svg>
+          <span id="notation-rail-label">ANNOTATIONS</span>
+          <span id="notation-rail-arrow">▴</span>
+        </div>
       </div>
     </div>
     <div id="sidebar">
-      <button id="pane-toggle" title="Show descriptors">‹</button>
+      <button id="pane-toggle" title="Hide descriptors">▸</button>
+      <div id="right-rail-icon" title="Descriptors">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="9" y1="6" x2="20" y2="6"/>
+          <line x1="9" y1="12" x2="20" y2="12"/>
+          <line x1="9" y1="18" x2="20" y2="18"/>
+          <line x1="4" y1="6" x2="4.01" y2="6"/>
+          <line x1="4" y1="12" x2="4.01" y2="12"/>
+          <line x1="4" y1="18" x2="4.01" y2="18"/>
+        </svg>
+        <span id="right-rail-label">DESCRIPTORS</span>
+      </div>
       <div id="desc-section" class="section">
         <div class="section-head">
           <h2>Descriptors <span class="caret">▾</span></h2>
@@ -366,32 +439,40 @@
 
   // Hide/show the descriptors pane (toggle lives on the pane itself) to give the
   // viewer more room. Collapsed, the pane shrinks to a thin rail holding the handle.
+  // Each pane toggles from its arrow button and — when collapsed — from the whole
+  // rail (label + icon), so clicking the vertical/horizontal label expands it too.
   const paneToggle = document.getElementById("pane-toggle");
-  paneToggle.addEventListener("click", () => {
+  const toggleDesc = () => {
     const hidden = document.body.classList.toggle("hide-desc");
-    paneToggle.textContent = hidden ? "‹" : "›";
+    paneToggle.textContent = hidden ? "◂" : "▸";
     paneToggle.title = hidden ? "Show descriptors" : "Hide descriptors";
     viewer.resize();   // let 3Dmol pick up the widened/narrowed container
     viewer.render();
-  });
+  };
+  paneToggle.addEventListener("click", toggleDesc);
+  document.getElementById("right-rail-icon").addEventListener("click", toggleDesc);
 
   const paneToggleLeft = document.getElementById("pane-toggle-left");
-  paneToggleLeft.addEventListener("click", () => {
+  const toggleLeft = () => {
     const hidden = document.body.classList.toggle("hide-left");
-    paneToggleLeft.textContent = hidden ? "›" : "‹";
+    paneToggleLeft.textContent = hidden ? "▸" : "◂";
     paneToggleLeft.title = hidden ? "Show fingerprints" : "Hide fingerprints";
     viewer.resize();
     viewer.render();
-  });
+  };
+  paneToggleLeft.addEventListener("click", toggleLeft);
+  document.getElementById("left-rail-icon").addEventListener("click", toggleLeft);
 
   const notationToggle = document.getElementById("notation-toggle");
-  notationToggle.addEventListener("click", () => {
+  const toggleNotation = () => {
     const hidden = document.body.classList.toggle("hide-notation");
     notationToggle.textContent = hidden ? "▴" : "▾";
     notationToggle.title = hidden ? "Show notations" : "Hide notations";
     viewer.resize();
     viewer.render();
-  });
+  };
+  notationToggle.addEventListener("click", toggleNotation);
+  document.getElementById("notation-rail").addEventListener("click", toggleNotation);
 
   const viewer = $3Dmol.createViewer("viewer", { backgroundColor: THEME[theme].bg });
 
