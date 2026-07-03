@@ -1,0 +1,310 @@
+:root {
+  --bg:        #0d1117;
+  --fg:        #e6edf3;
+  --border:    #21262d;
+  --muted:     #8b949e;
+  --btn-bg:    #21262d;
+  --btn-hover: #30363d;
+  --btn-bdr:   #30363d;
+  --link:      #58a6ff;
+  --viewer-bg: #0d1117;
+  --sidebar-bg:#161b22;
+  color-scheme: dark;
+}
+:root.light {
+  --bg:        #ffffff;
+  --fg:        #1f2328;
+  --border:    #d0d7de;
+  --muted:     #656d76;
+  --btn-bg:    #f6f8fa;
+  --btn-hover: #e8ecf0;
+  --btn-bdr:   #d0d7de;
+  --link:      #0969da;
+  --viewer-bg: #f6f8fa;
+  --sidebar-bg:#f6f8fa;
+  color-scheme: light;
+}
+
+html, body { margin: 0; height: 100%; overflow: hidden; font-family: system-ui, sans-serif; }
+body { background: var(--bg); color: var(--fg); display: flex; flex-direction: column; }
+
+#toolbar {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  padding: 10px 18px; border-bottom: 1px solid var(--border); align-items: center;
+}
+#toolbar label { font-size: 0.8rem; color: var(--muted); }
+button, select {
+  background: var(--btn-bg); color: var(--fg);
+  border: 1px solid var(--btn-bdr); border-radius: 6px;
+  padding: 6px 12px; font-size: 0.82rem; cursor: pointer;
+}
+button:hover, select:hover { background: var(--btn-hover); }
+button.active { background: #1f6feb; border-color: #1f6feb; color: #fff; }
+#molSelect { max-width: 280px; }
+
+/* Main content row: viewer + sidebar */
+#main {
+  display: flex;
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Center column between the panes: viewer on top, notation bar below */
+#center {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+#viewer {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+#sidebar, #left-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: var(--sidebar-bg);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 14px 16px;
+  font-size: 0.78rem;
+}
+/* Left panel: border on its right edge, sections start flush at the top */
+#left-sidebar { width: 300px; border-left: none; border-right: 1px solid var(--border); position: relative; overflow-x: hidden; }
+/* Collapse handle tucked into the left padding gutter so it takes no space */
+#pane-toggle-left {
+  position: absolute; top: 10px; left: 2px; z-index: 2;
+  background: none; border: none; color: var(--muted);
+  cursor: pointer; font-size: 0.8rem; line-height: 1; padding: 0 2px;
+}
+#pane-toggle-left:hover { color: var(--fg); }
+body.hide-left #left-sidebar { width: 22px; padding: 0; overflow: hidden; }
+body.hide-left #left-sidebar .section { display: none; }
+body.hide-left #pane-toggle-left { left: 0; right: 0; text-align: center; }
+/* Fingerprint hint icon shown only on the collapsed rail, below the arrow */
+#left-rail-icon {
+  display: none; position: absolute; top: 34px; left: 0; right: 0;
+  z-index: 2; text-align: center; font-size: 1rem; line-height: 0;
+  color: var(--muted); cursor: pointer;
+}
+#left-rail-icon:hover { color: var(--fg); }
+body.hide-left #left-rail-icon { display: flex; flex-direction: column-reverse; align-items: center; gap: 6px; }
+#left-rail-label {
+  writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg);
+  font-size: 0.62rem; letter-spacing: 0.12em; font-weight: 600;
+}
+/* Descriptors pane collapse handle — absolutely placed so it takes no space */
+#sidebar { position: relative; }
+#pane-toggle {
+  position: absolute; top: 10px; right: 8px; z-index: 2;
+  background: none; border: none; color: var(--muted);
+  cursor: pointer; font-size: 0.8rem; line-height: 1; padding: 2px;
+}
+#pane-toggle:hover { color: var(--fg); }
+/* Collapsed: pane shrinks to a thin rail holding only the handle */
+body.hide-desc #sidebar { width: 22px; padding: 0; overflow: hidden; }
+body.hide-desc #sidebar #desc-section { display: none; }
+body.hide-desc #pane-toggle { left: 0; right: 0; text-align: center; }
+/* Descriptors hint icon shown only on the collapsed rail, below the arrow */
+#right-rail-icon {
+  display: none; position: absolute; top: 34px; left: 0; right: 0;
+  z-index: 2; text-align: center; font-size: 1rem; line-height: 0;
+  color: var(--muted); cursor: pointer;
+}
+#right-rail-icon:hover { color: var(--fg); }
+body.hide-desc #right-rail-icon { display: flex; flex-direction: column-reverse; align-items: center; gap: 6px; }
+#right-rail-label {
+  writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg);
+  font-size: 0.62rem; letter-spacing: 0.12em; font-weight: 600;
+}
+#left-sidebar .section:first-child,
+#sidebar .section:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+#sidebar h2, #left-sidebar h2 {
+  margin: 0 0 10px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+#desc-table { width: 100%; border-collapse: collapse; }
+#desc-table tr { border-bottom: 1px solid var(--border); }
+#desc-table tr:last-child { border-bottom: none; }
+#desc-table td { padding: 5px 2px; vertical-align: top; }
+#desc-table td:first-child { color: var(--muted); width: 55%; }
+#desc-table td:last-child  { text-align: right; font-variant-numeric: tabular-nums; }
+#desc-table tr.row-clickable { cursor: pointer; }
+/* Row hover/active tint matches each overlay's highlight colour */
+#desc-table tr.row-clickable:hover td:first-child { color: #f59e0b; }
+#desc-table tr.row-active td:first-child { color: #f59e0b; font-weight: 600; }
+#desc-table tr.row-active { background: rgba(245,158,11,0.08); }
+#desc-table tr[data-action="Rotatable bonds"].row-clickable:hover td:first-child,
+#desc-table tr[data-action="Rotatable bonds"].row-active td:first-child { color: #22d3ee; }
+#desc-table tr[data-action="Rotatable bonds"].row-active { background: rgba(34,211,238,0.08); }
+#desc-table tr[data-action="H-bond donors"].row-clickable:hover td:first-child,
+#desc-table tr[data-action="H-bond donors"].row-active td:first-child { color: #4ade80; }
+#desc-table tr[data-action="H-bond donors"].row-active { background: rgba(74,222,128,0.08); }
+#desc-table tr[data-action="H-bond acceptors"].row-clickable:hover td:first-child,
+#desc-table tr[data-action="H-bond acceptors"].row-active td:first-child { color: #ec4899; }
+#desc-table tr[data-action="H-bond acceptors"].row-active { background: rgba(236,72,153,0.08); }
+/* Rows flagged while hovering the Ro5 violations badge */
+#desc-table tr.ro5-hot { background: rgba(248,81,73,0.16); }
+#desc-table tr.ro5-hot td { color: #f85149; }
+.badge {
+  display: inline-block; padding: 1px 6px; border-radius: 10px;
+  font-size: 0.72rem; font-weight: 600;
+}
+.badge-green  { background: #1a4731; color: #3fb950; }
+.badge-red    { background: #4d1c1c; color: #f85149; }
+.badge-yellow { background: #3d2f00; color: #d29922; }
+:root.light .badge-green  { background: #d4f0dc; color: #1a7f37; }
+:root.light .badge-red    { background: #fde8e8; color: #cf222e; }
+:root.light .badge-yellow { background: #fff3cd; color: #9a6700; }
+/* Collapsible line-notation bar at the bottom of the viewer column */
+#notation-bar {
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+  background: var(--sidebar-bg);
+}
+#notation-toggle {
+  display: block; width: 100%;
+  background: none; border: none; color: var(--muted);
+  cursor: pointer; font-size: 0.8rem; line-height: 1; padding: 3px 0;
+}
+#notation-toggle:hover { color: var(--fg); }
+#notation-content {
+  padding: 0 16px 8px;
+  display: flex; flex-direction: column; gap: 3px;
+  font-size: 0.72rem;
+}
+body.hide-notation #notation-content { display: none; }
+/* Annotations hint label shown only when the bottom bar is collapsed */
+#notation-bar { position: relative; }
+#notation-rail {
+  display: none; position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+  align-items: center; justify-content: center; gap: 6px;
+  color: var(--muted); cursor: pointer;
+}
+#notation-rail:hover { color: var(--fg); }
+body.hide-notation #notation-rail { display: flex; }
+/* Keep the full-width button clickable but hide its glyph; the rail draws the arrow */
+body.hide-notation #notation-toggle { color: transparent; }
+#notation-rail-arrow { font-size: 0.8rem; line-height: 1; }
+#notation-rail-label {
+  font-size: 0.62rem; letter-spacing: 0.12em; font-weight: 600;
+}
+.nb-item { display: flex; gap: 10px; align-items: baseline; }
+.nb-label {
+  flex-shrink: 0; width: 52px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.62rem;
+}
+.nb-val { font-family: monospace; word-break: break-all; line-height: 1.35; min-width: 0; }
+.nb-copy {
+  flex-shrink: 0; align-self: center; margin-left: auto;
+  background: none; border: none; color: var(--muted);
+  cursor: pointer; padding: 2px 4px; line-height: 0; border-radius: 4px;
+}
+.nb-copy:hover { color: var(--fg); background: var(--btn-bg); }
+.nb-copy.copied { color: #3fb950; }
+#chembl-link { color: var(--link); text-decoration: none; font-size: 0.72rem; display: block; margin-top: 10px; }
+#chembl-link:hover { text-decoration: underline; }
+
+/* Collapsible sidebar sections (fingerprint, similar molecules) */
+.section { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 12px; }
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  cursor: pointer; user-select: none;
+}
+.section-head h2 { margin: 0; }
+.section-head .meta { font-size: 0.7rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.section.collapsed .section-body { display: none; }
+.section-head .caret { color: var(--muted); font-size: 0.7rem; margin-left: 6px; }
+.section.collapsed .section-head .caret { transform: rotate(-90deg); display: inline-block; }
+
+/* MACCS bit grid */
+#fp-grid {
+  display: grid; grid-template-columns: repeat(16, 1fr);
+  gap: 2px; margin-top: 8px;
+}
+.fpcell {
+  aspect-ratio: 1; border-radius: 2px;
+  background: var(--btn-bg); border: 1px solid var(--btn-bdr);
+}
+.fpcell.on { background: #a78bfa; border-color: #a78bfa; cursor: pointer; }
+.fpcell.on:hover { background: #c4b5fd; }
+.fpcell.on.active { background: #7c3aed; border-color: #7c3aed; box-shadow: 0 0 0 1px #7c3aed; }
+
+/* Similar-molecules list */
+#sim-list { margin-top: 8px; }
+.sim-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; padding: 4px 6px; border-radius: 5px; cursor: pointer;
+}
+.sim-row:hover { background: var(--btn-hover); }
+.sim-main { flex: 1; min-width: 0; }   /* fixed-width column so bar %s are comparable */
+.sim-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sim-score {
+  flex-shrink: 0; font-variant-numeric: tabular-nums; color: var(--muted);
+  font-size: 0.72rem;
+}
+.sim-track {
+  width: 100%; height: 3px; border-radius: 2px; margin-top: 2px;
+  background: rgba(167,139,250,0.18); overflow: hidden;
+}
+.sim-bar { height: 100%; border-radius: 2px; background: #a78bfa; }
+
+.tip {
+  color: var(--muted); font-size: 0.7rem; font-style: normal;
+  cursor: default; margin-left: 3px; vertical-align: middle;
+  font-weight: 700;
+}
+#tooltip {
+  position: fixed; z-index: 9999; display: none;
+  background: #1c2128; color: #e6edf3;
+  padding: 7px 10px; border-radius: 6px;
+  font-size: 0.72rem; line-height: 1.5;
+  max-width: 220px; width: max-content;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  pointer-events: none; white-space: pre-line;
+}
+
+/* Element info panel — a compact horizontal strip along the bottom of the
+   viewer so it doesn't cover the molecule. Shown by JS via display:flex. */
+#elem-panel {
+  display: none;
+  position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 20;
+  max-width: calc(100% - 24px); align-items: stretch;
+  background: var(--sidebar-bg); border: 1px solid var(--border);
+  border-radius: 6px; overflow: hidden;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.35);
+  font-size: 0.7rem; line-height: 1.2;
+}
+/* Whole element identity on one line: Z, symbol, name, category */
+#ep-header {
+  display: flex; align-items: baseline; gap: 6px;
+  padding: 4px 10px; border-right: 1px solid var(--border); flex-shrink: 0;
+}
+#ep-z   { font-size: 0.58rem; color: var(--muted); }
+#ep-sym { font-size: 1.3rem; font-weight: 700; line-height: 1; }
+#ep-name{ font-size: 0.76rem; font-weight: 600; }
+#ep-cat { font-size: 0.6rem; color: var(--muted); }
+/* Properties as tight horizontal columns */
+#ep-table { display: flex; flex-direction: row; min-width: 0; }
+.ep-item {
+  display: flex; flex-direction: column; justify-content: center; gap: 1px;
+  padding: 3px 9px; border-right: 1px solid var(--border);
+  white-space: nowrap; flex-shrink: 0;
+}
+.ep-lbl { font-size: 0.54rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
+.ep-val { font-size: 0.72rem; font-variant-numeric: tabular-nums; }
+#ep-close {
+  flex-shrink: 0; align-self: stretch; padding: 0 8px;
+  background: none; border: none; border-left: 1px solid var(--border);
+  color: var(--muted); font-size: 1rem; cursor: pointer; line-height: 1;
+}
+#ep-close:hover { color: var(--fg); background: var(--btn-hover); }
