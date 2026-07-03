@@ -11,6 +11,23 @@ const THEME = {
 let theme = "light";
 let spinning = false;
 
+// Wire one collapsible pane. Its arrow button toggles a body class (CSS collapses
+// the pane to a thin rail) and the rail — visible only when collapsed — toggles it
+// back, so clicking the rail label expands the pane too. The arrow flips between the
+// collapsed/expanded glyphs and its tooltip between the show/hide titles.
+function wirePane({ btn, rail, cls, collapsed, expanded, show, hide }) {
+  const button = document.getElementById(btn);
+  const toggle = () => {
+    const hidden = document.body.classList.toggle(cls);
+    button.textContent = hidden ? collapsed : expanded;
+    button.title = hidden ? show : hide;
+    viewer.resize();   // let 3Dmol pick up the resized container
+    viewer.render();
+  };
+  button.addEventListener("click", toggle);
+  document.getElementById(rail).addEventListener("click", toggle);
+}
+
 // Copy SMILES / SELFIES to the clipboard from the per-row copy buttons.
 async function copyText(text) {
   try { await navigator.clipboard.writeText(text); return true; }
@@ -34,42 +51,15 @@ export function initUI() {
     themeBtn.textContent = theme === "dark" ? "☀️ Light" : "🌙 Dark";
   });
 
-  // Hide/show the descriptors pane (toggle lives on the pane itself) to give the
-  // viewer more room. Collapsed, the pane shrinks to a thin rail holding the handle.
-  // Each pane toggles from its arrow button and — when collapsed — from the whole
-  // rail (label + icon), so clicking the vertical/horizontal label expands it too.
-  const paneToggle = document.getElementById("pane-toggle");
-  const toggleDesc = () => {
-    const hidden = document.body.classList.toggle("hide-desc");
-    paneToggle.textContent = hidden ? "◂" : "▸";
-    paneToggle.title = hidden ? "Show descriptors" : "Hide descriptors";
-    viewer.resize();   // let 3Dmol pick up the widened/narrowed container
-    viewer.render();
-  };
-  paneToggle.addEventListener("click", toggleDesc);
-  document.getElementById("right-rail-icon").addEventListener("click", toggleDesc);
-
-  const paneToggleLeft = document.getElementById("pane-toggle-left");
-  const toggleLeft = () => {
-    const hidden = document.body.classList.toggle("hide-left");
-    paneToggleLeft.textContent = hidden ? "▸" : "◂";
-    paneToggleLeft.title = hidden ? "Show fingerprints" : "Hide fingerprints";
-    viewer.resize();
-    viewer.render();
-  };
-  paneToggleLeft.addEventListener("click", toggleLeft);
-  document.getElementById("left-rail-icon").addEventListener("click", toggleLeft);
-
-  const notationToggle = document.getElementById("notation-toggle");
-  const toggleNotation = () => {
-    const hidden = document.body.classList.toggle("hide-notation");
-    notationToggle.textContent = hidden ? "▴" : "▾";
-    notationToggle.title = hidden ? "Show notations" : "Hide notations";
-    viewer.resize();
-    viewer.render();
-  };
-  notationToggle.addEventListener("click", toggleNotation);
-  document.getElementById("notation-rail").addEventListener("click", toggleNotation);
+  // Collapsible panes: hide a pane to give the viewer more room. Collapsed, each
+  // shrinks to a thin rail holding its handle; clicking either the arrow or the
+  // rail toggles it back. (Left/right arrows point toward the collapse direction.)
+  wirePane({ btn: "pane-toggle",      rail: "right-rail-icon", cls: "hide-desc",
+             collapsed: "◂", expanded: "▸", show: "Show descriptors",  hide: "Hide descriptors" });
+  wirePane({ btn: "pane-toggle-left", rail: "left-rail-icon",  cls: "hide-left",
+             collapsed: "▸", expanded: "◂", show: "Show fingerprints", hide: "Hide fingerprints" });
+  wirePane({ btn: "notation-toggle",  rail: "notation-rail",   cls: "hide-notation",
+             collapsed: "▴", expanded: "▾", show: "Show notations",    hide: "Hide notations" });
 
   document.getElementById("notation-content").addEventListener("click", async ev => {
     const btn = ev.target.closest(".nb-copy");
