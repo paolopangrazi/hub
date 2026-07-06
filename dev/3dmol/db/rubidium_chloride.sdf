@@ -1,9 +1,9 @@
-
-     RDKit          2D
+RUBIDIUM CHLORIDE
+     RDKit          3D
 
   2  0  0  0  0  0  0  0  0  0999 V2000
-   -2.1583   -2.2167    0.0000 Rb  0  0  0  0  0 15  0  0  0  0  0  0
-   -1.1708   -2.2000    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 Rb  0  0  0  0  0 15  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
 M  CHG  2   1   1   2  -1
 M  END
 > <chembl_id>
@@ -11,4 +11,5 @@ CHEMBL2110557
 
 > <chembl_pref_name>
 RUBIDIUM CHLORIDE
-M  END
+
+$$$$
