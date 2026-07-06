@@ -96,6 +96,7 @@ export function initUI() {
   document.getElementById("help-close").addEventListener("click", hideHelp);
   helpOverlay.addEventListener("click", e => { if (e.target === helpOverlay) hideHelp(); });
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !helpOverlay.hidden) hideHelp(); });
+  showHelp();   // greet first-time visitors with the guide; any close gesture dismisses it
 
   // Tooltip (descriptor "*" markers and MACCS fingerprint cells)
   const tooltipEl = document.getElementById("tooltip");
