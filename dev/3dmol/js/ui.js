@@ -88,6 +88,15 @@ export function initUI() {
     viewer.zoomTo(); viewer.render();
   });
 
+  // Help modal: open from the toolbar, close via the ×, the backdrop, or Escape.
+  const helpOverlay = document.getElementById("help-overlay");
+  const showHelp = () => { helpOverlay.hidden = false; };
+  const hideHelp = () => { helpOverlay.hidden = true; };
+  document.getElementById("helpBtn").addEventListener("click", showHelp);
+  document.getElementById("help-close").addEventListener("click", hideHelp);
+  helpOverlay.addEventListener("click", e => { if (e.target === helpOverlay) hideHelp(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !helpOverlay.hidden) hideHelp(); });
+
   // Tooltip (descriptor "*" markers and MACCS fingerprint cells)
   const tooltipEl = document.getElementById("tooltip");
   document.addEventListener("mouseover", e => {

@@ -24,6 +24,7 @@
     <button id="resetBtn">Reset view</button>
     <span style="width:12px"></span>
     <button id="themeBtn">🌙 Dark</button>
+    <button id="helpBtn" title="What is this? How do I use it?">❔ Help</button>
   </div>
 
   <div id="tooltip"></div>
@@ -111,6 +112,61 @@
           <a id="chembl-link" target="_blank" style="display:none"></a>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div id="help-overlay" hidden>
+    <div id="help-modal" role="dialog" aria-modal="true" aria-labelledby="help-title">
+      <button id="help-close" title="Close">×</button>
+      <h1 id="help-title">⚛️ 3D molecular viewer</h1>
+      <p class="help-lead">Browse a library of ~3,300 drug molecules and inspect each one in interactive 3D,
+        alongside its descriptors, chemical notations and MACCS fingerprint.</p>
+
+      <h2>Pick a molecule</h2>
+      <ul>
+        <li><b>Molecule</b> dropdown (top-left) — jump to any molecule by name.</li>
+        <li><b>Similar molecules</b> (left pane) — click a row to load a structurally related molecule, ranked by Tanimoto similarity.</li>
+      </ul>
+
+      <h2>Move the 3D view</h2>
+      <ul>
+        <li><b>Rotate</b> — drag with the left mouse button.</li>
+        <li><b>Zoom</b> — scroll wheel (or pinch on a trackpad).</li>
+        <li><b>Pan</b> — right-drag, or drag with two fingers.</li>
+        <li><b>Atom info</b> — click any atom to open its element card.</li>
+      </ul>
+
+      <h2>Toolbar</h2>
+      <ul>
+        <li><b>Wireframe / Stick / Ball &amp; stick / Space-filling</b> — switch the render style.</li>
+        <li><b>Spin</b> — auto-rotate the molecule; <b>Reset view</b> re-centres it.</li>
+        <li><b>Toggle labels</b> — show element symbols on every atom.</li>
+        <li><b>🌙 / ☀️</b> — switch between dark and light themes.</li>
+      </ul>
+
+      <h2>Side &amp; bottom panels</h2>
+      <p class="help-lead">The tables in the panels are interactive — <b>hover</b> for explanations and <b>click</b> to highlight the matching atoms on the 3D model.</p>
+      <ul>
+        <li><b>Left · MACCS fingerprint</b> — a 166-cell grid of structural keys; a filled cell means the molecule contains that feature.
+          <ul>
+            <li><b>Hover</b> a cell → its key number, a plain-English description and the SMARTS pattern.</li>
+            <li><b>Click</b> a filled cell → highlights every atom of that substructure on the model in purple; click again to clear it.</li>
+          </ul>
+        </li>
+        <li><b>Left · Similar molecules</b> — the 10 closest molecules by Tanimoto similarity, each with a bar and score. <b>Click</b> a row to load that molecule.</li>
+        <li><b>Right · Descriptors</b> — size, LogP, H-bond counts, drug-likeness, clinical data…
+          <ul>
+            <li><b>Hover</b> the <b>*</b> beside a label → a definition of that property.</li>
+            <li><b>Click</b> the <b>Aromatic rings</b>, <b>Rotatable bonds</b>, <b>H-bond donors</b> or <b>H-bond acceptors</b> rows → colours those atoms on the model (each a different colour; several can be on at once). Click again to turn a highlight off.</li>
+            <li><b>Hover</b> the <b>Ro5 violations</b> badge → the exact rows breaking a Lipinski rule flash red.</li>
+            <li>The <b>ChEMBL</b> link at the bottom opens the full compound record.</li>
+          </ul>
+        </li>
+        <li><b>Bottom · Notations</b> — the SMILES and SELFIES strings; hover their <b>*</b> for definitions and use the copy button to grab either one.</li>
+        <li>Collapse any panel with its arrow handle to give the viewer more room; click the thin rail to bring it back.</li>
+      </ul>
+
+      <p class="help-foot">Press <kbd>Esc</kbd> or click outside this window to close.</p>
     </div>
   </div>
 
