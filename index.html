@@ -1,586 +1,851 @@
 <!DOCTYPE html>
-<html lang="en-US">
-
+<html lang="en" class="scroll-smooth">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Paolo Pangrazi">
+<meta name="description" content="Time, space, energy. Technical Leader. Solution Architect. Software & Database Engineer.">
+<meta name="theme-color" content="#0b1018">
+<link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+<link rel="manifest" href="./favicon/site.webmanifest">
+<link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#00FA9A">
+<title>Paolo Pangrazi — Digital Hub</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Sora:wght@300;400;600&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink: '#0b1018',
+        panel: '#101623',
+        line: '#20293c',
+        ember: '#00FA9A',
+        flame: '#00c97c',
+        parchment: '#e9eef4',
+        dim: '#8b96a8',
+        cy: '#6fd3e0',
+      },
+      fontFamily: {
+        display: ['Syne','sans-serif'],
+        body: ['Sora','sans-serif'],
+        mono: ['"IBM Plex Mono"','monospace'],
+      }
+    }
+  }
+}
+</script>
+<style>
+  ::selection { background:#00FA9A; color:#10183a; }
+  body { background:
+    radial-gradient(1200px 700px at 80% -10%, rgba(0,201,124,.08), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(0,250,154,.04), transparent 60%),
+    #0b1018; }
+  .grain::before {
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:50; opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  }
+  .cursor::after { content:"▊"; color:#00FA9A; animation: blink 1.05s steps(1) infinite; margin-left:.1em; }
+  @keyframes blink { 50% { opacity:0; } }
+  .reveal { opacity:0; transform:translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity:1; transform:none; }
+  .glow:hover { box-shadow:0 0 0 1px rgba(0,250,154,.4), 0 12px 44px -12px rgba(0,201,124,.35); }
+  .card { transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease, border-color .35s ease; }
+  .card:hover { transform:translateY(-4px); border-color:rgba(0,250,154,.45); }
+  .rail a { transition: color .2s ease, padding-left .2s ease; }
+  .rail a:hover { color:#00FA9A; padding-left:.5rem; }
+  .marquee { display:flex; gap:3.5rem; width:max-content; animation:scroll 30s linear infinite; }
+  @keyframes scroll { to { transform:translateX(-50%); } }
+  .ember-line { background:linear-gradient(90deg, transparent, #00FA9A 30%, #00c97c 70%, transparent); height:1px; }
+  .big-o { text-shadow:0 0 40px rgba(0,201,124,.35); }
+  code, pre { font-feature-settings:"liga" 0; }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee, .cursor::after { animation:none; }
+    .reveal { opacity:1; transform:none; transition:none; }
+  }
 
-	<meta charset="UTF-8">
-	<meta name="author" content="Paolo Pangrazi">
-	<meta name="description" content="Time, space, energy.">
-	<meta http-equiv="Permissions-Policy" content="interest-cohort=()">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  details.dx { border:1px solid #20293c; border-radius:0.75rem; background:#101623; overflow:hidden; }
+  details.dx > summary { cursor:pointer; list-style:none; padding:1rem 1.5rem; font-family:"IBM Plex Mono",monospace; font-size:.8rem; letter-spacing:.25em; text-transform:uppercase; color:#00FA9A; display:flex; align-items:center; gap:.75rem; transition:background .2s ease; }
+  details.dx > summary:hover { background:rgba(0,250,154,.06); }
+  details.dx > summary::-webkit-details-marker { display:none; }
+  details.dx > summary::before { content:"+"; font-size:1.1rem; line-height:1; transition:transform .25s ease; }
+  details.dx[open] > summary::before { transform:rotate(45deg); }
+  details.dx .dx-body { padding:0 1.5rem 1.5rem; border-top:1px solid #20293c; }
+  .dx-h { font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:#6fd3e0; margin:1.5rem 0 .5rem; }
+  .dx-body ul { list-style:none; padding:0; margin:0; }
+  .dx-body li { font-size:.875rem; color:#8b96a8; padding-left:1.1rem; position:relative; margin-bottom:.4rem; line-height:1.6; }
+  .dx-body li::before { content:"\25aa"; color:#00FA9A; position:absolute; left:0; }
+  .dx-body p { font-size:.875rem; color:#8b96a8; line-height:1.7; margin:.75rem 0; }
+  .dx-body p strong, .dx-body li strong { color:#e9eef4; font-weight:600; }
+  html, body { overflow-x: hidden; }
+  html { scrollbar-color:#2c3650 #0b1018; font-size:17px; }
 
+  /* inline text links */
+  .ilink { color:#00c97c; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:2px; text-decoration-color:rgba(0,201,124,.45); transition:color .2s ease, text-decoration-color .2s ease; }
+  .ilink:hover { color:#00FA9A; text-decoration-color:#00FA9A; }
+  html.light .ilink:hover { color:#00905c; text-decoration-color:#00905c; }
 
-	<!-- FAVICON SETTINGS -->
-	<link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
-	<link rel="manifest" href="./favicon/site.webmanifest">
-	<link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="theme-color" content="#ffffff">
+  /* ── LIGHT THEME ────────────────────────────── */
+  html.light { scrollbar-color:#c3cad6 #eef1f6; }
+  html.light body {
+    background:
+      radial-gradient(1200px 700px at 80% -10%, rgba(0,201,124,.12), transparent 60%),
+      radial-gradient(900px 600px at -10% 30%, rgba(0,168,107,.07), transparent 60%),
+      #eef1f6;
+  }
+  html.light .grain::before { opacity:.03; }
 
-	<title>Paolo Pangrazi</title>
+  /* text */
+  html.light .text-parchment { color:#16202e; }
+  html.light .text-dim { color:#55617a; }
+  html.light .text-dim\/60 { color:rgba(85,97,122,.6); }
+  html.light .text-dim\/50 { color:rgba(85,97,122,.5); }
+  html.light .text-line { color:#c3cad6; }
+  html.light .text-ember { color:#00c97c; }
+  html.light .text-ember\/90 { color:rgba(0,201,124,.9); }
+  html.light .text-ember\/50 { color:rgba(0,201,124,.5); }
+  html.light .text-flame { color:#00c97c; }
+  html.light .text-cy { color:#0e7c8c; }
 
-	<link rel='stylesheet' type='text/css' href='./white2.css'>
+  /* gradient headings stay as the dark-mode ember/flame gradient */
 
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+  /* surfaces */
+  html.light .bg-panel { background-color:#ffffff; }
+  html.light .bg-panel\/60 { background-color:rgba(255,255,255,.6); }
+  html.light .bg-panel\/80 { background-color:rgba(255,255,255,.8); }
+  html.light .bg-ink\/80 { background-color:rgba(238,241,246,.85); }
+  html.light .bg-ember\/15 { background-color:rgba(0,250,154,.18); }
 
-	<style>
-		* { cursor: url('./images/cursor.svg') 0 0, auto; }
-		.bits-marquee {
-			overflow: hidden;
-			white-space: nowrap;
-			width: 100%;
-		}
-		.bits-marquee__track {
-			display: inline-block;
-			animation: bits-scroll 40s linear infinite;
-			will-change: transform;
-		}
-		.bits-marquee__track > span {
-			display: inline-block;
-			padding-right: 2em;
-		}
-		@keyframes bits-scroll {
-			from { transform: translateX(0); }
-			to   { transform: translateX(-50%); }
-		}
-	</style>
+  /* borders */
+  html.light .border-line { border-color:#d7dde7; }
+  html.light .border-line\/60 { border-color:rgba(215,221,231,.6); }
+  html.light .border-ember\/50 { border-color:rgba(0,201,124,.5); }
 
-	<script src="https://cdn.tailwindcss.com"></script>
-	<script>
-		tailwind.config = { corePlugins: { preflight: false } }
-	</script>
+  /* interactive */
+  html.light .hover\:bg-ember:hover { background-color:#00FA9A; }
+  html.light .hover\:text-ink:hover { color:#0b1018; }
 
-	<style type="text/tailwindcss">
-		@layer components {
-			.link {
-				@apply text-blue-700 underline decoration-solid hover:decoration-double;
-			}
-			.rule {
-				@apply border-0 border-t-[3px] border-blue-700 my-6;
-			}
-			.highlight {
-				@apply bg-[#00FA9A] text-[#10183a] px-1;
-			}
-			.accomplish {
-				@apply font-bold no-underline border-0 border-b-4 border-solid border-[#00FA9A];
-			}
-		}
-	</style>
+  /* details panels */
+  html.light details.dx { border-color:#d7dde7; background:#ffffff; }
+  html.light details.dx > summary { color:#00c97c; }
+  html.light details.dx > summary:hover { background:rgba(0,201,124,.08); }
+  html.light details.dx .dx-body { border-top-color:#d7dde7; }
+  html.light .dx-h { color:#0e7c8c; }
+  html.light .dx-body li,
+  html.light .dx-body p { color:#55617a; }
+  html.light .dx-body li::before { color:#00c97c; }
+  html.light .dx-body p strong,
+  html.light .dx-body li strong { color:#16202e; }
 
+  /* SVG caption that sits directly on the light panel */
+  html.light .lag-caption { fill:#16202e; }
+</style>
 </head>
+<body class="grain font-body text-parchment antialiased">
+<script>try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');}catch(e){}</script>
 
-<body>
-	<div class="everything">
+<!-- ───────────────── NAV RAIL ───────────────── -->
+<nav class="hidden lg:flex fixed left-0 top-0 h-screen w-52 flex-col justify-between border-r border-line px-6 py-8 z-40 bg-ink/80 backdrop-blur">
+  <div>
+    <a href="#top" class="font-display font-800 text-xl tracking-tight text-parchment font-bold">PP<span class="text-ember">_</span></a>
+    <div class="rail mt-10 flex flex-col gap-3 font-mono text-[13px] uppercase tracking-widest text-dim">
+      <span class="text-[10px] tracking-[.2em] text-dim/50 pb-0.5 border-b border-line">craft</span>
+      <a href="#novartis">// novartis</a>
+      <a href="#aisco">// aisco</a>
+      <a href="#alcatel">// alcatel-lucent</a>
+      <span class="text-[10px] tracking-[.2em] text-dim/50 mt-1 pb-0.5 border-b border-line">curiosity</span>
+      <a href="#cs" class="whitespace-nowrap tracking-wide">// computer science</a>
+      <a href="#books">// books</a>
+      <a href="#music">// music</a>
+      <a href="#creative">// creative</a>
+      <a href="#education">// education</a>
+    </div>
+  </div>
+  <div>
+    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light and dark theme"
+      class="mb-5 flex items-center gap-2 font-mono text-[12px] uppercase tracking-widest text-dim hover:text-ember transition-colors">
+      <span id="theme-icon">☾</span><span id="theme-label">Light mode</span>
+    </button>
+    <div class="font-mono text-[12px] text-dim leading-relaxed">
+      time · space · energy<br>
+      <span class="text-ember">basel, ch</span>
+    </div>
+  </div>
+</nav>
 
-		<h1>Hi!</h1><br>
-		<h2>My name is <b>PAOLO PANGRAZI</b>, nice to "meet" you!<br>
-			Welcome to my humble digital hub!</h2>
-		<h3><span class="highlight" style="padding:5px 16px;font-weight:bold;display:inline-block;">Technical Leader. Solution Architect. Software and Database Engineer.</span></h3>
-		<div style="display:flex;flex-wrap:wrap;gap:8px;margin:-2px 0 12px 0;font-size:0.9em;">
-			<span style="border:2px solid #00FA9A;background:#fff;padding:3px 12px;font-weight:bold;">Decade-proven enterprise experience</span>
-			<span style="border:2px solid #00FA9A;background:#fff;padding:3px 12px;font-weight:bold;">Telecom · Fire Training · Pharma</span>
-			<span style="border:2px solid #00FA9A;background:#fff;padding:3px 12px;font-weight:bold;">Patent holder</span>
-			<span style="border:2px solid #00FA9A;background:#fff;padding:3px 12px;font-weight:bold;">Clean code. Real impact.</span>
-		</div>
-		<h3>I've <a class="link" href="#novartis">designed</a> enterprise software architectures at Novartis.<br>
-		    <a class="link" href="#aisco">Invented</a> and built a <a class="link" href="#aisco-accomplishments">patented</a> fire training system from prototype to product launch.<br>
-		    <a class="link" href="#alcatel-lucent-accomplishments">Optimized</a> O(n³) algorithms down to O(n²) at Alcatel-Lucent Nokia.<br>
-		<h3>I write code, review code, design systems, and mentor the people who do all three.</h3>
-		<h3><a class="link" href="#cs">C</a>, <a class="link" href="#alcatel-lucent">C++</a> · <a class="link" href="#alcatel-lucent">Java</a> · <a class="link" href="#novartis">Oracle</a> · <a class="link" href="#novartis">PL/SQL</a> · <a class="link" href="#novartis">MSSQL</a> · PostgreSQL<br>
-		    Learning Ruby on Rails · Zig · Rust<br>
-		    AI · <a class="link" href="https://opencode.ai" target="_blank" rel="noreferrer noopener">OpenCode</a> · Claude<br>
-		    Happy <a class="link" href="https://omarchy.org" target="_blank" rel="noreferrer noopener">Omarchy</a>, Arch Linux user</h3>
-		<h3>Speaking and writing in German · English · Italian · Spanish</h3>
-		<h3>I love <b>getting things done</b>.</h3>
-		<h3>Constantly learning.</h3>
-		<hr class="rule">
+<main id="top" class="lg:pl-52">
 
-		<h3><p class="section">// INDEX.</p></h3>
-		<div class="section-content">
-			<p class="p-indented" id="nav-index"></p>
-		</div>
-		<hr class="rule">
+  <!-- ───────────────── HERO ───────────────── -->
+  <header class="min-h-screen flex flex-col justify-center px-6 sm:px-12 xl:px-24 py-24 relative">
+    <p class="font-mono text-sm text-dim tracking-[.35em] uppercase mb-6">$ whoami<span class="cursor"></span></p>
+    <h1 class="font-display font-extrabold leading-[0.95] text-[clamp(2.5rem,10vw,6rem)] lg:text-[6.5vw] xl:text-[7rem] tracking-tight">
+      PAOLO<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-ember via-flame to-ember">PANGRAZI</span>
+    </h1>
+    <div class="mt-8 max-w-2xl font-light space-y-4">
+      <p class="text-xl sm:text-2xl text-parchment leading-snug">
+        Technical Leader · Solution Architect<br>Software &amp; Database Engineer
+      </p>
+      <p class="text-base text-dim leading-relaxed">
+        <span class="text-parchment">Pharma · Fire Training · Telecom</span>
+      </p>
+      <p class="font-mono text-xs tracking-[.3em] uppercase text-ember">
+        Invent &nbsp;&nbsp;·&nbsp;&nbsp; Automate &nbsp;&nbsp;·&nbsp;&nbsp; Deliver
+      </p>
+    </div>
 
-        <section id="pro">
-        <h3><p class="section">// PROFESSIONAL SUMMARY.</p></h3>
-		<embed
-        src="./files/CV_Paolo_Pangrazi__VisualOverview.pdf#toolbar=0&navpanes=0&scrollbar=0&view=Fit"
-        type="application/pdf"
-        style="border: 1px solid #ccc; width: 100%; aspect-ratio: 841.92 / 595.32;">
-		</section>
-		<hr class="rule">
-		<section id="edu">
-        <h3><p class="section">// EDUCATION & PROFESSIONAL DEVELOPMENT.</p></h3>
-		<div class="section-content">
-	        ▪ 2014 - ITIL Foundation Certificate - Basel<br>
-			▪ 2011 - Oracle Exam 1Z0-051 Oracle Database 11g: SQL Fundamentals<br>
-			▪ 2011 - German Exam Certification C1 Goethe Institut - Freiburg<br>
-			▪ 2010 - Rhetoric and Speaking in public - 2 days Seminar - Bonn<br>
-			▪ 2009 - Project Management 3 Days Course - Hamburg<br>
-	        ▪ 2009 - 5 days iPhone Development Bootcamp - Frankfurt<br>
-			▪ 2008 - BS Computer Science - Bicocca University Milan Graduation: 91/110<br>
-		</div>
-		</section>
-		<hr class="rule">
-		<section id="novartis">
-		<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:10px;">
-		  <div style="display:flex;align-items:center;gap:10px;">
-		    <h3 style="margin:0;"><p class="section" style="margin:0;">// NOVARTIS</p></h3>
-		    <span style="color:#00FA9A;font-size:1.2em;">▸</span>
-		    <span style="font-size:0.85em;font-weight:bold;">2008 — 2026</span>
-		  </div>
-		  <img src="./images/logo-novartis.svg" alt="Novartis" style="height:36px;">
-		</div>
-			<div class="section-content">
-			<b>Summary</b><br>
-			<b class="highlight">Getting things done.</b><br>
-			<br>
-			<b>Daily Activities</b><br>
-			<b>Innovation, Operations and Project Management</b><br>
-			▪ Managing the Novartis full IP portfolio data lake (42k patents, 110k trademarks).<br>
-			▪ Pro-active role in design, requirements analysis, and development of process optimizations and solutions for the IP Legal Operations PMO department.<br>
-			▪ Driving and implementing innovation in IP & Legal Operations.<br>
-			▪ Support audit activities and follow-up on remediation actions.<br>
-			▪ Support with user account management activities and new reporting requirements from either the business or IT/ISRM.<br>
-			▪ Ensuring and deploying project-related milestones and tasks.<br>
-			▪ Technical and business consultancy for upcoming projects related to IP/Legal.<br>
-			<br>
-			<b>Acquisitions and divestments projects</b><br>
-			▪ Data analysis, cleanup, verification and migration into IPMS for acquisitions and divestments projects.<br>
-			▪ Documents, data and metadata verification, review and migration into IPMS according to business requirements.<br>
-			<br>
-			<b>IPMS System Functionality & Customization</b><br>
-			▪ Technical consultant for <a class="link" href="https://clarivate.com/intellectual-property/ip-management-software/memotech/" target="_blank">Clarivate IPMS Memotech</a>, enhancements, data analysis, design and customization (900 users, 10 sites).<br>
-			▪ User requirements or functional specifications gathering.<br>
-			▪ Design, development, testing, maintenance, monitoring, review and documentation of customized SQL / Oracle PL/SQL objects: packages, procedures, functions, scheduled jobs, pipelined functions, tables, views, triggers, etc. (107k lines of source code).<br>
-			▪ Tools used: Toad, SQL Developer, SQL Plus.<br>
-			<br>	
-			<b>Interfaces</b><br>
-			▪ Design, development and maintenance of mono and bidirectional interfaces between heterogeneous systems for migration and transfer of IP matters within the Novartis systems landscape (for instance eBilling).<br>
-			<br>
-			<b>Reporting</b><br>
-			▪ Direct and continuous business reporting with the trademarks and patents team stakeholders.<br>
-			▪ Design and development of customized Intellectual Property portfolio reports.<br>
-			▪ Design, development and maintenance of reports (database exports, csv, MS Office, Crystal, etc.).<br>
-			▪ IPMS free queries/reports SQL development.<br>
-			<br>
-			<b>Performance & Technical Issue Resolution</b><br>
-			▪ Resolution of performance issues related to the IPMS.<br>
-			▪ Coordination and communication with software vendors and other operators (Clarivate, European Patent Office, WIPO, Swiss Patent and Trademarks Office) to resolve issues and bugs.<br>
-			▪ Testing of new software components on the QA environment prior to deployment on production.<br>
-			▪ Coordination and communication with providers prior to and during the installation of new/updated software releases.<br>
-			<br>
-			<b>Mass Communication & Document Generation</b><br>
-			▪ Design of document and email templates (e.g., Order to file, Abandonment, CoverSheet, Renewal), including the development of related PL/SQL objects.<br>
-			▪ Handling of the mass generation of emails, reports, portfolio reviews and updates to on average 320 agents.<br>
-			<br>
-			<b>Documentation & Compliance</b><br>
-			▪ Creation and maintenance of relevant enterprise ICE / ISRM documentation, including functional specifications, design specifications, IQ, OQ, PQ, DO.<br>
-			<br>
-			<b>Migration Project from Memotech to Anaqua AQX</b><br>
-			As a key contributor to the enterprise-wide migration of the Intellectual Property Management System (IPMS) from <a class="link" href="https://clarivate.com/intellectual-property/ip-management-software/memotech/" target="_blank">Clarivate Memotech</a> to <a class="link" href="https://www.anaqua.com/aqx-corporate/" target="_blank">Anaqua AQX</a>, I played a pivotal role in modernizing the Novartis IP portfolio operations over several years of hands-on expertise with the legacy platform. Leading technical efforts in a high-stakes project, I collaborated cross-functionally to ensure seamless data integrity, system interoperability, and enhanced reporting capabilities.<br>
-			<br>
-			Activities:<br>
-			▪ RFI and RFP technical core member<br>
-			▪ Key member of the project core team<br>
-			▪ Requirements gathering<br>
-			▪ Business processes analysis<br>
-			▪ Data migration business analyst<br>
-			▪ Data migration quality checks<br>
-			▪ Full migration of more than 50 Memotech custom reports (Oracle SQL => MSSQL SSRS)<br>
-			▪ Full migration of document and email templates<br>
-			▪ Development of hundreds of custom merge codes<br>
-			▪ Technical consultancy<br>
-			▪ Reporting and benchmarks<br>
-			▪ Communication with vendor (<a class="link" href="https://www.anaqua.com/aqx-corporate/" target="_blank">Anaqua</a>) and stakeholders (Novartis)<br>
-			▪ Member of the "accelerators" team<br>
-			<br>
-			<br>
-			<b class="accomplish">Accomplishments</b><br>
-			<span style="color:#00FA9A;">▸</span> 2023 - 2025 : Lead technical member of the successful IPMS migration project from Memotech to Anaqua AQX.<br>
-			<br>
-			<span style="color:#00FA9A;">▸</span> 2020 - 2021 : Full automated trademarks maintenance monitoring process design and development.<br>
-			Impact: An average of 120 emails are automatically dispatched each month, requiring no user intervention.<br>
-			<br>
-			<span style="color:#00FA9A;">▸</span> 2019 : Design and development automated trademarks full portfolio renewal process batch processing.<br>
-			Impact: Renewal process outcome fully automated and docketed, eliminating the need for manual checks and data entry.<br>
-			<br>
-			<span style="color:#00FA9A;">▸</span> 2018 : Design and full-stack development interface e-filing with the Swiss Trademark Office.<br>
-			Impact: full XML data preparation and generation without requiring user input.<br>
-			<br>
-			<span style="color:#00FA9A;">▸</span> 2013 : Member of the Novartis IT team rewarded with the "NI IT & Group IGM Innovator Award 2013"<br>
-			<br>
-			<span style="color:#00FA9A;">▸</span> Acquisitions & divestments: Alcon integration (2010-11), Alcon divestment (2018-19), Sandoz spin-off (2023-24)<br>
-			</div>
-		</section>
-		<hr class="rule">
-		<section id="aisco">
-		<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:10px;">
-		  <div style="display:flex;align-items:center;gap:10px;">
-		    <h3 style="margin:0;"><p class="section" style="margin:0;">// AISCO Firetrainer</p></h3>
-		    <span style="color:#00FA9A;font-size:1.2em;">▸</span>
-		    <span style="font-size:0.85em;font-weight:bold;">2020 — 2023</span>
-		  </div>
-		  <img src="./images/logo-aisco.png" alt="AISCO Firetrainer" style="height:36px;">
-		</div>
-			<div class="section-content">
-			<b>Summary</b><br>
-            <b class="highlight">Hardware-Software Lead Architect, project management, design, invention and development of a digital software-based fire trainer system</b> with top-notch modern graphics and realistic fire simulation, propagation and behaviour based on physics and particle systems laws. This product is designed to train companies, employees, and individuals on effectively managing various types of fires.<br>
-			<br>
-			<b>Tasks</b><br>
-			▪ Business requirements gathering and brainstorming with the company executive board<br>  
-            ▪ Full project execution and accountability, from the invention phase up to the final product launch<br>  
-            ▪ RFI / RFP for selection external software development provider<br> 
-            ▪ Leading the software development team as product owner<br> 
-            ▪ Complete project planning, supervision and execution<br>  
-            ▪ Management and alignment of financial budget<br>  
-            ▪ Continuous interfacing and communication between business and technical hardware-software related activities<br> 
-			▪ Design and conception prototype (hardware and software-side)<br>
-			▪ Hardware prototyping for the e-extinguishers<br>
-			▪ Software use cases modeling<br>
-			▪ Patent filing and granting process<br>
-			▪ Brainstorming with vendor for fire and extinguishment software algorithms<br>
-		    ▪ Ensuring project deliveries<br> 
-			▪ Project supervision up to the final product launch<br>
-			<br>
-			<b>Challenges</b><br>
-			<span style="color:#1d4ed8;">▸</span> <b>A product that simply did not exist.</b> There was no comparable solution on the market — no reference, no benchmark, no prior art to learn from. Every design decision had to be invented from scratch.<br>
-			<br>
-			<span style="color:#1d4ed8;">▸</span> <b>"Build a VR system — without VR headsets."</b> The executive brief was unambiguous: deliver full immersive training while keeping the hardware accessible. This meant achieving presence and depth perception through an unconventional approach, without falling back on standard head-mounted display technology.<br>
-			<br>
-			<span style="color:#1d4ed8;">▸</span> <b>Two concurrent users, one shared environment.</b> The system had to support two trainees operating independently and simultaneously within the same live simulation — each with their own e-extinguisher, their own physical interactions, and their own impact on the fire's behaviour.<br>
-			<br>
-			<span style="color:#1d4ed8;">▸</span> <b>Real-time physics-based fire rendering — no shortcuts.</b> Fire simulation had to be fully computed at runtime, driven by particle systems and fluid dynamics. Pre-rendered sequences or game-engine baked assets were ruled out: the fire had to respond authentically to the trainee's actions, frame by frame.<br>
-			<br>
-			<span style="color:#1d4ed8;">▸</span> <b>Project started weeks before the COVID-19 pandemic.</b> Hardware prototyping, cross-functional collaboration, and vendor coordination came to an abrupt halt as the world went into lockdown — the entire development workflow had to be reinvented on the fly, under pressure, with no playbook.<br>
-			<br>
-			<b class="accomplish" id="aisco-accomplishments">Accomplishments</b><br>
-			<span style="color:#00FA9A;">▸</span> 2020 - patent granted: <a class="link" href="https://patentscope.wipo.int/search/en/detail.jsf?docId=EP320899875" target="_blank">EP3795219</a><br>
-			<span style="color:#00FA9A;">▸</span> 2023 - next generation fire trainer successfully launched: <a class="link" href="https://aisco-firetrainer.com/products/aisco-indoortrainer" target="_blank">Indoor Fire Trainer</a><br>
-			</div>
-		</section>
-		<hr class="rule">
-        <section id="alcatel-lucent">
-		<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:10px;">
-		  <div style="display:flex;align-items:center;gap:10px;">
-		    <h3 style="margin:0;"><p class="section" style="margin:0;">// ALCATEL-LUCENT (NOKIA)</p></h3>
-		    <span style="color:#00FA9A;font-size:1.2em;">▸</span>
-		    <span style="font-size:0.85em;font-weight:bold;">2006 — 2008</span>
-		  </div>
-		  <div style="display:flex;align-items:center;gap:16px;">
-		    <img src="./images/logo-alcatel-lucent.svg" alt="Alcatel-Lucent" style="height:28px;">
-		    <img src="./images/logo-nokia.svg" alt="Nokia" style="height:28px;">
-		  </div>
-		</div>
-			<div class="section-content">
-			<b>Summary</b><br>
-			<b class="highlight">Design, development and maintenance of C++ & Java software</b> components within the Network Management System dedicated to the management of <a class="link" href="https://documentation.nokia.com/html/365-372-400R7.2/1850TSS-5/7.2.2/webdocs-enus/365-372-400R7-2/index.html?u=qzx89.html," target="_blank">Ethernet over SDH networks</a> and devices, especially about service provisioning, maintenance and performance monitoring in Metro Area Network environment.<br>
-			<br>
-			<b>Daily Activities</b><br>
-			▪ Requirements and specifications analysis<br>
-			▪ IBM Rational Rose UML modeling<br>
-			▪ C++ & Java implementation in HP-Unix environment<br>
-			▪ Java implementation of unit and integration tests<br>
-			▪ KSH, BASH, Python UNIX scripting<br>
-			▪ Development and maintenance middleware services CORBA TAO (C++), JACorb (Java)<br>
-			▪ IBM Rational Clearcase configuration management<br>
-			▪ English technical documentation drafting and review<br>
-			<br>
-			<b class="accomplish" id="alcatel-lucent-accomplishments">Accomplishments</b><br>
-			<span style="color:#00FA9A;">▸</span> <b>C++ — SDH Network Topology Nodes Resynchronization</b><br>
-			  <br>
-			  <img src="./images/sdh-resync.svg" alt="SDH nodes resynchronization: O(n³) before vs O(n²) BFS after" style="width:100%;max-width:640px;display:block;margin:12px 0;">
-			  <br>
-			  <b>🔧 What.</b> Full algorithmic redesign and C++ reimplementation of the network topology resynchronization engine inside the Network Management System for Ethernet over SDH.<br>
-			  <br>
-			  <b>⬅️ Before.</b> The original algorithm visited the entire node topology using three nested <code>for()</code> loops — blindly examining every possible triplet of nodes, regardless of whether they had already been processed. Complexity: <b>O(n³)</b>. As the number of managed network elements grew, execution time ballooned.<br>
-			  <br>
-			  <b>➡️ After.</b> Complete rewrite using a customized <b>BFS (Breadth-First Search)</b> with a <i>visited</i> node set. Each node is processed exactly once. The triple nested loop collapses into two: one driving the BFS queue, one iterating each node's neighbors. Complexity: <b>O(n²)</b>.<br>
-			  <br>
-			  <b>📈 Gain.</b> <b>O(n³) → O(n²).</b> Each node processed exactly once instead of revisited across every triplet — the larger the network, the bigger the win.<br>
-			  <br>
-			  <table style="border-collapse:collapse; font-size:13px; margin:8px 0;">
-			    <thead>
-			      <tr style="background:#e8f5e9;">
-			        <th style="border:1px solid #ccc; padding:6px 12px; text-align:left;">Network size</th>
-			        <th style="border:1px solid #ccc; padding:6px 12px; text-align:right;">Before</th>
-			        <th style="border:1px solid #ccc; padding:6px 12px; text-align:right;">After</th>
-			        <th style="border:1px solid #ccc; padding:6px 12px; text-align:right;">Speedup</th>
-			      </tr>
-			    </thead>
-			    <tbody>
-			      <tr>
-			        <td style="border:1px solid #ccc; padding:6px 12px;">500 nodes</td>
-			        <td style="border:1px solid #ccc; padding:6px 12px; text-align:right;">~9 s</td>
-			        <td style="border:1px solid #ccc; padding:6px 12px; text-align:right;">~0.5 s</td>
-			        <td style="border:1px solid #ccc; padding:6px 12px; text-align:right;"><b class="highlight">~18×</b></td>
-			      </tr>
-			      <tr style="background:#f9f9f9;">
-			        <td style="border:1px solid #ccc; padding:6px 12px;">1,500 nodes</td>
-			        <td style="border:1px solid #ccc; padding:6px 12px; text-align:right;">~60 s</td>
-			        <td style="border:1px solid #ccc; padding:6px 12px; text-align:right;">~1.5 s</td>
-			        <td style="border:1px solid #ccc; padding:6px 12px; text-align:right;"><b class="highlight">~40×</b></td>
-			      </tr>
-			      <tr>
-			        <td style="border:1px solid #ccc; padding:6px 12px;">3,000 nodes</td>
-			        <td style="border:1px solid #ccc; padding:6px 12px; text-align:right;">~5 min</td>
-			        <td style="border:1px solid #ccc; padding:6px 12px; text-align:right;">~3 s</td>
-			        <td style="border:1px solid #ccc; padding:6px 12px; text-align:right;"><b class="highlight">~100×</b></td>
-			      </tr>
-			    </tbody>
-			  </table>
-				  <i style="font-size:12px; color:#555;">Benchmarked on representative Metro Area Network topologies (average node degree ≈ 4).</i><br>
-			  <br>
-			  <b>Before</b> — triple nested loop, O(n³):<br>
-			  <pre style="background:#f4f4f4; border-left:3px solid #00FA9A; padding:10px; font-size:12px; overflow-x:auto; margin:8px 0;">// Every triplet of nodes examined — O(n³)
-for (int i = 0; i &lt; nodes.size(); ++i) {
-    for (int j = 0; j &lt; nodes.size(); ++j) {
-        for (int k = 0; k &lt; nodes.size(); ++k) {
-            if (isConnected(nodes[i], nodes[j]) &amp;&amp;
+    <div class="mt-12 grid sm:grid-cols-3 gap-4 max-w-3xl font-mono text-base">
+      <a href="#novartis" class="card glow border border-line bg-panel rounded-lg p-4">
+        <span class="text-ember">▸ designed</span><br><span class="text-dim">enterprise architectures at Novartis</span>
+      </a>
+      <a href="#aisco" class="card glow border border-line bg-panel rounded-lg p-4">
+        <span class="text-ember">▸ invented</span><br><span class="text-dim">a patented fire training system</span>
+      </a>
+      <a href="#alcatel" class="card glow border border-line bg-panel rounded-lg p-4">
+        <span class="text-ember">▸ optimized</span><br><span class="text-dim">O(n³) → O(n²) at Alcatel-Lucent</span>
+      </a>
+    </div>
+
+    <div class="mt-12 font-mono text-sm text-dim flex gap-12 flex-wrap items-start">
+      <div class="space-y-1">
+        <div>DE <span class="text-ember">████</span><span class="text-dim">░</span></div>
+        <div>EN <span class="text-ember">████</span><span class="text-dim">░</span></div>
+        <div>IT <span class="text-ember">█████</span></div>
+        <div>ES <span class="text-ember">███</span><span class="text-dim">░░</span></div>
+      </div>
+      <div class="space-y-1">
+        <div>C · C++ · Java · Oracle · PL/SQL · MSSQL · PostgreSQL</div>
+        <div>AI · <a href="https://opencode.ai" target="_blank" rel="noopener" class="ilink">OpenCode</a> · Claude</div>
+        <div>happy <a href="https://omarchy.org" target="_blank" rel="noopener" class="ilink">Omarchy</a> / Arch Linux user</div>
+        <div>learning: Ruby on Rails · Zig · Rust</div>
+      </div>
+    </div>
+    <p class="mt-6 font-display font-bold text-2xl">I love <span class="text-ember">getting things done</span>.<br>Constantly learning.</p>
+  </header>
+
+  <!-- skill marquee -->
+  <div class="border-y border-line overflow-hidden py-4 bg-panel/60">
+    <div class="marquee font-mono text-base uppercase tracking-[.3em] text-dim">
+      <span class="text-parchment">C</span><span class="text-ember">✦</span><span class="text-parchment">C++</span><span class="text-ember">✦</span><span class="text-parchment">Java</span><span class="text-ember">✦</span><span class="text-parchment">Oracle PL/SQL</span><span class="text-ember">✦</span><span class="text-parchment">MSSQL</span><span class="text-ember">✦</span><span class="text-parchment">PostgreSQL</span><span class="text-ember">✦</span><span class="text-parchment">Bash</span><span class="text-ember">✦</span><span class="text-parchment">Python</span><span class="text-ember">✦</span><span class="text-cy">Leadership</span><span class="text-ember">✦</span><span class="text-cy">Project Management</span><span class="text-ember">✦</span><span class="text-cy">Solution Architecture</span><span class="text-ember">✦</span><span class="text-cy">Problem Solving</span><span class="text-ember">✦</span><span class="text-cy">Stakeholder Management</span><span class="text-ember">✦</span><span class="text-cy">Mentoring</span><span class="text-ember">✦</span><span class="text-cy">Communication</span><span class="text-ember">✦</span>
+      <span class="text-parchment">C</span><span class="text-ember">✦</span><span class="text-parchment">C++</span><span class="text-ember">✦</span><span class="text-parchment">Java</span><span class="text-ember">✦</span><span class="text-parchment">Oracle PL/SQL</span><span class="text-ember">✦</span><span class="text-parchment">MSSQL</span><span class="text-ember">✦</span><span class="text-parchment">PostgreSQL</span><span class="text-ember">✦</span><span class="text-parchment">Bash</span><span class="text-ember">✦</span><span class="text-parchment">Python</span><span class="text-ember">✦</span><span class="text-cy">Leadership</span><span class="text-ember">✦</span><span class="text-cy">Project Management</span><span class="text-ember">✦</span><span class="text-cy">Solution Architecture</span><span class="text-ember">✦</span><span class="text-cy">Problem Solving</span><span class="text-ember">✦</span><span class="text-cy">Stakeholder Management</span><span class="text-ember">✦</span><span class="text-cy">Mentoring</span><span class="text-ember">✦</span><span class="text-cy">Communication</span><span class="text-ember">✦</span>
+    </div>
+  </div>
+
+  <!-- ───────────────── NOVARTIS ───────────────── -->
+  <section id="novartis" class="px-6 sm:px-12 xl:px-24 py-24 reveal">
+    <div class="flex items-baseline justify-between flex-wrap gap-2">
+      <div class="flex items-center gap-4 flex-wrap"><h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// novartis</h2></div>
+      <span class="font-mono text-sm text-dim">▸ 2008 — 2026</span>
+    </div>
+    <div class="ember-line my-6"></div>
+    <h3 class="font-display font-extrabold text-4xl sm:text-6xl mb-4">42k patents. 110k trademarks.<br class="hidden sm:block"> <span class="text-transparent bg-clip-text bg-gradient-to-r from-ember to-flame">Zero data lost.</span></h3>
+    <p class="max-w-2xl text-dim leading-relaxed mb-10">
+      Managing the full Novartis IP portfolio data lake — <span class="text-parchment">42k patents, 110k trademarks</span> —
+      while driving innovation, operations and project management for IP &amp; Legal Operations.
+      Technical consultant for <a href="https://clarivate.com/intellectual-property/ip-management-software/memotech/" target="_blank" rel="noopener" class="ilink">Clarivate IPMS Memotech</a>: <span class="text-parchment">900 users, 10 sites, 107k lines of PL/SQL</span>.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="card border border-line bg-panel rounded-xl p-6">
+        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">Migration · 2023–2025</p>
+        <p class="font-semibold mb-1">Lead technical member: Memotech → Anaqua AQX</p>
+        <p class="text-base text-dim">RFI/RFP core member, data migration analyst, 50+ custom reports rebuilt (Oracle SQL → MSSQL SSRS), hundreds of custom merge codes, member of the "accelerators" team.</p>
+      </div>
+      <div class="card border border-line bg-panel rounded-xl p-6">
+        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">Automation · 2019–2021</p>
+        <p class="font-semibold mb-1">Trademark maintenance &amp; renewal, fully automated</p>
+        <p class="text-base text-dim">~120 emails auto-dispatched monthly with zero user intervention. Full portfolio renewal batch processing — outcome docketed automatically, no manual data entry.</p>
+      </div>
+      <div class="card border border-line bg-panel rounded-xl p-6">
+        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">Interfaces · 2018</p>
+        <p class="font-semibold mb-1">e-Filing with the Swiss Trademark Office</p>
+        <p class="text-base text-dim">Full-stack design &amp; development — complete XML data preparation and generation without user input.</p>
+      </div>
+      <div class="card border border-line bg-panel rounded-xl p-6">
+        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">Recognition &amp; M&amp;A</p>
+        <p class="font-semibold mb-1">NI IT &amp; Group IGM Innovator Award 2013</p>
+        <p class="text-base text-dim">Alcon integration (2010–11) · Alcon divestment (2018–19) · Sandoz spin-off (2023–24). Data migration, verification &amp; cleanup at scale.</p>
+      </div>
+    </div>
+
+    <details class="dx mt-8">
+      <summary>DETAILS</summary>
+      <div class="dx-body">
+        <p class="dx-h">Daily activities — innovation, operations &amp; project management</p>
+        <ul>
+          <li>Managing the Novartis full IP portfolio data lake (42k patents, 110k trademarks).</li>
+          <li>Pro-active role in design, requirements analysis, and development of process optimizations and solutions for the IP Legal Operations PMO department.</li>
+          <li>Driving and implementing innovation in IP &amp; Legal Operations.</li>
+          <li>Support audit activities and follow-up on remediation actions.</li>
+          <li>Support with user account management activities and new reporting requirements from either the business or IT/ISRM.</li>
+          <li>Ensuring and deploying project-related milestones and tasks.</li>
+          <li>Technical and business consultancy for upcoming projects related to IP/Legal.</li>
+        </ul>
+        <p class="dx-h">Acquisitions and divestments projects</p>
+        <ul>
+          <li>Data analysis, cleanup, verification and migration into IPMS for acquisitions and divestments projects.</li>
+          <li>Documents, data and metadata verification, review and migration into IPMS according to business requirements.</li>
+        </ul>
+        <p class="dx-h">IPMS system functionality &amp; customization</p>
+        <ul>
+          <li>Technical consultant for Clarivate IPMS Memotech, enhancements, data analysis, design and customization (900 users, 10 sites).</li>
+          <li>User requirements or functional specifications gathering.</li>
+          <li>Design, development, testing, maintenance, monitoring, review and documentation of customized SQL / Oracle PL/SQL objects: packages, procedures, functions, scheduled jobs, pipelined functions, tables, views, triggers, etc. (107k lines of source code).</li>
+          <li>Tools used: Toad, SQL Developer, SQL Plus.</li>
+        </ul>
+        <p class="dx-h">Interfaces</p>
+        <ul>
+          <li>Design, development and maintenance of mono and bidirectional interfaces between heterogeneous systems for migration and transfer of IP matters within the Novartis systems landscape (for instance eBilling).</li>
+        </ul>
+        <p class="dx-h">Reporting</p>
+        <ul>
+          <li>Direct and continuous business reporting with the trademarks and patents team stakeholders.</li>
+          <li>Design and development of customized Intellectual Property portfolio reports.</li>
+          <li>Design, development and maintenance of reports (database exports, csv, MS Office, Crystal, etc.).</li>
+          <li>IPMS free queries/reports SQL development.</li>
+        </ul>
+        <p class="dx-h">Performance &amp; technical issue resolution</p>
+        <ul>
+          <li>Resolution of performance issues related to the IPMS.</li>
+          <li>Coordination and communication with software vendors and other operators (Clarivate, European Patent Office, WIPO, Swiss Patent and Trademarks Office) to resolve issues and bugs.</li>
+          <li>Testing of new software components on the QA environment prior to deployment on production.</li>
+          <li>Coordination and communication with providers prior to and during the installation of new/updated software releases.</li>
+        </ul>
+        <p class="dx-h">Mass communication &amp; document generation</p>
+        <ul>
+          <li>Design of document and email templates (e.g., Order to file, Abandonment, CoverSheet, Renewal), including the development of related PL/SQL objects.</li>
+          <li>Handling of the mass generation of emails, reports, portfolio reviews and updates to on average 320 agents.</li>
+        </ul>
+        <p class="dx-h">Documentation &amp; compliance</p>
+        <ul>
+          <li>Creation and maintenance of relevant enterprise ICE / ISRM documentation, including functional specifications, design specifications, IQ, OQ, PQ, DO.</li>
+        </ul>
+        <p class="dx-h">Migration project from Memotech to Anaqua AQX</p>
+        <p>As a key contributor to the enterprise-wide migration of the Intellectual Property Management System (IPMS) from <a href="https://clarivate.com/intellectual-property/ip-management-software/memotech/" target="_blank" rel="noopener" class="ilink">Clarivate Memotech</a> to <a href="https://www.anaqua.com/aqx-corporate/" target="_blank" rel="noopener" class="ilink">Anaqua AQX</a>, I played a pivotal role in modernizing the Novartis IP portfolio operations over several years of hands-on expertise with the legacy platform. Leading technical efforts in a high-stakes project, I collaborated cross-functionally to ensure seamless data integrity, system interoperability, and enhanced reporting capabilities.</p>
+        <ul>
+          <li>RFI and RFP technical core member</li>
+          <li>Key member of the project core team</li>
+          <li>Requirements gathering</li>
+          <li>Business processes analysis</li>
+          <li>Data migration business analyst</li>
+          <li>Data migration quality checks</li>
+          <li>Full migration of more than 50 Memotech custom reports (Oracle SQL &rArr; MSSQL SSRS)</li>
+          <li>Full migration of document and email templates</li>
+          <li>Development of hundreds of custom merge codes</li>
+          <li>Technical consultancy</li>
+          <li>Reporting and benchmarks</li>
+          <li>Communication with vendor (<a href="https://www.anaqua.com/aqx-corporate/" target="_blank" rel="noopener" class="ilink">Anaqua</a>) and stakeholders (Novartis)</li>
+          <li>Member of the "accelerators" team</li>
+        </ul>
+        <p class="dx-h">Accomplishments</p>
+        <ul>
+          <li><strong>2023 – 2025:</strong> Lead technical member of the successful IPMS migration project from Memotech to Anaqua AQX.</li>
+          <li><strong>2020 – 2021:</strong> Full automated trademarks maintenance monitoring process design and development. Impact: an average of 120 emails are automatically dispatched each month, requiring no user intervention.</li>
+          <li><strong>2019:</strong> Design and development of automated trademarks full portfolio renewal process batch processing. Impact: renewal process outcome fully automated and docketed, eliminating the need for manual checks and data entry.</li>
+          <li><strong>2018:</strong> Design and full-stack development of the e-filing interface with the Swiss Trademark Office. Impact: full XML data preparation and generation without requiring user input.</li>
+          <li><strong>2013:</strong> Member of the Novartis IT team rewarded with the "NI IT &amp; Group IGM Innovator Award 2013".</li>
+          <li><strong>Acquisitions &amp; divestments:</strong> Alcon integration (2010–11), Alcon divestment (2018–19), Sandoz spin-off (2023–24).</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ───────────────── AISCO ───────────────── -->
+  <section id="aisco" class="px-6 sm:px-12 xl:px-24 py-24 border-t border-line reveal">
+    <div class="flex items-baseline justify-between flex-wrap gap-2">
+      <div class="flex items-center gap-4 flex-wrap"><h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// aisco firetrainer</h2></div>
+      <span class="font-mono text-sm text-dim">▸ 2020 — 2023</span>
+    </div>
+    <div class="ember-line my-6"></div>
+    <h3 class="font-display font-extrabold text-4xl sm:text-6xl mb-4">Invented. Patented.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-ember to-flame">Shipped.</span></h3>
+    <p class="max-w-2xl text-dim leading-relaxed mb-10">
+      Hardware–Software Lead Architect of a digital fire trainer with real-time, physics-based fire
+      simulation — propagation and behaviour driven by particle systems and fluid dynamics.
+      From invention phase to product launch, with full project accountability.
+    </p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+      <div class="card border border-line bg-panel rounded-xl p-6">
+        <p class="text-3xl mb-2">🧭</p>
+        <p class="font-semibold mb-1">No prior art</p>
+        <p class="text-base text-dim">A product that simply did not exist. No benchmark, no reference — every design decision invented from scratch.</p>
+      </div>
+      <div class="card border border-line bg-panel rounded-xl p-6">
+        <p class="text-3xl mb-2">🥽</p>
+        <p class="font-semibold mb-1">"VR — without headsets"</p>
+        <p class="text-base text-dim">Full immersive presence and depth perception without head-mounted displays. Two trainees, one shared live simulation, each with their own e-extinguisher.</p>
+      </div>
+      <div class="card border border-line bg-panel rounded-xl p-6">
+        <p class="text-3xl mb-2">🔥</p>
+        <p class="font-semibold mb-1">Real-time fire, no shortcuts</p>
+        <p class="text-base text-dim">No baked assets, no pre-rendered sequences. The fire responds authentically to trainee actions — frame by frame. Started weeks before COVID-19 lockdowns; workflow reinvented on the fly.</p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-4 font-mono text-base">
+      <a href="https://patentscope.wipo.int/search/en/detail.jsf?docId=EP320899875" target="_blank" rel="noopener" class="glow border border-ember/50 text-ember rounded-full px-5 py-2 hover:bg-ember hover:text-ink transition-colors">▸ Patent EP3795219</a>
+      <a href="https://aisco-firetrainer.com/products/aisco-indoortrainer" target="_blank" rel="noopener" class="glow border border-line rounded-full px-5 py-2 hover:border-ember transition-colors">▸ Indoor Fire Trainer — launched 2023</a>
+    </div>
+
+    <details class="dx mt-8">
+      <summary>DETAILS</summary>
+      <div class="dx-body">
+        <p class="dx-h">Summary</p>
+        <p>Hardware-Software Lead Architect, project management, design, invention and development of a digital software-based fire trainer system with top-notch modern graphics and realistic fire simulation, propagation and behaviour based on physics and particle systems laws. This product is designed to train companies, employees, and individuals on effectively managing various types of fires.</p>
+        <p class="dx-h">Tasks</p>
+        <ul>
+          <li>Business requirements gathering and brainstorming with the company executive board</li>
+          <li>Full project execution and accountability, from the invention phase up to the final product launch</li>
+          <li>RFI / RFP for selection of the external software development provider</li>
+          <li>Leading the software development team as product owner</li>
+          <li>Complete project planning, supervision and execution</li>
+          <li>Management and alignment of financial budget</li>
+          <li>Continuous interfacing and communication between business and technical hardware-software related activities</li>
+          <li>Design and conception of the prototype (hardware and software-side)</li>
+          <li>Hardware prototyping for the e-extinguishers</li>
+          <li>Software use cases modeling</li>
+          <li>Patent filing and granting process</li>
+          <li>Brainstorming with vendor for fire and extinguishment software algorithms</li>
+          <li>Ensuring project deliveries</li>
+          <li>Project supervision up to the final product launch</li>
+        </ul>
+        <p class="dx-h">Challenges</p>
+        <ul>
+          <li><strong>A product that simply did not exist.</strong> There was no comparable solution on the market — no reference, no benchmark, no prior art to learn from. Every design decision had to be invented from scratch.</li>
+          <li><strong>"Build a VR system — without VR headsets."</strong> The executive brief was unambiguous: deliver full immersive training while keeping the hardware accessible. This meant achieving presence and depth perception through an unconventional approach, without falling back on standard head-mounted display technology.</li>
+          <li><strong>Two concurrent users, one shared environment.</strong> The system had to support two trainees operating independently and simultaneously within the same live simulation — each with their own e-extinguisher, their own physical interactions, and their own impact on the fire's behaviour.</li>
+          <li><strong>Real-time physics-based fire rendering — no shortcuts.</strong> Fire simulation had to be fully computed at runtime, driven by particle systems and fluid dynamics. Pre-rendered sequences or game-engine baked assets were ruled out: the fire had to respond authentically to the trainee's actions, frame by frame.</li>
+          <li><strong>Project started weeks before the COVID-19 pandemic.</strong> Hardware prototyping, cross-functional collaboration, and vendor coordination came to an abrupt halt as the world went into lockdown — the entire development workflow had to be reinvented on the fly, under pressure, with no playbook.</li>
+        </ul>
+        <p class="dx-h">Accomplishments</p>
+        <ul>
+          <li><strong>2020</strong> — patent granted: EP3795219</li>
+          <li><strong>2023</strong> — next generation fire trainer successfully launched: Indoor Fire Trainer</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ───────────────── ALCATEL ───────────────── -->
+  <section id="alcatel" class="px-6 sm:px-12 xl:px-24 py-24 border-t border-line reveal">
+    <div class="flex items-baseline justify-between flex-wrap gap-2">
+      <div class="flex items-center gap-4 flex-wrap"><h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// alcatel-lucent (nokia)</h2></div>
+      <span class="font-mono text-sm text-dim">▸ 2006 — 2008</span>
+    </div>
+    <div class="ember-line my-6"></div>
+
+    <div class="flex flex-col gap-12">
+      <div class="w-full">
+        <h3 class="font-display font-extrabold text-4xl sm:text-6xl mb-6 big-o">
+          O(n³) <span class="text-dim font-light">→</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-ember to-flame">O(n²)</span>
+        </h3>
+        <p class="text-dim leading-relaxed mb-6">
+          Full algorithmic redesign of the SDH network topology resynchronization engine.
+          The original code blindly examined every triplet of nodes with three nested loops.
+          The rewrite: a customized <span class="text-parchment">BFS with a visited set</span> — each node processed exactly once.
+        </p>
+        <div class="border border-line rounded-xl overflow-hidden font-mono text-base">
+          <div class="grid grid-cols-4 bg-panel text-dim text-sm uppercase tracking-widest px-4 py-3 border-b border-line">
+            <span>Network</span><span>Before</span><span>After</span><span class="text-right">Speedup</span>
+          </div>
+          <div class="grid grid-cols-4 px-4 py-3 border-b border-line/60"><span>500 nodes</span><span class="text-dim">~9 s</span><span class="text-cy">~0.5 s</span><span class="text-right text-ember font-semibold">~18×</span></div>
+          <div class="grid grid-cols-4 px-4 py-3 border-b border-line/60"><span>1,500 nodes</span><span class="text-dim">~60 s</span><span class="text-cy">~1.5 s</span><span class="text-right text-ember font-semibold">~40×</span></div>
+          <div class="grid grid-cols-4 px-4 py-3"><span>3,000 nodes</span><span class="text-dim">~5 min</span><span class="text-cy">~3 s</span><span class="text-right text-ember font-semibold">~100×</span></div>
+        </div>
+        <p class="font-mono text-[13px] text-dim mt-3">Benchmarked on representative Metro Area Network topologies (avg. node degree ≈ 4).</p>
+      </div>
+
+      <div class="w-full">
+        <!-- before/after code switcher -->
+        <div class="border border-line rounded-xl bg-panel overflow-hidden">
+          <div class="flex items-center justify-between px-4 py-3 border-b border-line flex-wrap gap-2">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff6b6b]/70"></span>
+              <span class="w-3 h-3 rounded-full bg-ember/70"></span>
+              <span class="w-3 h-3 rounded-full bg-cy/70"></span>
+              <span class="font-mono text-sm text-dim ml-2" id="code-filename">resync_naive.cpp</span>
+            </div>
+            <div class="flex font-mono text-sm rounded-full border border-line overflow-hidden">
+              <button id="btn-before" onclick="showCode('before')" class="px-4 py-1.5 transition-colors bg-[#ff6b6b]/15 text-[#ff6b6b]">▼ Before · O(n³)</button>
+              <button id="btn-after" onclick="showCode('after')" class="px-4 py-1.5 transition-colors text-dim hover:text-ember">▲ After · O(n²)</button>
+            </div>
+          </div>
+
+          <div id="code-before">
+<pre class="p-5 text-[15px] leading-relaxed overflow-x-auto font-mono"><code><span class="text-dim">// Every triplet of nodes examined — O(n³)</span>
+<span class="text-[#ff6b6b]">for</span> (<span class="text-cy">int</span> i = 0; i &lt; nodes.size(); ++i) {
+    <span class="text-[#ff6b6b]">for</span> (<span class="text-cy">int</span> j = 0; j &lt; nodes.size(); ++j) {
+        <span class="text-[#ff6b6b]">for</span> (<span class="text-cy">int</span> k = 0; k &lt; nodes.size(); ++k) {
+            <span class="text-[#ff6b6b]">if</span> (isConnected(nodes[i], nodes[j]) &amp;&amp;
                 isConnected(nodes[j], nodes[k])) {
                 resync(nodes[i], nodes[j], nodes[k]);
             }
         }
     }
-}</pre>
-			  <b>After</b> — BFS with visited tracking, O(n²):<br>
-			  <pre style="background:#f4f4f4; border-left:3px solid #00FA9A; padding:10px; font-size:12px; overflow-x:auto; margin:8px 0;">// Each node visited exactly once — O(n²)
-std::unordered_set&lt;NodeId&gt; visited;
-std::queue&lt;NodeId&gt;        queue;
+}</code></pre>
+            <p class="px-5 pb-5 font-mono text-[13px] text-[#ff6b6b]/80">✗ blindly examines every possible triplet — nodes revisited over and over</p>
+          </div>
 
-queue.push(rootNode);
-visited.insert(rootNode);
+          <div id="code-after" class="hidden">
+<pre class="p-5 text-[15px] leading-relaxed overflow-x-auto font-mono"><code><span class="text-dim">// Each node visited exactly once — O(n²)</span>
+<span class="text-cy">std::unordered_set</span>&lt;NodeId&gt; visited;
+<span class="text-cy">std::queue</span>&lt;NodeId&gt;         queue;
 
-for (NodeId current; !queue.empty(); ) {
-    current = queue.front();
-    queue.pop();
-    for (NodeId neighbor : adjacencyList[current]) {
-        if (!visited.count(neighbor)) {
-            visited.insert(neighbor);
-            resync(current, neighbor);
-            queue.push(neighbor);
+queue.<span class="text-ember">push</span>(rootNode);
+visited.<span class="text-ember">insert</span>(rootNode);
+
+<span class="text-flame">for</span> (NodeId current; !queue.<span class="text-ember">empty</span>(); ) {
+    current = queue.<span class="text-ember">front</span>();
+    queue.<span class="text-ember">pop</span>();
+    <span class="text-flame">for</span> (NodeId neighbor : adjacencyList[current]) {
+        <span class="text-flame">if</span> (!visited.<span class="text-ember">count</span>(neighbor)) {
+            visited.<span class="text-ember">insert</span>(neighbor);
+            <span class="text-ember">resync</span>(current, neighbor);
+            queue.<span class="text-ember">push</span>(neighbor);
         }
     }
-}</pre>
-			  The key insight: by tracking which nodes had already been resynced, each node is processed exactly once. No redundant re-checks, no wasted traversals across the full node matrix. A straightforward idea — but only reachable after a complete algorithmic redesign from scratch.<br>
-			  <br>
-			<span style="color:#00FA9A;">▸</span> <b>C++ implementation of Link Aggregation Protocol for SDH networks based on <a class="link" href="https://en.wikipedia.org/wiki/Link_aggregation" target="_blank">IEEE 802.3ad</a></b><br>
-			  <br>
-			  <img src="./images/link-aggregation.svg" alt="Link Aggregation Group: 3 physical links bundled into 1 logical link" style="width:100%;max-width:620px;display:block;margin:12px 0;">
-			  <br>
-			  <b>What is Link Aggregation?</b> Imagine you have four physical cables connecting two network devices. Normally only one is active — the others sit idle as backup. Link Aggregation bundles them all into a single logical link: the bandwidth adds up, and if one cable dies, traffic automatically flows through the remaining ones. More speed, zero single point of failure.<br>
-			  <br>
-			  <b>Why it matters:</b> SDH networks are the backbone of telecom infrastructure — they carry voice, data, and critical services across cities. Downtime is not an option. Link Aggregation is a natural fit: it gives telecom operators both the bandwidth to handle growing traffic and the resilience to survive link failures without dropping a single call or packet. Implementing it at the Network Management System level means operators can configure, monitor, and control aggregated links across the entire Metro Area Network from a single place.
-			</div>
-		</section>
-		<hr class="rule">
-		<section id="books">
-		<h3><p class="section">// BOOKS.</p></h3>
-		<div class="section-content">
-			<p>I am an avid reader of anything that sparks my interest.<br> 
-			   I usually read in the original language of the author, I believe that translation is a really hard job.<br>
-			   Nuances sometimes get unfortunately lost in the translation process, hence it is always a good idea to get the book in the original language.<br><br>
-			   I try to extend constantly my perspective and mindset reading about different topics and areas:<br>
-			   ▪ Psychology: every book of <a class="link" href="https://powerseductionandwar.com/" target="_blank">Robert Greene</a> is a masterpiece.<br>
-			   ▪ Design (product design, typography, UI/UX) - Recommendation: all books of <a class="link" href="https://www.edwardtufte.com/" target="_blank">Edward Tufte</a>.<br> 
-			   ▪ Computer science - well, the list here is too long, maybe I will create an extra section for it.<br>
-			   ▪ Historical books - Ken Follett, how to teach history from middle age down to modern history.<br>
-		       ▪ Trading and market analysis - Elliott Wave Principle (Frost, Prechter)
-			<p>These are (at the moment) my favourite books:<br></p>
-			<p class="p-indented">
-				<a class="link" href="https://en.wikipedia.org/wiki/Nineteen_Eighty-Four" target="_blank">1. 1984 - George Orwell</a><br>
-				<a class="link" href="https://en.wikipedia.org/wiki/The_Pillars_of_the_Earth" target="_blank">2. The Pillars of the Earth - Ken Follett</a><br>
-				<a class="link" href="https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach" target="_blank">3. Gödel, Escher, Bach: an Eternal Golden Braid - Douglas Hofstadter</a>
-			</p>
-			<book-shelf id="fav-bookshelf" books='[]'></book-shelf>
-		</div>		
-		<div class="section-content">
-			<p>Computer Science books have their own home now. → <a class="link" href="#cs-books">Computer Science Books & Literature</a></p>
-		</div>
-		</section>
-		<hr class="rule">
-		
-		<section id="languages">
-		<h3><p class="section">// LANGUAGES.</p></h3>
-		<div class="section-content">
-			<p>Even if Italians are not well known for their fluency in foreign languages, I try to do my best to learn new languages.<br>
-			   Currently I can read, talk and write in the following languages:
-			</p>
-			<p class="p-indented">
-				<progress value="100" max="100"></progress> Italian<br>
-				<progress value="80" max="100"></progress> German<br>
-				<progress value="80" max="100"></progress> English<br>
-				<progress value="80" max="100"></progress> Spanish<br>
-			</p>
-		</div>
-		</section>
-		<hr class="rule">
+}</code></pre>
+            <p class="px-5 pb-5 font-mono text-[13px] text-ember/90">✓ customized BFS + visited set — triple loop collapses into two</p>
+          </div>
+        </div>
+        <p class="text-base text-dim mt-4 leading-relaxed">
+          <strong class="text-parchment">The key insight:</strong> by tracking which nodes had already been resynced, each node is processed exactly once. No redundant re-checks, no wasted traversals — a straightforward idea, but only reachable after a complete algorithmic redesign from scratch.
+        </p>
+      </div>
+    </div>
 
-		<section id="hobbies">
-		<h3><p class="section">// HOBBIES.</p></h3>
-		<img src="./images/guitar.jpeg" alt="Guitarist" style="width:100%; max-width:700px; display:block; margin-bottom:16px;">
-		<div class="section-content">
-			<p>Guitars and music of any form and type are following my life, starting back from the good 90s.<br>
-			   Music is not just music, it is art and therapy.
-			</p>
-		<p>Electric Guitars<br></p>
-			<p class="p-indented">
-				<a class="link" href="https://ibanez.fandom.com/wiki/RG270_(1998%E2%80%932002,_Korea)" target="_blank">Ibanez RG 270 Black (sold)</a><br>
-				<a class="link" href="https://godinguitars.com/manuals/hsheet08_frwayclass.pdf" target="_blank">Godin Freeway Classic (sold)</a><br>
-				<a class="link" href="https://ibanez.fandom.com/wiki/MSM1" target="_blank">Ibanez MSM1</a><br>
-				<a class="link" href="https://ibanez.fandom.com/wiki/UV70P" target="_blank">Ibanez UV70P</a><br>
-				<a class="link" href="https://www.fender.com/en-US/electric-guitars/stratocaster/jimi-hendrix-stratocaster/0145802305.html" target="_blank">Fender Stratocaster JH</a>
-			</p>
+    <!-- SDH resync diagram (inline SVG, themed) -->
+    <figure class="mt-12 border border-line rounded-xl bg-panel p-6 overflow-x-auto">
+      <figcaption class="font-mono text-sm text-cy uppercase tracking-widest mb-4">fig. 1 — SDH nodes resynchronization: before vs after</figcaption>
+      <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SDH nodes resynchronization: O(n cubed) exhaustive triplets before, O(n squared) BFS traversal after" class="min-w-[560px] w-full" font-family="IBM Plex Mono, monospace">
+        <text x="150" y="26" fill="#ff6b6b" font-size="13" font-weight="500" text-anchor="middle">BEFORE — O(n³)</text>
+        <g stroke="#ff6b6b" stroke-opacity="0.4" stroke-width="1.3" fill="none">
+          <path d="M150 60 L90 120"/><path d="M150 60 L210 120"/><path d="M150 60 L150 180"/>
+          <path d="M90 120 L210 120"/><path d="M90 120 L210 180"/><path d="M90 120 L90 180"/>
+          <path d="M210 120 L90 180"/><path d="M210 120 L210 180"/><path d="M90 180 L210 180"/>
+          <path d="M150 60 L90 180"/><path d="M150 60 L210 180"/>
+        </g>
+        <g fill="#101623" stroke="#ff6b6b" stroke-width="1.5">
+          <circle cx="150" cy="60" r="15"/><circle cx="90" cy="120" r="15"/><circle cx="210" cy="120" r="15"/>
+          <circle cx="90" cy="180" r="15"/><circle cx="210" cy="180" r="15"/>
+        </g>
+        <g fill="#e9eef4" font-size="11" text-anchor="middle" dominant-baseline="central">
+          <text x="150" y="60">n1</text><text x="90" y="120">n2</text><text x="210" y="120">n3</text>
+          <text x="90" y="180">n4</text><text x="210" y="180">n5</text>
+        </g>
+        <text x="150" y="228" fill="#8b96a8" font-size="10" text-anchor="middle">every triplet checked</text>
+        <text x="150" y="244" fill="#8b96a8" font-size="10" text-anchor="middle">complexity grows as n³</text>
 
-			<p>Covers — recorded 2020<br></p>
-			<div style="display:flex; flex-direction:column; gap:10px; margin:8px 0 0 0;">
-				<div>
-					<p style="margin:0 0 4px 0; font-size:13px;">Joe Satriani — Summer Song</p>
-					<audio controls controlsList="nodownload" style="width:100%; max-width:500px;">
-						<source src="./files/JS_SummerSong_PP_Cover.mp3" type="audio/mpeg">
-					</audio>
-				</div>
-				<div>
-					<p style="margin:0 0 4px 0; font-size:13px;">Joe Satriani — The Extremist</p>
-					<audio controls controlsList="nodownload" style="width:100%; max-width:500px;">
-						<source src="./files/JS_TheExtremist__PP_Cover.mp3" type="audio/mpeg">
-					</audio>
-				</div>
-			</div>
+        <g stroke="#00FA9A" stroke-width="2" fill="none">
+          <path d="M300 140 L 380 140"/>
+          <path d="M371 132 L 380 140 L 371 148"/>
+        </g>
+        <text x="340" y="126" fill="#00FA9A" font-size="11" text-anchor="middle" font-weight="500">BFS</text>
 
-		</div>
-		</section>
-		<hr class="rule">
+        <text x="530" y="26" fill="#00FA9A" font-size="13" font-weight="500" text-anchor="middle">AFTER — O(n²)</text>
+        <g stroke="#00FA9A" fill="none" stroke-width="1.6">
+          <path d="M530 60 L470 120"/><path d="M530 60 L590 120"/>
+          <path d="M470 120 L440 180"/><path d="M470 120 L500 180"/><path d="M590 120 L590 180"/>
+        </g>
+        <g fill="#101623" stroke="#00FA9A" stroke-width="1.6">
+          <circle cx="530" cy="60" r="15"/><circle cx="470" cy="120" r="15"/><circle cx="590" cy="120" r="15"/>
+          <circle cx="440" cy="180" r="15"/><circle cx="500" cy="180" r="15"/><circle cx="590" cy="180" r="15"/>
+        </g>
+        <g fill="#e9eef4" font-size="11" text-anchor="middle" dominant-baseline="central">
+          <text x="530" y="60">n1</text><text x="470" y="120">n2</text><text x="590" y="120">n3</text>
+          <text x="440" y="180">n4</text><text x="500" y="180">n5</text><text x="590" y="180">n6</text>
+        </g>
+        <g fill="#6fd3e0" font-size="10" text-anchor="middle">
+          <text x="530" y="42">visited</text><text x="470" y="102">visited</text><text x="595" y="102">visited</text>
+        </g>
+        <text x="510" y="228" fill="#8b96a8" font-size="10" text-anchor="middle">visited set, each node once</text>
+        <text x="510" y="244" fill="#8b96a8" font-size="10" text-anchor="middle">complexity reduced to n²</text>
+      </svg>
+    </figure>
 
-		<section id="creative-corner">
-		<h3><p class="section">// CREATIVE CORNER.</p></h3>
-		<div class="section-content">
-			<p>Whenever I have time and mood, I like to write down some thoughts or just create something for the sake of "creating", no matter what definition you can apply to it.</p>
-			<p>A crazy short story about a fictional king. Written in italian. >> <a class="link" href="./writings/IlReRe.html" target="_blank" rel="noreferrer noopener">Il Re Re</a>
-			</p>
-			<p>A poem is a rhythmical dance of images in words. >> <a class="link" href="./writings/Poetry.html" target="_blank" rel="noreferrer noopener">Poetry</a>
-			</p>
-		</div>
-		</section>
-		<hr class="rule">
+    <!-- Link Aggregation subsection -->
+    <div class="mt-12 flex flex-col gap-8">
+      <div>
+        <h4 class="font-display font-bold text-3xl mb-3">Link Aggregation <span class="text-dim font-light text-xl">· <a href="https://en.wikipedia.org/wiki/Link_aggregation" target="_blank" rel="noopener" class="ilink">IEEE 802.3ad</a></span></h4>
+        <p class="text-base text-dim leading-relaxed">
+          C++ implementation for SDH networks. Imagine four physical cables connecting two network devices — normally
+          only one is active, the others sit idle as backup. Link Aggregation bundles them all into
+          <span class="text-parchment">a single logical link</span>: the bandwidth adds up, and if one cable dies,
+          traffic automatically flows through the remaining ones.
+          <span class="text-parchment">More speed, zero single point of failure</span> — configurable and monitorable
+          across the whole Metro Area Network from one place.
+        </p>
+      </div>
+      <figure class="border border-line rounded-xl bg-panel p-6 overflow-x-auto">
+        <figcaption class="font-mono text-sm text-cy uppercase tracking-widest mb-4">fig. 2 — link aggregation group</figcaption>
+        <svg viewBox="0 0 620 236" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Link Aggregation Group: three physical links bundled into one logical link, one link down, traffic carried by the remaining two" class="min-w-[480px] w-full" font-family="IBM Plex Mono, monospace">
+          <rect x="128" y="46" width="364" height="108" rx="54" fill="none" stroke="#00FA9A" stroke-dasharray="6 5" stroke-opacity="0.6"/>
+          <text x="310" y="32" fill="#00FA9A" font-size="11" text-anchor="middle">LAG — one logical link</text>
 
-		<section id="cs">
-		<h3><p class="section">// COMPUTER SCIENCE.</p></h3>
-		<div class="bits-marquee" style="font-family:'DM Mono',monospace; font-size:13px; color:#10183a; margin-bottom:12px;">
-			<div class="bits-marquee__track">
-				<span>01 01 0101100101001 01 1 0 1 10 0101 11 001 0 1 01100 1001 010 1 11 0 0101 1100 10 01 001 1 0 1 010011 1 0 0101 1 00 1 010 110 01 0 1 001 1 0 11 010 0 1 01 0110010 1 00 1 01 1 0</span><span>01 01 0101100101001 01 1 0 1 10 0101 11 001 0 1 01100 1001 010 1 11 0 0101 1100 10 01 001 1 0 1 010011 1 0 0101 1 00 1 010 110 01 0 1 001 1 0 11 010 0 1 01 0110010 1 00 1 01 1 0</span>
-			</div>
-		</div>
-		<div class="section-content">
-			<b class="highlight">C. Raw. Fast. Unforgiving. Beautiful.</b>
-			<br><br>
-			There is something deeply satisfying about writing code that runs close to the metal.
-			No garbage collector whispering in the background. No framework doing the heavy lifting.
-			Just you, the compiler, and the hardware.<br>
-			<br>
-			<b>LiAM — Like Another Mail</b> — is a minimal multithreaded SMTP + POP3 mail server written entirely in C for Linux.
-			No third-party libraries. No shortcuts. Built from scratch as a university assignment, it implements two foundational internet mail protocols right down to the RFC.<br>
-			<br>
-			<b>What's inside</b><br>
-			▪ A full SMTP state machine (<code>HELO → MAIL FROM → RCPT TO → DATA → QUIT</code>), <a class="link" href="https://www.rfc-editor.org/rfc/rfc5321" target="_blank" rel="noreferrer noopener">RFC 5321</a> compliant<br>
-			▪ A POP3 server with authorization state, in-memory message index, and session-scoped deletion, <a class="link" href="https://www.rfc-editor.org/rfc/rfc1939" target="_blank" rel="noreferrer noopener">RFC 1939</a> compliant<br>
-			▪ Per-mailbox <code>pthread_mutex_t</code> locking — two threads cannot touch the same mailbox simultaneously. No races. No corruption.<br>
-			▪ Flat mbox storage, temp files written during live SMTP sessions, credential files — all wired together by hand<br>
-			▪ Two independent listener threads running side by side from a single process<br>
-			<br>
-			Why C? Because C is humbling and rewarding in equal measure.
-			You manage your own memory. You design your own abstractions.
-			You understand every byte that moves across the wire.
-			It is the language that taught me to think in systems — and every hour spent in it made me a sharper engineer in every other language too.<br>
-			<br>
-			<a class="link accomplish" href="https://github.com/paolopangrazi/liam" target="_blank" rel="noreferrer noopener">→ Full source on GitHub: paolopangrazi/liam</a>
-		</div>
-		<br>
-		<h3 id="cs-books"><p class="section">// Books & Literature.</p></h3>
-		<div class="section-content">
-			<p class="p-indented">
-				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/The_C_Programming_Language%2C_First_Edition_Cover.svg/250px-The_C_Programming_Language%2C_First_Edition_Cover.svg.png" alt="The C Programming Language cover" style="height:80px; vertical-align:middle; margin-right:10px;">
-				<a class="link" href="https://en.wikipedia.org/wiki/The_C_Programming_Language" target="_blank">The C Programming Language</a> — the real GOAT book for any serious software developer.<br>
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 72" style="height:80px; vertical-align:middle; margin-right:10px;" aria-label="PDF document">
-					<!-- document body -->
-					<path d="M6 0 H38 L50 12 V66 Q50 72 44 72 H6 Q0 72 0 66 V6 Q0 0 6 0Z" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5"/>
-					<!-- folded corner -->
-					<path d="M38 0 L50 12 H40 Q38 12 38 10 Z" fill="#e0e0e0" stroke="#c8c8c8" stroke-width="1.5"/>
-					<!-- red PDF banner -->
-					<rect x="0" y="44" width="50" height="20" rx="0" ry="0" fill="#c62828"/>
-					<rect x="0" y="62" width="50" height="10" rx="0" ry="0" fill="#c62828"/>
-					<rect x="0" y="44" width="50" height="28" rx="0" ry="0" fill="#c62828"/>
-					<path d="M0 44 H50 V66 Q50 72 44 72 H6 Q0 72 0 66 Z" fill="#c62828"/>
-					<!-- PDF label -->
-					<text x="25" y="62" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" letter-spacing="1" fill="#ffffff">PDF</text>
-					<!-- decorative lines on document -->
-					<line x1="10" y1="22" x2="36" y2="22" stroke="#d8d8d8" stroke-width="2" stroke-linecap="round"/>
-					<line x1="10" y1="30" x2="40" y2="30" stroke="#d8d8d8" stroke-width="2" stroke-linecap="round"/>
-					<line x1="10" y1="38" x2="32" y2="38" stroke="#d8d8d8" stroke-width="2" stroke-linecap="round"/>
-				</svg>
-				<a class="link" href="https://github.com/eherbold/berkeleytextbooks/blob/7b9196f9b5fb66dc0686852522badfcc9007fc89/Algorithms%20-%20Sanjoy%20Dasgupta%2C%20Christos%20H.%20Papadimitriou%2C%20and%20Umesh%20V.%20Vazirani.pdf" target="_blank">Algorithms — Dasgupta, Papadimitriou, V. Vazirani</a><br>
-			</p>
-		</div>
-		</section>
+          <rect x="38" y="62" width="92" height="76" rx="8" fill="#101623" stroke="#6fd3e0" stroke-width="1.5"/>
+          <text x="84" y="104" fill="#e9eef4" font-size="12" text-anchor="middle">Switch A</text>
 
-	</div>
+          <rect x="490" y="62" width="92" height="76" rx="8" fill="#101623" stroke="#6fd3e0" stroke-width="1.5"/>
+          <text x="536" y="104" fill="#e9eef4" font-size="12" text-anchor="middle">Switch B</text>
 
-	<!-- Floating navigation button -->
-	<div id="fab-container" style="position:fixed;bottom:24px;right:24px;z-index:1000;font-family:'DM Mono',monospace;font-size:0.85em;">
-	  <div id="fab-menu" style="display:none;position:absolute;bottom:52px;right:0;background:#fff;border:2px solid #00FA9A;padding:14px 18px;white-space:nowrap;min-width:220px;box-shadow:0 4px 16px rgba(0,0,0,0.1);">
-	    <p style="margin:0 0 10px 0;font-weight:bold;border-bottom:2px solid #00FA9A;padding-bottom:6px;">// INDEX.</p>
-	    <div id="nav-fab"></div>
-	  </div>
-	  <button onclick="toggleFab()" style="background:#00FA9A;color:#10183a;border:2px solid #10183a;width:44px;height:44px;font-size:1.3em;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Navigation">☰</button>
-	</div>
+          <path d="M130 78  L490 78"  stroke="#00FA9A" stroke-width="2.5" fill="none"/>
+          <path d="M130 100 L490 100" stroke="#00FA9A" stroke-width="2.5" fill="none"/>
+          <path d="M130 122 L280 122" stroke="#ff6b6b" stroke-width="2.5" fill="none"/>
+          <path d="M340 122 L490 122" stroke="#ff6b6b" stroke-width="2.5" stroke-dasharray="5 5" fill="none"/>
 
-	<script src="./js/nav.js"></script>
-	<script src="./js/fab.js"></script>
-	<script src="./js/bookshelf.js"></script>
-	<script>
-		document.getElementById('fav-bookshelf').books = [
-			{
-				spine: '1984',
-				author: 'G. Orwell',
-				title: '1984',
-				subtitle: 'A Novel',
-				fullAuthor: 'George Orwell',
-				blurb: "In a totalitarian future, truth is whatever the Party says it is.",
-				description: "A chilling masterpiece of dystopian fiction. In a world where Big Brother watches everything and the past is rewritten daily, Winston Smith dares to remember — and to feel. Orwell's vision of total surveillance, doublethink, and the annihilation of the individual remains one of the most powerful and prophetic novels ever written.",
-				theme: { spine: '#6b1414, #3d0a0a', cover: '#6b1414, #8b1a1a, #3d0a0a', accent: '#e4c87a' }
-			},
-			{
-				spine: 'The Pillars of the Earth',
-				author: 'K. Follett',
-				title: 'The Pillars<br>of the Earth',
-				subtitle: 'A Novel',
-				fullAuthor: 'Ken Follett',
-				blurb: "A cathedral rises from medieval chaos — and so does a cast of unforgettable lives.",
-				description: "Set in 12th-century England during civil war and upheaval, this epic follows the building of a Gothic cathedral across decades. Follett weaves the lives of a master builder, a prior, a noblewoman, and a monk into a sweeping story of art, power, faith, and human endurance. A masterpiece of historical fiction.",
-				theme: { spine: '#1e3a1e, #0d1e0d', cover: '#1e3a1e, #2e5a2e, #0d1e0d', accent: '#d4a853' }
-			},
-			{
-				spine: 'Gödel, Escher, Bach',
-				author: 'D. Hofstadter',
-				title: 'Gödel,<br>Escher, Bach',
-				subtitle: 'An Eternal Golden Braid',
-				fullAuthor: 'Douglas Hofstadter',
-				blurb: "A playful exploration of mind, meaning, and self-reference through math, music, and art.",
-				description: "A Pulitzer Prize-winning tour de force that uses the works of Gödel, Escher, and Bach as jumping-off points to explore consciousness, self-reference, and formal systems. Part puzzle book, part philosophy, part sheer delight — GEB is like no other book ever written.",
-				theme: { spine: '#1a2855, #0a1428', cover: '#1a2855, #243570, #0a1428', accent: '#c8d8f0' }
-			}
-		];
-	</script>
+          <g stroke="#ff6b6b" stroke-width="2.5" stroke-linecap="round">
+            <path d="M300 113 L322 131"/>
+            <path d="M322 113 L300 131"/>
+          </g>
 
-  </body>
-	<footer>
-		<hr class="rule">
-		<p>Contact & Links: <a class="link" href="https://ch.linkedin.com/in/paolopangrazi" target="_blank" rel="noreferrer noopener">LinkedIn</a></p>
-		<hr class="rule">
-		<p>© 2026 Paolo Pangrazi. All rights reserved.</p>
-	</footer>
+          <g font-size="10" fill="#8b96a8" text-anchor="middle">
+            <text x="310" y="70">1 Gbit/s</text>
+            <text x="310" y="92">1 Gbit/s</text>
+            <text x="310" y="174"><tspan x="310">1 Gbit/s — link down</tspan><tspan x="310" dy="13">traffic carried by the two links above</tspan></text>
+          </g>
+
+          <text x="310" y="220" fill="#e9eef4" font-size="12" text-anchor="middle" font-weight="500" class="lag-caption">2 Gbit/s combined · zero single point of failure</text>
+        </svg>
+      </figure>
+    </div>
+
+    <details class="dx mt-12">
+      <summary>DETAILS</summary>
+      <div class="dx-body">
+        <p class="dx-h">Summary</p>
+        <p>Design, development and maintenance of C++ &amp; Java software components within the Network Management System dedicated to the management of <a href="https://documentation.nokia.com/html/365-372-400R7.2/1850TSS-5/7.2.2/webdocs-enus/365-372-400R7-2/index.html?u=qzx89.html," target="_blank" rel="noopener" class="ilink">Ethernet over SDH networks</a> and devices, especially about service provisioning, maintenance and performance monitoring in Metro Area Network environment.</p>
+        <p class="dx-h">Daily activities</p>
+        <ul>
+          <li>Requirements and specifications analysis</li>
+          <li>IBM Rational Rose UML modeling</li>
+          <li>C++ &amp; Java implementation in HP-Unix environment</li>
+          <li>Java implementation of unit and integration tests</li>
+          <li>KSH, BASH, Python UNIX scripting</li>
+          <li>Development and maintenance of middleware services CORBA TAO (C++), JACorb (Java)</li>
+          <li>IBM Rational Clearcase configuration management</li>
+          <li>English technical documentation drafting and review</li>
+        </ul>
+        <p class="dx-h">Link Aggregation (IEEE 802.3ad) — the full story</p>
+        <p><strong>Why it matters:</strong> SDH networks are the backbone of telecom infrastructure — they carry voice, data, and critical services across cities. Downtime is not an option. Link Aggregation is a natural fit: it gives telecom operators both the bandwidth to handle growing traffic and the resilience to survive link failures without dropping a single call or packet. Implementing it at the Network Management System level means operators can configure, monitor, and control aggregated links across the entire Metro Area Network from a single place.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ───────────────── COMPUTER SCIENCE ───────────────── -->
+  <section id="cs" class="px-6 sm:px-12 xl:px-24 py-24 border-t border-line reveal">
+    <h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// computer science</h2>
+    <div class="ember-line my-6"></div>
+    <div aria-hidden="true" class="overflow-hidden mb-8 -mx-6 sm:-mx-12 xl:-mx-24">
+      <div class="marquee font-mono text-[12px] text-line leading-tight select-none px-6">
+        <span>01 01 0101100101001 01 1 0 1 10 0101 11 001 0 1 01100 1001 010 1 11 0 0101 1100 10 01 001 1 0 1 010011 1 0 0101 1 00 1 010 110 01 0 1 001 1 0 11 010 0 1 01 0110010 1 00 1 01 1 0</span>
+        <span>01 01 0101100101001 01 1 0 1 10 0101 11 001 0 1 01100 1001 010 1 11 0 0101 1100 10 01 001 1 0 1 010011 1 0 0101 1 00 1 010 110 01 0 1 001 1 0 11 010 0 1 01 0110010 1 00 1 01 1 0</span>
+      </div>
+    </div>
+
+    <h3 class="font-display font-extrabold text-4xl sm:text-6xl mb-4">C. Raw. Fast.<br>Unforgiving. <span class="text-ember">Beautiful.</span></h3>
+    <p class="max-w-2xl text-dim leading-relaxed mb-10">
+      No garbage collector whispering in the background. No framework doing the heavy lifting.
+      Just you, the compiler, and the hardware.
+    </p>
+
+    <div class="card border border-line bg-panel rounded-xl p-8 max-w-3xl glow">
+      <p class="font-mono text-sm text-cy uppercase tracking-widest mb-2">project</p>
+      <h4 class="font-display font-bold text-3xl mb-3">LiAM — Like Another Mail</h4>
+      <svg viewBox="0 0 660 384" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LiAM SMTP session: telnet to port 25, HELO, MAIL FROM, RCPT TO, DATA, message queued, QUIT" class="w-full rounded-lg border border-line mb-5" font-family="IBM Plex Mono, monospace">
+        <rect x="0" y="0" width="660" height="384" rx="12" fill="#0b0f18"/>
+        <rect x="0" y="0" width="660" height="38" rx="12" fill="#101623"/>
+        <rect x="0" y="26" width="660" height="12" fill="#101623"/>
+        <line x1="0" y1="38" x2="660" y2="38" stroke="#20293c" stroke-width="1"/>
+        <circle cx="22" cy="19" r="5" fill="#ff6b6b"/>
+        <circle cx="40" cy="19" r="5" fill="#00FA9A"/>
+        <circle cx="58" cy="19" r="5" fill="#6fd3e0"/>
+        <text x="330" y="23" fill="#8b96a8" font-size="12" text-anchor="middle">liam · smtp session — :25</text>
+        <g font-size="13.5">
+          <text x="24" y="68"><tspan fill="#8b96a8">$ </tspan><tspan fill="#e9eef4">nc localhost 25</tspan></text>
+          <text x="24" y="90"  fill="#6fd3e0">220 liam ESMTP ready</text>
+          <text x="24" y="112" fill="#00FA9A">HELO relay.local</text>
+          <text x="24" y="134" fill="#6fd3e0">250 liam</text>
+          <text x="24" y="156" fill="#00FA9A">MAIL FROM:&lt;alice@liam.dev&gt;</text>
+          <text x="24" y="178" fill="#6fd3e0">250 2.1.0 OK</text>
+          <text x="24" y="200" fill="#00FA9A">RCPT TO:&lt;bob@liam.dev&gt;</text>
+          <text x="24" y="222" fill="#6fd3e0">250 2.1.5 OK</text>
+          <text x="24" y="244" fill="#00FA9A">DATA</text>
+          <text x="24" y="266" fill="#6fd3e0">354 end with &lt;CRLF&gt;.&lt;CRLF&gt;</text>
+          <text x="24" y="288" fill="#8b96a8">Subject: like another mail</text>
+          <text x="24" y="310" fill="#8b96a8">.</text>
+          <text x="24" y="332" fill="#6fd3e0">250 2.0.0 queued</text>
+          <text x="24" y="354" fill="#00FA9A">QUIT</text>
+        </g>
+        <text x="24" y="376" font-size="13.5" fill="#6fd3e0">221 bye<tspan fill="#00FA9A"> ▊</tspan></text>
+      </svg>
+      <p class="text-base text-dim leading-relaxed mb-5">
+        A minimal multithreaded SMTP + POP3 mail server written entirely in C for Linux.
+        No third-party libraries. No shortcuts.
+      </p>
+      <ul class="font-mono text-base space-y-2 text-dim mb-6">
+        <li><span class="text-ember">▪</span> Full SMTP state machine (<code class="text-parchment">HELO → MAIL FROM → RCPT TO → DATA → QUIT</code>), <a href="https://www.rfc-editor.org/rfc/rfc5321" target="_blank" rel="noopener" class="ilink">RFC 5321</a> compliant</li>
+        <li><span class="text-ember">▪</span> POP3 server with auth state &amp; session-scoped deletion, <a href="https://www.rfc-editor.org/rfc/rfc1939" target="_blank" rel="noopener" class="ilink">RFC 1939</a> compliant</li>
+        <li><span class="text-ember">▪</span> Per-mailbox <code class="text-parchment">pthread_mutex_t</code> locking — no races, no corruption</li>
+        <li><span class="text-ember">▪</span> Two independent listener threads, one process, flat mbox storage wired by hand</li>
+      </ul>
+      <a href="https://github.com/paolopangrazi/liam" target="_blank" rel="noopener" class="inline-block font-mono text-base border border-ember/50 text-ember rounded-full px-5 py-2 hover:bg-ember hover:text-ink transition-colors">→ source on GitHub</a>
+    </div>
+
+    <div class="mt-8 max-w-3xl space-y-4 text-dim leading-relaxed">
+      <p>Because C is humbling and rewarding in equal measure. You manage your own memory. You design your own abstractions. You understand every byte that moves across the wire. It is the language that taught me to think in systems — and every hour spent in it made me a sharper engineer in every other language too.</p>
+      <p>LiAM was built from scratch as a university assignment — it implements two foundational internet mail protocols right down to the RFC. Temp files are written during live SMTP sessions, credential files and flat mbox storage are all wired together by hand.</p>
+    </div>
+
+    <div class="mt-16 mb-8 ember-line max-w-3xl"></div>
+
+    <h3 class="font-display font-extrabold text-4xl sm:text-6xl mb-4">C++. Modern.<br>Expressive. <span class="text-ember">Zero-overhead.</span></h3>
+    <p class="max-w-2xl text-dim leading-relaxed mb-10">
+      Everything C gives you — the memory control, the closeness to the metal —
+      plus the abstractions to build something big without spending a cycle you didn't mean to.
+      RAII, the STL, and modern C++17.
+    </p>
+
+    <div class="card border border-line bg-panel rounded-xl p-8 max-w-3xl glow">
+      <p class="font-mono text-sm text-cy uppercase tracking-widest mb-2">project</p>
+      <h4 class="font-display font-bold text-3xl mb-3">tuiX — terminal spreadsheet editor</h4>
+      <img src="https://github.com/paolopangrazi/hub/raw/main/images/Hackerman_tuix.jpg" alt="tuiX terminal spreadsheet editor screenshot" loading="lazy" class="w-full rounded-lg border border-line mb-5">
+      <p class="text-base text-dim leading-relaxed mb-5">
+        A keyboard-driven spreadsheet editor that lives in your terminal, written in C++17.
+        Opens CSV and XLSX with vim-style navigation — no browser, no runtime, one binary.
+      </p>
+      <ul class="font-mono text-base space-y-2 text-dim mb-6">
+        <li><span class="text-ember">▪</span> Vim-style movement (<code class="text-parchment">hjkl · gg · G · 0 · $</code>), incremental search, find &amp; replace across sheets</li>
+        <li><span class="text-ember">▪</span> Formula engine — 26 built-in functions, cross-sheet refs (<code class="text-parchment">Sheet2!A1</code>), circular-reference detection, live autocomplete</li>
+        <li><span class="text-ember">▪</span> CSV with auto-detected delimiters &amp; multi-sheet XLSX — <a href="https://github.com/ArthurSonzogni/FTXUI" target="_blank" rel="noopener" class="ilink">FTXUI</a> + OpenXLSX, all vendored</li>
+        <li><span class="text-ember">▪</span> 16-slot ANSI theming, mouse &amp; drag, OSC 52 clipboard over SSH — sub-second cold start</li>
+      </ul>
+      <a href="https://github.com/paolopangrazi/tuix" target="_blank" rel="noopener" class="inline-block font-mono text-base border border-ember/50 text-ember rounded-full px-5 py-2 hover:bg-ember hover:text-ink transition-colors">→ source on GitHub</a>
+    </div>
+
+    <div class="mt-16">
+      <h4 class="font-mono text-ember text-base tracking-[.35em] uppercase mb-2">// books &amp; literature</h4>
+      <div class="ember-line mb-6"></div>
+      <ul class="space-y-3 font-body text-base text-dim">
+        <li><span class="text-ember">▪</span> <a href="https://en.wikipedia.org/wiki/The_C_Programming_Language" target="_blank" rel="noopener" class="ilink"><strong class="text-parchment">The C Programming Language</strong></a> — Kernighan &amp; Ritchie. The real GOAT book for any serious software developer.</li>
+        <li><span class="text-ember">▪</span> <a href="https://github.com/eherbold/berkeleytextbooks/blob/7b9196f9b5fb66dc0686852522badfcc9007fc89/Algorithms%20-%20Sanjoy%20Dasgupta%2C%20Christos%20H.%20Papadimitriou%2C%20and%20Umesh%20V.%20Vazirani.pdf" target="_blank" rel="noopener" class="ilink"><strong class="text-parchment">Algorithms</strong></a> — Dasgupta, Papadimitriou, Vazirani.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ───────────────── BOOKS ───────────────── -->
+  <section id="books" class="px-6 sm:px-12 xl:px-24 py-24 border-t border-line reveal">
+    <h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// books</h2>
+    <div class="ember-line my-6"></div>
+    <p class="dx-h">On reading</p>
+    <p class="text-base text-dim leading-relaxed mb-4">I am an avid reader of anything that sparks my interest. I usually read in the original language of the author — I believe that translation is a really hard job. Nuances sometimes get unfortunately lost in the translation process, hence it is always a good idea to get the book in the original language.</p>
+    <p class="text-base text-dim leading-relaxed mb-4">I try to constantly extend my perspective and mindset reading about different topics and areas:</p>
+    <ul class="font-body text-base space-y-2 text-dim mb-6">
+      <li><span class="text-ember">▪</span> <strong class="text-parchment">Psychology:</strong> every book of <a href="https://powerseductionandwar.com/" target="_blank" rel="noopener" class="ilink">Robert Greene</a> is a masterpiece.</li>
+      <li><span class="text-ember">▪</span> <strong class="text-parchment">Design</strong> (product design, typography, UI/UX) — recommendation: all books of <a href="https://www.edwardtufte.com/" target="_blank" rel="noopener" class="ilink">Edward Tufte</a>.</li>
+      <li><span class="text-ember">▪</span> <strong class="text-parchment">Computer science</strong> — well, the list here is too long; it has its own home in the Computer Science section.</li>
+      <li><span class="text-ember">▪</span> <strong class="text-parchment">Historical books</strong> — Ken Follett: how to teach history from the middle age down to modern history.</li>
+      <li><span class="text-ember">▪</span> <strong class="text-parchment">Trading and market analysis</strong> — Elliott Wave Principle (Frost, Prechter).</li>
+    </ul>
+
+    <p class="dx-h">Languages</p>
+    <p class="text-base text-dim leading-relaxed mb-8">Even if Italians are not well known for their fluency in foreign languages, I try to do my best to learn new languages. Currently I can read, talk and write in Italian, German, English and Spanish.</p>
+
+    <ol class="space-y-3 font-body">
+      <li class="card border border-line bg-panel rounded-lg p-4"><span class="font-mono text-ember text-sm mr-2">01</span><a href="https://en.wikipedia.org/wiki/Nineteen_Eighty-Four" target="_blank" rel="noopener" class="ilink">1984 — George Orwell</a></li>
+      <li class="card border border-line bg-panel rounded-lg p-4"><span class="font-mono text-ember text-sm mr-2">02</span><a href="https://en.wikipedia.org/wiki/The_Pillars_of_the_Earth" target="_blank" rel="noopener" class="ilink">The Pillars of the Earth — Ken Follett</a></li>
+      <li class="card border border-line bg-panel rounded-lg p-4"><span class="font-mono text-ember text-sm mr-2">03</span><a href="https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach" target="_blank" rel="noopener" class="ilink">Gödel, Escher, Bach — Douglas Hofstadter</a></li>
+    </ol>
+  </section>
+
+  <!-- ───────────────── MUSIC ───────────────── -->
+  <section id="music" class="px-6 sm:px-12 xl:px-24 py-24 border-t border-line reveal">
+    <h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// music</h2>
+    <div class="ember-line my-6"></div>
+    <p class="text-base text-dim leading-relaxed mb-6">Guitars since the good 90s. Music is not just music — it is art and therapy.</p>
+    <ul class="font-mono text-base space-y-2 text-dim mb-6">
+      <li><span class="text-ember">▪</span> <a href="https://ibanez.fandom.com/wiki/MSM1" target="_blank" rel="noopener" class="ilink">Ibanez MSM1</a></li>
+      <li><span class="text-ember">▪</span> <a href="https://ibanez.fandom.com/wiki/UV70P" target="_blank" rel="noopener" class="ilink">Ibanez UV70P</a></li>
+      <li><span class="text-ember">▪</span> <a href="https://www.fender.com/en-US/electric-guitars/stratocaster/jimi-hendrix-stratocaster/0145802305.html" target="_blank" rel="noopener" class="ilink">Fender Stratocaster JH</a></li>
+      <li class="text-dim/60"><span class="text-ember/50">▪</span> <a href="https://ibanez.fandom.com/wiki/RG270_(1998%E2%80%932002,_Korea)" target="_blank" rel="noopener" class="ilink">Ibanez RG 270</a> · Godin Freeway <span class="italic">(sold)</span></li>
+    </ul>
+    <div class="space-y-2 font-mono text-base">
+      <a href="./files/JS_SummerSong_PP_Cover.mp3" class="card block border border-line bg-panel rounded-lg p-3 hover:text-ember">▶ Joe Satriani — Summer Song <span class="text-dim text-sm">(cover, 2020)</span></a>
+      <a href="./files/JS_TheExtremist__PP_Cover.mp3" class="card block border border-line bg-panel rounded-lg p-3 hover:text-ember">▶ Joe Satriani — The Extremist <span class="text-dim text-sm">(cover, 2020)</span></a>
+    </div>
+  </section>
+
+  <!-- ───────────────── CREATIVE ───────────────── -->
+  <section id="creative" class="px-6 sm:px-12 xl:px-24 py-24 border-t border-line reveal">
+    <h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// creative corner</h2>
+    <div class="ember-line my-6"></div>
+    <p class="text-base text-dim leading-relaxed mb-6">Creating for the sake of creating — no matter what definition you apply to it.</p>
+    <div class="space-y-2 font-mono text-base">
+      <a href="https://paolopangrazi.github.io/hub/writings/IlReRe.html" target="_blank" rel="noopener" class="card block border border-line bg-panel rounded-lg p-4 hover:text-ember">✍ Il Re Re <span class="text-dim text-sm block mt-1">a crazy short story about a fictional king — in Italian</span></a>
+      <a href="https://paolopangrazi.github.io/hub/writings/Poetry.html" target="_blank" rel="noopener" class="card block border border-line bg-panel rounded-lg p-4 hover:text-ember">✍ Poetry <span class="text-dim text-sm block mt-1">a rhythmical dance of images in words</span></a>
+    </div>
+  </section>
+
+  <!-- ───────────────── EDUCATION ───────────────── -->
+  <section id="education" class="px-6 sm:px-12 xl:px-24 py-24 border-t border-line reveal">
+    <h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// education</h2>
+    <div class="ember-line my-6"></div>
+    <ul class="font-mono text-sm space-y-1.5 text-dim">
+      <li><span class="text-ember">▪</span> 2014 · ITIL Foundation — Basel</li>
+      <li><span class="text-ember">▪</span> 2011 · Oracle 1Z0-051 SQL Fundamentals</li>
+      <li><span class="text-ember">▪</span> 2011 · German C1 — Goethe Institut, Freiburg</li>
+      <li><span class="text-ember">▪</span> 2010 · Rhetoric &amp; Public Speaking — 2-day seminar, Bonn</li>
+      <li><span class="text-ember">▪</span> 2009 · Project Management — 3-day course, Hamburg</li>
+      <li><span class="text-ember">▪</span> 2009 · iPhone Development Bootcamp — 5 days, Frankfurt</li>
+      <li><span class="text-ember">▪</span> 2008 · BS Computer Science — Bicocca, Milan (91/110)</li>
+    </ul>
+  </section>
+
+  <!-- ───────────────── FOOTER ───────────────── -->
+  <footer class="px-6 sm:px-12 xl:px-24 py-16 border-t border-line">
+    <div class="flex flex-col sm:flex-row justify-between gap-6 items-start sm:items-center">
+      <p class="font-display font-extrabold text-4xl">Let's build something.<span class="text-ember">_</span></p>
+      <a href="https://ch.linkedin.com/in/paolopangrazi" target="_blank" rel="noopener" class="glow font-mono text-base border border-ember/50 text-ember rounded-full px-6 py-3 hover:bg-ember hover:text-ink transition-colors">▸ LinkedIn</a>
+    </div>
+    <p class="font-mono text-[13px] text-dim mt-10">© 2026 Paolo Pangrazi. All rights reserved. &nbsp;·&nbsp; time · space · energy &nbsp;·&nbsp; <a href="./index_prev.html" class="hover:text-ember transition-colors">prev. website</a></p>
+  </footer>
+</main>
+
+<script>
+
+  function applyTheme(t) {
+    const isLight = t === 'light';
+    document.documentElement.classList.toggle('light', isLight);
+    const icon = document.getElementById('theme-icon'),
+          label = document.getElementById('theme-label');
+    if (icon)  icon.textContent  = isLight ? '☀' : '☾';
+    if (label) label.textContent = isLight ? 'Dark mode' : 'Light mode';
+  }
+  function toggleTheme() {
+    const next = document.documentElement.classList.contains('light') ? 'dark' : 'light';
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    applyTheme(next);
+  }
+  applyTheme(localStorage.getItem('theme') || 'dark');
+
+  function showCode(which) {
+    const before = document.getElementById('code-before'),
+          after = document.getElementById('code-after'),
+          bB = document.getElementById('btn-before'),
+          bA = document.getElementById('btn-after'),
+          fn = document.getElementById('code-filename');
+    const isBefore = which === 'before';
+    before.classList.toggle('hidden', !isBefore);
+    after.classList.toggle('hidden', isBefore);
+    fn.textContent = isBefore ? 'resync_naive.cpp' : 'resync_bfs.cpp';
+    bB.className = 'px-4 py-1.5 transition-colors ' + (isBefore ? 'bg-[#ff6b6b]/15 text-[#ff6b6b]' : 'text-dim hover:text-[#ff6b6b]');
+    bA.className = 'px-4 py-1.5 transition-colors ' + (isBefore ? 'text-dim hover:text-ember' : 'bg-ember/15 text-ember');
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
 </html>
