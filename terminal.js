@@ -8,10 +8,10 @@
   const CSS = `
   #term-overlay { position:fixed; inset:0; z-index:60; background:rgba(4,7,12,.66); backdrop-filter:blur(4px); display:flex; align-items:flex-start; justify-content:center; padding:5vh 1rem 1rem; }
   #term-overlay.hidden { display:none; }
-  #term-win { width:100%; max-width:44rem; border:1px solid #20293c; border-radius:.75rem; background:#0b0f18; box-shadow:0 0 0 1px rgba(0,250,154,.15), 0 24px 80px -12px rgba(0,0,0,.8); overflow:hidden; color:#e9eef4; animation:termin .18s ease; }
+  #term-win { width:100%; max-width:56rem; border:1px solid #20293c; border-radius:.75rem; background:#0b0f18; box-shadow:0 0 0 1px rgba(0,250,154,.15), 0 24px 80px -12px rgba(0,0,0,.8); overflow:hidden; color:#e9eef4; animation:termin .18s ease; }
   @keyframes termin { from { opacity:0; transform:translateY(10px) scale(.985); } to { opacity:1; transform:none; } }
   #term-head { display:flex; align-items:center; gap:.5rem; padding:.7rem 1rem; background:#101623; border-bottom:1px solid #20293c; }
-  #term-body { height:26rem; max-height:62vh; overflow-y:auto; padding:1rem; font-family:"IBM Plex Mono",monospace; font-size:14px; line-height:1.7; }
+  #term-body { height:34rem; max-height:70vh; overflow-y:auto; padding:1rem; font-family:"IBM Plex Mono",monospace; font-size:14px; line-height:1.7; }
   #term-out { white-space:pre-wrap; word-break:break-word; }
   #term-out a { color:#00FA9A; text-decoration:underline; text-decoration-color:rgba(0,250,154,.5); }
   #term-in { flex:1; background:transparent; border:none; outline:none; color:#e9eef4; caret-color:#00FA9A; font:inherit; }
