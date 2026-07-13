@@ -71,6 +71,8 @@ tailwind.config = {
   .t-y { color:#e3b341; } .t-f { color:#00c97c; }
   /* per-branch rail colours for the career graph */
   .t-o { color:#ff9e64; } .t-u { color:#bb9af7; } .t-b { color:#7aa2f7; }
+  /* hanging-indent for skills rows (shared with terminal) */
+  .skrow { padding-left:9ch; text-indent:-9ch; }
   .rail a { transition: color .2s ease, padding-left .2s ease; }
   .rail a:hover { color:#00FA9A; padding-left:.5rem; }
   .marquee { display:flex; gap:3.5rem; width:max-content; animation:scroll 30s linear infinite; }
@@ -217,7 +219,52 @@ tailwind.config = {
       </p>
     </div>
 
-    <div class="mt-12 grid sm:grid-cols-3 gap-4 max-w-3xl font-mono text-base">
+    <div class="mt-8 flex flex-col lg:flex-row gap-8 items-center lg:items-stretch">
+    <figure class="w-full max-w-xl lg:flex-1 lg:self-center">
+      <svg viewBox="0 0 560 470" class="w-full h-auto" role="img" aria-label="Venn diagram of Paolo's skills: Engineering, Leadership and Innovation overlapping at Solution Architect">
+        <defs>
+          <filter id="venn-halo" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="0" stdDeviation="3.5" flood-color="#04070c" flood-opacity="0.95"/>
+          </filter>
+        </defs>
+        <rect x="1" y="1" width="558" height="468" rx="18" fill="#0b0f18" stroke="#20293c"/>
+        <g style="mix-blend-mode:screen">
+          <circle cx="280" cy="170" r="125" fill="#00FA9A" fill-opacity="0.42"/>
+          <circle cx="205" cy="300" r="125" fill="#6fd3e0" fill-opacity="0.42"/>
+          <circle cx="355" cy="300" r="125" fill="#ff9e64" fill-opacity="0.42"/>
+        </g>
+        <g fill="none" stroke-width="1.75" opacity="0.9">
+          <circle cx="280" cy="170" r="125" stroke="#00FA9A"/>
+          <circle cx="205" cy="300" r="125" stroke="#6fd3e0"/>
+          <circle cx="355" cy="300" r="125" stroke="#ff9e64"/>
+        </g>
+        <g font-family="'IBM Plex Mono', ui-monospace, monospace" text-anchor="middle" filter="url(#venn-halo)">
+          <text x="280" y="86" fill="#8b96a8" font-size="9" letter-spacing="2">· AUTOMATE ·</text>
+          <text x="280" y="106" fill="#00FA9A" font-size="16" font-weight="700" letter-spacing="1">ENGINEERING</text>
+          <text x="280" y="124" fill="#c9d3e0" font-size="10">C · C++ · Java · SQL</text>
+          <text x="280" y="138" fill="#c9d3e0" font-size="10">Algorithms · Databases</text>
+          <text x="163" y="312" fill="#8b96a8" font-size="9" letter-spacing="2">· DELIVER ·</text>
+          <text x="163" y="331" fill="#6fd3e0" font-size="15" font-weight="700" letter-spacing="1">LEADERSHIP</text>
+          <text x="163" y="350" fill="#c9d3e0" font-size="10">Teams · Stakeholders</text>
+          <text x="163" y="364" fill="#c9d3e0" font-size="10">Projects · Vendors</text>
+          <text x="397" y="312" fill="#8b96a8" font-size="9" letter-spacing="2">· INVENT ·</text>
+          <text x="397" y="331" fill="#ff9e64" font-size="15" font-weight="700" letter-spacing="1">INNOVATION</text>
+          <text x="397" y="350" fill="#c9d3e0" font-size="10">Patents · R&amp;D</text>
+          <text x="397" y="364" fill="#c9d3e0" font-size="10">Physics Simulation</text>
+          <text x="211" y="222" fill="#e9eef4" font-size="10" font-weight="600">Tech</text>
+          <text x="211" y="234" fill="#e9eef4" font-size="10" font-weight="600">Leadership</text>
+          <text x="349" y="222" fill="#e9eef4" font-size="10" font-weight="600">Real-Time</text>
+          <text x="349" y="234" fill="#e9eef4" font-size="10" font-weight="600">Systems</text>
+          <text x="280" y="344" fill="#e9eef4" font-size="10" font-weight="600">Product &amp; IP</text>
+          <text x="280" y="358" fill="#e9eef4" font-size="10" font-weight="600">Strategy</text>
+          <text x="280" y="249" fill="#ffffff" font-size="12" font-weight="700" letter-spacing="0.5">SOLUTION</text>
+          <text x="280" y="265" fill="#ffffff" font-size="12" font-weight="700" letter-spacing="0.5">ARCHITECT</text>
+        </g>
+      </svg>
+      <figcaption class="font-mono text-[13px] text-dim mt-3">The overlap is where I live — <span class="text-parchment">Solution Architecture</span>.</figcaption>
+    </figure>
+
+    <div class="w-full lg:flex-1 lg:max-w-md flex flex-col justify-center gap-4 font-mono text-base">
       <a href="#novartis" class="card glow border border-line bg-panel rounded-lg p-4">
         <span class="text-ember">▸ designed</span><br><span class="text-dim">enterprise architectures at Novartis</span>
       </a>
@@ -227,6 +274,13 @@ tailwind.config = {
       <a href="#alcatel" class="card glow border border-line bg-panel rounded-lg p-4">
         <span class="text-ember">▸ optimized</span><br><span class="text-dim">O(n³) → O(n²) at Alcatel-Lucent</span>
       </a>
+      <div class="font-mono text-sm text-dim flex flex-wrap gap-x-8 gap-y-1 pt-1">
+        <div>DE <span class="text-ember">████</span><span class="text-dim">░</span></div>
+        <div>EN <span class="text-ember">████</span><span class="text-dim">░</span></div>
+        <div>IT <span class="text-ember">█████</span></div>
+        <div>ES <span class="text-ember">███</span><span class="text-dim">░░</span></div>
+      </div>
+    </div>
     </div>
 
     <div class="mt-6 font-mono text-sm flex items-center gap-3 flex-wrap">
@@ -234,22 +288,24 @@ tailwind.config = {
       <span class="text-dim hidden sm:inline">or press <kbd class="border border-line rounded px-1.5 py-0.5 text-parchment">Enter</kbd> — yes, it's a real shell. sort of.</span>
     </div>
 
-    <div class="mt-12 font-mono text-sm text-dim flex gap-12 flex-wrap items-start">
-      <div class="space-y-1">
-        <div>DE <span class="text-ember">████</span><span class="text-dim">░</span></div>
-        <div>EN <span class="text-ember">████</span><span class="text-dim">░</span></div>
-        <div>IT <span class="text-ember">█████</span></div>
-        <div>ES <span class="text-ember">███</span><span class="text-dim">░░</span></div>
-      </div>
-      <div class="space-y-1">
-        <div>C · C++ · Java · Oracle · PL/SQL · MSSQL · PostgreSQL</div>
-        <div>Web: JavaScript · TypeScript · Angular</div>
-        <div>AI · <a href="https://opencode.ai" target="_blank" rel="noopener" class="ilink">OpenCode</a> · Claude</div>
-        <div>happy <a href="https://omarchy.org" target="_blank" rel="noopener" class="ilink">Omarchy</a> / Arch Linux user</div>
-        <div>learning: Ruby on Rails · Zig · Rust</div>
+    <p class="mt-12 font-display font-bold text-2xl">I love <span class="text-ember">getting things done</span>.<br>Constantly learning.</p>
+
+    <div class="mt-10">
+      <div class="font-mono text-[13px] leading-relaxed">
+        <div class="skrow"><span class="t-p">hard skills</span> <span class="t-d">──────────────────────────</span></div>
+        <div class="skrow"><span class="t-c">lang</span>     C · C++ · Java · Python · JavaScript · TypeScript · Bash</div>
+        <div class="skrow"><span class="t-c">data</span>     SQL · Oracle PL/SQL · Microsoft SQL Server · PostgreSQL · Data Migration</div>
+        <div class="skrow"><span class="t-c">web</span>      Javascript, Typescript, Angular, Ruby on Rails</div>
+        <div class="skrow"><span class="t-c">arch</span>     Solution &amp; Software Architecture · OO Design · UML · CORBA · Multithreading · Embedded Systems</div>
+        <div class="skrow"><span class="t-c">eng</span>      Full-Stack · Algorithms · Unix · Shell Scripting · Real-Time &amp; Physics-Based Simulation</div>
+        <div class="skrow"><span class="t-c">ai</span>       OpenCode · Claude · Grok Code</div>
+        <div class="skrow"><span class="t-c">domain</span>   Intellectual Property · Innovation &amp; Patents · Telecommunications · SDH / Network Management · Pharma · Fire Training Engineering</div>
+        <div class="mt-2 skrow"><span class="t-p">soft skills</span> <span class="t-d">──────────────────────────</span></div>
+        <div class="skrow"><span class="t-c">deliver</span>  Business Process Automation · Requirements Analysis · Project Management</div>
+        <div class="skrow"><span class="t-c">lead</span>     Technical &amp; Team Leadership · Stakeholder Mgmt · Vendor / RFP Mgmt · Budget Mgmt · Product Mgmt &amp; Ownership</div>
+        <div class="mt-2 skrow"><span class="t-c">now</span>      learning Ruby on Rails · Zig · Rust</div>
       </div>
     </div>
-    <p class="mt-6 font-display font-bold text-2xl">I love <span class="text-ember">getting things done</span>.<br>Constantly learning.</p>
   </header>
 
   <!-- skill marquee -->

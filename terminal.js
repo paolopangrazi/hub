@@ -14,6 +14,7 @@
   #term-body { height:34rem; max-height:70vh; overflow-y:auto; padding:1rem; font-family:"IBM Plex Mono",monospace; font-size:14px; line-height:1.7; }
   #term-out { white-space:pre-wrap; word-break:break-word; }
   #term-out a { color:#00FA9A; text-decoration:underline; text-decoration-color:rgba(0,250,154,.5); }
+  #term-out .skrow { padding-left:9ch; text-indent:-9ch; }
   #term-in { flex:1; background:transparent; border:none; outline:none; color:#e9eef4; caret-color:#00FA9A; font:inherit; }
   @media (prefers-reduced-motion: reduce) { #term-win { animation:none; } }`;
   const styleEl = document.createElement('style');
@@ -78,12 +79,22 @@
       'Full-Stack Software &amp; Database Engineer',
       '<span class="t-d">Basel, CH · time · space · energy</span>'
     ],
-    skills: () => [
-      '<span class="t-c">hard</span>  C · C++ · Java · Oracle PL/SQL · MSSQL · PostgreSQL · Bash · Python',
-      '<span class="t-c">web</span>   JavaScript · TypeScript · Angular',
-      '<span class="t-c">soft</span>  Leadership · Project Mgmt · Solution Architecture · Stakeholder Mgmt',
-      '<span class="t-c">now</span>   learning Ruby on Rails · Zig · Rust — AI-assisted, daily'
-    ],
+    skills: () => [[
+      '<span class="t-p">hard skills</span> <span class="t-d">──────────────────────────</span>',
+      '<span class="t-c">lang</span>     C · C++ · Java · Python · JavaScript · TypeScript · Bash',
+      '<span class="t-c">data</span>     SQL · Oracle PL/SQL · Microsoft SQL Server · PostgreSQL · Data Migration',
+      '<span class="t-c">web</span>      Javascript, Typescript, Angular, Ruby on Rails',
+      '<span class="t-c">arch</span>     Solution &amp; Software Architecture · OO Design · UML · CORBA · Multithreading · Embedded Systems',
+      '<span class="t-c">eng</span>      Full-Stack · Algorithms · Unix · Shell Scripting · Real-Time &amp; Physics-Based Simulation',
+      '<span class="t-c">ai</span>       OpenCode · Claude · Grok Code',
+      '<span class="t-c">domain</span>   Intellectual Property · Innovation &amp; Patents · Telecommunications · SDH / Network Management · Pharma · Fire Training Engineering',
+      '&nbsp;',
+      '<span class="t-p">soft skills</span> <span class="t-d">──────────────────────────</span>',
+      '<span class="t-c">deliver</span>  Business Process Automation · Requirements Analysis · Project Management',
+      '<span class="t-c">lead</span>     Technical &amp; Team Leadership · Stakeholder Mgmt · Vendor / RFP Mgmt · Budget Mgmt · Product Mgmt &amp; Ownership',
+      '&nbsp;',
+      '<span class="t-c">now</span>      learning Ruby on Rails · Zig · Rust'
+    ].map(l => '<div class="skrow">' + l + '</div>').join('')],
     experience: (arg) => {
       const jobs = {
         novartis: ['<span class="t-e">novartis</span> <span class="t-d">2008 — 2026</span>',
