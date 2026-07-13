@@ -113,17 +113,12 @@
       '<a href="https://patentscope.wipo.int/search/en/detail.jsf?docId=EP320899875" target="_blank" rel="noopener">patentscope.wipo.int → EP3795219</a>'
     ],
     git: (arg) => {
-      if (arg === 'log') return [
-        '<span class="t-e">*</span> <span class="t-d">e3f9a1c</span> <span class="t-d">(</span><span class="t-e">HEAD -&gt; main</span><span class="t-d">)</span> <span class="t-p">2026</span> · present',
-        '<span class="t-e">*</span> <span class="t-d">1de6b90</span> <span class="t-p">2023</span> · Merge \'Aisco\' — <span class="t-y">tag: EP3795219</span>',
-        '<span class="t-e">*</span> <span class="t-d">8f2c317</span> <span class="t-p">2021</span> · trademark automation shipped',
-        '<span class="t-e">*</span> <span class="t-d">55f0a1c</span> <span class="t-p">2013</span> · <span class="t-y">tag: innovator-2013</span>',
-        '<span class="t-e">*</span> <span class="t-d">0c5aa92</span> <span class="t-p">2008</span> · git checkout novartis',
-        '<span class="t-e">*</span> <span class="t-d">d4e77b1</span> <span class="t-p">2008</span> · Merge \'university\' — graduated 91/110',
-        '<span class="t-e">*</span> <span class="t-d">5c0d418</span> <span class="t-p">2006</span> · alcatel ∥ university — worked while studying',
-        '<span class="t-e">*</span> <span class="t-d">1a0b2c3</span> <span class="t-p">2006</span> · init — the journey starts',
-        '<span class="t-d">…full interactive graph →</span> <span class="t-e">cd timeline</span>'
-      ];
+      if (arg === 'log') {
+        const el = document.getElementById('git-graph');
+        const lines = el ? el.innerHTML.replace(/\r/g, '').split('\n')
+          : ['<span class="t-r">git log: graph not available on this page.</span>'];
+        return [...lines, '', '<span class="t-d">↑ same tree as</span> <span class="t-e">// git log --career</span> <span class="t-d">on the page —</span> <span class="t-e">cd timeline</span>'];
+      }
       if (arg === 'status') return ['On branch <span class="t-e">main</span>', 'Your branch is ahead of every other candidate.', 'nothing to commit — shipping continuously <span class="t-e">✓</span>'];
       if (arg === 'blame') return ['<span class="t-d">100% Paolo Pangrazi. every line. it was him.</span>'];
       return ['usage: <span class="t-e">git log</span> · <span class="t-e">git status</span> · <span class="t-e">git blame</span>'];
