@@ -77,6 +77,7 @@ tailwind.config = {
   #term-out a { color:#00FA9A; text-decoration:underline; text-decoration-color:rgba(0,250,154,.5); }
   #term-in { flex:1; background:transparent; border:none; outline:none; color:#e9eef4; caret-color:#00FA9A; font:inherit; }
   .t-e { color:#00FA9A; } .t-c { color:#6fd3e0; } .t-d { color:#8b96a8; } .t-r { color:#ff6b6b; } .t-p { color:#e9eef4; }
+  .t-y { color:#e3b341; } .t-f { color:#00c97c; }
   @media (prefers-reduced-motion: reduce) { #term-win { animation:none; } }
   .rail a { transition: color .2s ease, padding-left .2s ease; }
   .rail a:hover { color:#00FA9A; padding-left:.5rem; }
@@ -176,6 +177,7 @@ tailwind.config = {
     <a href="#top" class="font-display font-extrabold text-xl tracking-tight text-parchment">PP<span class="text-ember">_</span></a>
     <div class="rail mt-10 flex flex-col gap-3 font-mono text-[13px] uppercase tracking-widest text-dim">
       <span class="text-[10px] tracking-[.2em] text-dim/50 pb-0.5 border-b border-line">craft</span>
+      <a href="#timeline">// git log</a>
       <a href="#novartis">// novartis</a>
       <a href="#aisco">// aisco</a>
       <a href="#alcatel">// alcatel-lucent</a>
@@ -265,6 +267,65 @@ tailwind.config = {
       <span class="text-parchment">C</span><span class="text-ember">✦</span><span class="text-parchment">C++</span><span class="text-ember">✦</span><span class="text-parchment">Java</span><span class="text-ember">✦</span><span class="text-parchment">Oracle PL/SQL</span><span class="text-ember">✦</span><span class="text-parchment">MSSQL</span><span class="text-ember">✦</span><span class="text-parchment">PostgreSQL</span><span class="text-ember">✦</span><span class="text-parchment">Bash</span><span class="text-ember">✦</span><span class="text-parchment">Python</span><span class="text-ember">✦</span><span class="text-ember">Leadership</span><span class="text-ember">✦</span><span class="text-ember">Project Management</span><span class="text-ember">✦</span><span class="text-ember">Solution Architecture</span><span class="text-ember">✦</span><span class="text-ember">Problem Solving</span><span class="text-ember">✦</span><span class="text-ember">Stakeholder Management</span><span class="text-ember">✦</span><span class="text-ember">Mentoring</span><span class="text-ember">✦</span><span class="text-ember">Communication</span><span class="text-ember">✦</span>
     </div>
   </div>
+
+  <!-- ───────────────── GIT LOG TIMELINE ───────────────── -->
+  <section id="timeline" class="px-6 sm:px-12 xl:px-24 py-24 border-t border-line reveal">
+    <div class="flex items-baseline justify-between flex-wrap gap-2">
+      <h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// git log --career</h2>
+      <span class="font-mono text-sm text-dim">▸ 2006 — 2026</span>
+    </div>
+    <div class="ember-line my-6"></div>
+    <p class="max-w-2xl text-dim leading-relaxed mb-8">
+      My career as a commit graph — <span class="text-parchment">concurrent chapters run as parallel branches</span>
+      (studied while working at Alcatel · built AISCO while at Novartis),
+      <span class="text-parchment">merges</span> mark every acquisition &amp; divestment,
+      and <span class="text-parchment">tags</span> flag the milestones that mattered.
+    </p>
+
+    <div class="border border-line rounded-xl bg-[#0b0f18] overflow-hidden">
+      <div class="flex items-center gap-2 px-4 py-3 border-b border-line">
+        <span class="w-3 h-3 rounded-full bg-[#ff6b6b]/70"></span>
+        <span class="w-3 h-3 rounded-full bg-ember/70"></span>
+        <span class="w-3 h-3 rounded-full bg-cy/70"></span>
+        <span class="font-mono text-sm t-d ml-2">$ git log --oneline --graph --all</span>
+      </div>
+<pre class="p-5 sm:p-6 text-[13px] sm:text-sm leading-[1.85] overflow-x-auto font-mono"><span class="t-e">*</span> <span class="t-d">e3f9a1c</span>  <span class="t-d">(</span><span class="t-e">HEAD -&gt; main</span><span class="t-d">, </span><span class="t-r">origin/main</span><span class="t-d">)</span> <span class="t-p">2026</span> <span class="t-d">· present — IP portfolio ops · 42k patents · 110k trademarks</span>
+<span class="t-e">*</span> <span class="t-d">7c1e044</span>  <span class="t-p">2025</span> <span class="t-d">· IPMS migration → Anaqua AQX complete</span>
+<span class="t-e">*</span><span class="t-d">   </span><span class="t-d">d90a5f2</span>  <span class="t-d">(</span><span class="t-y">tag: sandoz-2024</span><span class="t-d">)</span> <span class="t-p">2024</span> <span class="t-d">· Merge branch 'sandoz-spinoff'</span>
+<span class="t-e">|</span><span class="t-f">\</span>
+<span class="t-e">|</span> <span class="t-f">*</span> <span class="t-d">4ab88c1</span>  <span class="t-p">2023</span> <span class="t-d">· Sandoz carve-out — data migrated &amp; verified</span>
+<span class="t-e">|</span><span class="t-f">/</span>
+<span class="t-e">*</span><span class="t-d">   </span><span class="t-d">1de6b90</span>  <span class="t-p">2023</span> <span class="t-d">· Merge branch 'Aisco' — next-gen fire trainer launched</span>
+<span class="t-e">|</span><span class="t-f">\</span>
+<span class="t-e">*</span> <span class="t-f">|</span> <span class="t-d">8f2c317</span>  <span class="t-p">2021</span> <span class="t-d">· trademark automation shipped — ~120 emails/mo, zero touch</span>
+<span class="t-e">|</span> <span class="t-f">*</span> <span class="t-d">6c4d219</span>  <span class="t-d">(</span><span class="t-y">tag: EP3795219</span><span class="t-d">)</span> <span class="t-p">2020</span> <span class="t-d">· patent granted — digital fire trainer</span>
+<span class="t-e">|</span> <span class="t-f">*</span> <span class="t-d">a17be55</span>  <span class="t-p">2020</span> <span class="t-d">· Aisco: real-time physics-based fire simulation</span>
+<span class="t-e">|</span> <span class="t-f">*</span> <span class="t-d">e3390fb</span>  <span class="t-p">2020</span> <span class="t-d">· git checkout -b Aisco — invention phase (while at Novartis)</span>
+<span class="t-e">|</span><span class="t-f">/</span>
+<span class="t-e">*</span><span class="t-d">   </span><span class="t-d">b2e7d34</span>  <span class="t-p">2019</span> <span class="t-d">· Merge branch 'alcon-divestment'</span>
+<span class="t-e">|</span><span class="t-f">\</span>
+<span class="t-e">|</span> <span class="t-f">*</span> <span class="t-d">9f10ac2</span>  <span class="t-p">2018</span> <span class="t-d">· Alcon divested — portfolio carve-out &amp; cleanup</span>
+<span class="t-e">|</span><span class="t-f">/</span>
+<span class="t-e">*</span> <span class="t-d">c71d5e0</span>  <span class="t-p">2018</span> <span class="t-d">· e-filing interface — Swiss Trademark Office</span>
+<span class="t-e">*</span> <span class="t-d">55f0a1c</span>  <span class="t-d">(</span><span class="t-y">tag: innovator-2013</span><span class="t-d">)</span> <span class="t-p">2013</span> <span class="t-d">· NI IT &amp; Group IGM Innovator Award</span>
+<span class="t-e">*</span><span class="t-d">   </span><span class="t-d">1a2b3c4</span>  <span class="t-p">2011</span> <span class="t-d">· Merge branch 'alcon-integration'</span>
+<span class="t-e">|</span><span class="t-f">\</span>
+<span class="t-e">|</span> <span class="t-f">*</span> <span class="t-d">9ac1f80</span>  <span class="t-p">2010</span> <span class="t-d">· Alcon integrated — portfolio migrated into IPMS</span>
+<span class="t-e">|</span><span class="t-f">/</span>
+<span class="t-e">*</span> <span class="t-d">0c5aa92</span>  <span class="t-p">2008</span> <span class="t-d">· git checkout novartis — join IP &amp; Legal Operations</span>
+<span class="t-e">*</span><span class="t-d">   </span><span class="t-d">d4e77b1</span>  <span class="t-d">(</span><span class="t-y">tag: bsc-2008</span><span class="t-d">)</span> <span class="t-p">2008</span> <span class="t-d">· Merge branch 'university' — BS Computer Science, 91/110</span>
+<span class="t-e">|</span><span class="t-f">\</span>
+<span class="t-e">|</span> <span class="t-f">*</span> <span class="t-d">b90f3c2</span>  <span class="t-p">2008</span> <span class="t-d">· university: thesis defended — Bicocca, Milan</span>
+<span class="t-e">*</span> <span class="t-f">|</span> <span class="t-d">3a9e120</span>  <span class="t-p">2007</span> <span class="t-d">· alcatel: O(n³) → O(n²) SDH resync, ~100× faster</span>
+<span class="t-e">*</span> <span class="t-f">|</span> <span class="t-d">5c0d418</span>  <span class="t-p">2006</span> <span class="t-d">· alcatel: joined Alcatel-Lucent — C++/Java NMS</span>
+<span class="t-e">|</span><span class="t-f">/</span>
+<span class="t-e">*</span> <span class="t-d">1a0b2c3</span>  <span class="t-d">(</span><span class="t-y">root-commit</span><span class="t-d">)</span> <span class="t-p">2006</span> <span class="t-d">· init — enrolled at Bicocca, the journey starts</span></pre>
+    </div>
+    <p class="font-mono text-[13px] text-dim mt-3">
+      <span class="t-f">*</span> commits · <span class="t-y">tags</span> = milestones · branches = concurrent chapters · merges = M&amp;A —
+      or run <button onclick="termOpen()" class="text-ember hover:underline">git log</button> in the terminal.
+    </p>
+  </section>
 
   <!-- ───────────────── NOVARTIS ───────────────── -->
   <section id="novartis" class="px-6 sm:px-12 xl:px-24 py-24 reveal">
@@ -1064,7 +1125,7 @@ visited.<span class="text-ember">insert</span>(rootNode);
   let termHist = [], termHistIdx = -1, termBooted = false;
 
   const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const SECTIONS = ['novartis','aisco','alcatel','cs','books','music','creative','education'];
+  const SECTIONS = ['timeline','novartis','aisco','alcatel','cs','books','music','creative','education'];
   const LI = 'https://ch.linkedin.com/in/paolopangrazi';
 
   const CMDS = {
@@ -1073,6 +1134,7 @@ visited.<span class="text-ember">insert</span>(rootNode);
       '  <span class="t-e">whoami</span>          who is paolo?',
       '  <span class="t-e">skills</span>          core skills',
       '  <span class="t-e">experience</span>      career — try: experience novartis',
+      '  <span class="t-e">git log</span>         career as a commit graph',
       '  <span class="t-e">projects</span>        side projects (C / C++)',
       '  <span class="t-e">patent</span>          the granted patent',
       '  <span class="t-e">languages</span>       spoken languages',
@@ -1126,6 +1188,22 @@ visited.<span class="text-ember">insert</span>(rootNode);
       '<span class="t-e">EP3795219</span> — digital fire-training system, granted 2020',
       '<a href="https://patentscope.wipo.int/search/en/detail.jsf?docId=EP320899875" target="_blank" rel="noopener">patentscope.wipo.int → EP3795219</a>'
     ],
+    git: (arg) => {
+      if (arg === 'log') return [
+        '<span class="t-e">*</span> <span class="t-d">e3f9a1c</span> <span class="t-d">(</span><span class="t-e">HEAD -&gt; main</span><span class="t-d">)</span> <span class="t-p">2026</span> · present',
+        '<span class="t-e">*</span> <span class="t-d">1de6b90</span> <span class="t-p">2023</span> · Merge \'Aisco\' — <span class="t-y">tag: EP3795219</span>',
+        '<span class="t-e">*</span> <span class="t-d">8f2c317</span> <span class="t-p">2021</span> · trademark automation shipped',
+        '<span class="t-e">*</span> <span class="t-d">55f0a1c</span> <span class="t-p">2013</span> · <span class="t-y">tag: innovator-2013</span>',
+        '<span class="t-e">*</span> <span class="t-d">0c5aa92</span> <span class="t-p">2008</span> · git checkout novartis',
+        '<span class="t-e">*</span> <span class="t-d">d4e77b1</span> <span class="t-p">2008</span> · Merge \'university\' — graduated 91/110',
+        '<span class="t-e">*</span> <span class="t-d">5c0d418</span> <span class="t-p">2006</span> · alcatel ∥ university — worked while studying',
+        '<span class="t-e">*</span> <span class="t-d">1a0b2c3</span> <span class="t-p">2006</span> · init — the journey starts',
+        '<span class="t-d">…full interactive graph →</span> <span class="t-e">cd timeline</span>'
+      ];
+      if (arg === 'status') return ['On branch <span class="t-e">main</span>', 'Your branch is ahead of every other candidate.', 'nothing to commit — shipping continuously <span class="t-e">✓</span>'];
+      if (arg === 'blame') return ['<span class="t-d">100% Paolo Pangrazi. every line. it was him.</span>'];
+      return ['usage: <span class="t-e">git log</span> · <span class="t-e">git status</span> · <span class="t-e">git blame</span>'];
+    },
     languages: () => ['IT █████ · EN ████░ · DE ████░ · ES ███░░'],
     contact: () => ['<a href="' + LI + '" target="_blank" rel="noopener">linkedin.com/in/paolopangrazi</a>', '<span class="t-d">response time: fast. like the O(n²) rewrite.</span>'],
     cv: () => ['resume lives here → <a href="' + LI + '" target="_blank" rel="noopener">' + LI.replace('https://','') + '</a>'],
@@ -1217,7 +1295,10 @@ visited.<span class="text-ember">insert</span>(rootNode);
     else if (e.key === 'Escape' && !termOverlay.classList.contains('hidden')) termClose();
   });
   termOverlay.addEventListener('mousedown', e => { if (e.target === termOverlay) termClose(); });
-  window.addEventListener('load', termOpen);
+  window.addEventListener('load', () => {
+    const h = location.hash.replace('#', '');
+    if (!h || h === 'top') termOpen();
+  });
 </script>
 </body>
 </html>
