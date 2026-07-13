@@ -68,11 +68,11 @@ tailwind.config = {
 
   /* shared terminal / git-log colour tokens (terminal UI lives in terminal.js) */
   .t-e { color:#00FA9A; } .t-c { color:#6fd3e0; } .t-d { color:#8b96a8; } .t-r { color:#ff6b6b; } .t-p { color:#e9eef4; }
-  .t-y { color:#e3b341; } .t-f { color:#00c97c; }
+  .t-y { color:#e3b341; } .t-f { color:#00FA9A; }
   /* per-branch rail colours for the career graph */
   .t-o { color:#ff9e64; } .t-u { color:#bb9af7; } .t-b { color:#7aa2f7; }
   /* hanging-indent for skills rows (shared with terminal) */
-  .skrow { padding-left:9ch; text-indent:-9ch; }
+  .skrow { padding-left:9ch; text-indent:-9ch; white-space:pre-wrap; }
   .rail a { transition: color .2s ease, padding-left .2s ease; }
   .rail a:hover { color:#00FA9A; padding-left:.5rem; }
   .marquee { display:flex; gap:3.5rem; width:max-content; animation:scroll 30s linear infinite; }
@@ -102,17 +102,18 @@ tailwind.config = {
   html { scrollbar-color:#2c3650 #0b1018; font-size:17px; }
 
   /* inline text links */
-  .ilink { color:#00c97c; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:2px; text-decoration-color:rgba(0,201,124,.45); transition:color .2s ease, text-decoration-color .2s ease; }
+  .ilink { color:#00FA9A; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:2px; text-decoration-color:rgba(0,250,154,.45); transition:color .2s ease, text-decoration-color .2s ease; }
   .ilink:hover { color:#00FA9A; text-decoration-color:#00FA9A; }
-  html.light .ilink:hover { color:#00905c; text-decoration-color:#00905c; }
+  html.light .ilink { color:#00c97c; text-decoration-color:rgba(0,201,124,.45); }
+  html.light .ilink:hover { color:#00c97c; text-decoration-color:#00c97c; }
 
   /* ── LIGHT THEME ────────────────────────────── */
-  html.light { scrollbar-color:#c3cad6 #eef1f6; }
+  html.light { scrollbar-color:#b8c2d4 #dfe4ee; }
   html.light body {
     background:
-      radial-gradient(1200px 700px at 80% -10%, rgba(0,201,124,.12), transparent 60%),
-      radial-gradient(900px 600px at -10% 30%, rgba(0,168,107,.07), transparent 60%),
-      #eef1f6;
+      radial-gradient(1200px 700px at 80% -10%, rgba(0,201,124,.10), transparent 60%),
+      radial-gradient(900px 600px at -10% 30%, rgba(0,168,107,.06), transparent 60%),
+      #dfe4ee;
   }
   html.light .grain::before { opacity:.03; }
 
@@ -123,6 +124,8 @@ tailwind.config = {
   html.light .text-dim\/50 { color:rgba(85,97,122,.5); }
   html.light .text-line { color:#c3cad6; }
   html.light .text-ember { color:#00c97c; }
+  html.light .t-e { color:#00c97c; }
+  html.light .t-f { color:#00c97c; }
   html.light .text-ember\/90 { color:rgba(0,201,124,.9); }
   html.light .text-ember\/50 { color:rgba(0,201,124,.5); }
   html.light .text-flame { color:#00c97c; }
@@ -131,10 +134,10 @@ tailwind.config = {
   /* gradient headings stay as the dark-mode ember/flame gradient */
 
   /* surfaces */
-  html.light .bg-panel { background-color:#ffffff; }
-  html.light .bg-panel\/60 { background-color:rgba(255,255,255,.6); }
-  html.light .bg-panel\/80 { background-color:rgba(255,255,255,.8); }
-  html.light .bg-ink\/80 { background-color:rgba(238,241,246,.85); }
+  html.light .bg-panel { background-color:#e8edf7; }
+  html.light .bg-panel\/60 { background-color:rgba(232,237,247,.6); }
+  html.light .bg-panel\/80 { background-color:rgba(232,237,247,.8); }
+  html.light .bg-ink\/80 { background-color:rgba(223,228,238,.85); }
   html.light .bg-ember\/15 { background-color:rgba(0,250,154,.18); }
 
   /* borders */
@@ -142,12 +145,35 @@ tailwind.config = {
   html.light .border-line\/60 { border-color:rgba(215,221,231,.6); }
   html.light .border-ember\/50 { border-color:rgba(0,201,124,.5); }
 
+  /* skills list */
+  html.light #skills-list .t-p { color:#16202e; }
+  html.light #skills-list .t-d { color:#55617a; }
+
+  /* git log section */
+  html.light #git-log-wrap { background-color:#e8edf7; }
+  html.light #git-log-wrap .t-p { color:#16202e; }
+  html.light #git-log-wrap .t-d { color:#55617a; }
+  html.light #git-log-wrap .t-c { color:#0e7c8c; }
+  html.light #git-log-wrap .t-y { color:#b07b00; }
+  html.light #git-log-wrap .t-u { color:#6d28d9; }
+
+  /* venn diagram */
+  html.light #venn-bg { fill:#dfe4ee; stroke:#b8c2d4; }
+  html.light #venn-blend circle[fill="#00FA9A"] { fill:#00c97c; }
+  html.light svg circle[stroke="#00FA9A"] { stroke:#00c97c; }
+  html.light #venn-labels text[fill="#00FA9A"] { fill:#00c97c; }
+  html.light #venn-blend { mix-blend-mode:multiply; }
+  html.light #venn-labels { filter:none; }
+  html.light .venn-sub { fill:#55617a; }
+  html.light .venn-ol  { fill:#2d3748; }
+  html.light .venn-ctr { fill:#16202e; }
+
   /* interactive */
   html.light .hover\:bg-ember:hover { background-color:#00FA9A; }
   html.light .hover\:text-ink:hover { color:#0b1018; }
 
   /* details panels */
-  html.light details.dx { border-color:#d7dde7; background:#ffffff; }
+  html.light details.dx { border-color:#d7dde7; background:#e8edf7; }
   html.light details.dx > summary { color:#00c97c; }
   html.light details.dx > summary:hover { background:rgba(0,201,124,.08); }
   html.light details.dx .dx-body { border-top-color:#d7dde7; }
@@ -227,8 +253,8 @@ tailwind.config = {
             <feDropShadow dx="0" dy="0" stdDeviation="3.5" flood-color="#04070c" flood-opacity="0.95"/>
           </filter>
         </defs>
-        <rect x="1" y="1" width="558" height="468" rx="18" fill="#0b0f18" stroke="#20293c"/>
-        <g style="mix-blend-mode:screen">
+        <rect id="venn-bg" x="1" y="1" width="558" height="468" rx="18" fill="#0b0f18" stroke="#20293c"/>
+        <g id="venn-blend" style="mix-blend-mode:screen">
           <circle cx="280" cy="170" r="125" fill="#00FA9A" fill-opacity="0.42"/>
           <circle cx="205" cy="300" r="125" fill="#6fd3e0" fill-opacity="0.42"/>
           <circle cx="355" cy="300" r="125" fill="#ff9e64" fill-opacity="0.42"/>
@@ -238,27 +264,27 @@ tailwind.config = {
           <circle cx="205" cy="300" r="125" stroke="#6fd3e0"/>
           <circle cx="355" cy="300" r="125" stroke="#ff9e64"/>
         </g>
-        <g font-family="'IBM Plex Mono', ui-monospace, monospace" text-anchor="middle" filter="url(#venn-halo)">
+        <g id="venn-labels" font-family="'IBM Plex Mono', ui-monospace, monospace" text-anchor="middle" filter="url(#venn-halo)">
           <text x="280" y="86" fill="#8b96a8" font-size="9" letter-spacing="2">· AUTOMATE ·</text>
           <text x="280" y="106" fill="#00FA9A" font-size="16" font-weight="700" letter-spacing="1">ENGINEERING</text>
-          <text x="280" y="124" fill="#c9d3e0" font-size="10">C · C++ · Java · SQL</text>
-          <text x="280" y="138" fill="#c9d3e0" font-size="10">Algorithms · Databases</text>
+          <text x="280" y="124" class="venn-sub" fill="#c9d3e0" font-size="10">C · C++ · Java · SQL</text>
+          <text x="280" y="138" class="venn-sub" fill="#c9d3e0" font-size="10">Algorithms · Databases</text>
           <text x="163" y="312" fill="#8b96a8" font-size="9" letter-spacing="2">· DELIVER ·</text>
           <text x="163" y="331" fill="#6fd3e0" font-size="15" font-weight="700" letter-spacing="1">LEADERSHIP</text>
-          <text x="163" y="350" fill="#c9d3e0" font-size="10">Teams · Stakeholders</text>
-          <text x="163" y="364" fill="#c9d3e0" font-size="10">Projects · Vendors</text>
+          <text x="163" y="350" class="venn-sub" fill="#c9d3e0" font-size="10">Teams · Stakeholders</text>
+          <text x="163" y="364" class="venn-sub" fill="#c9d3e0" font-size="10">Projects · Vendors</text>
           <text x="397" y="312" fill="#8b96a8" font-size="9" letter-spacing="2">· INVENT ·</text>
           <text x="397" y="331" fill="#ff9e64" font-size="15" font-weight="700" letter-spacing="1">INNOVATION</text>
-          <text x="397" y="350" fill="#c9d3e0" font-size="10">Patents · R&amp;D</text>
-          <text x="397" y="364" fill="#c9d3e0" font-size="10">Physics Simulation</text>
-          <text x="211" y="222" fill="#e9eef4" font-size="10" font-weight="600">Tech</text>
-          <text x="211" y="234" fill="#e9eef4" font-size="10" font-weight="600">Leadership</text>
-          <text x="349" y="222" fill="#e9eef4" font-size="10" font-weight="600">Real-Time</text>
-          <text x="349" y="234" fill="#e9eef4" font-size="10" font-weight="600">Systems</text>
-          <text x="280" y="344" fill="#e9eef4" font-size="10" font-weight="600">Product &amp; IP</text>
-          <text x="280" y="358" fill="#e9eef4" font-size="10" font-weight="600">Strategy</text>
-          <text x="280" y="249" fill="#ffffff" font-size="12" font-weight="700" letter-spacing="0.5">SOLUTION</text>
-          <text x="280" y="265" fill="#ffffff" font-size="12" font-weight="700" letter-spacing="0.5">ARCHITECT</text>
+          <text x="397" y="350" class="venn-sub" fill="#c9d3e0" font-size="10">Patents · R&amp;D</text>
+          <text x="397" y="364" class="venn-sub" fill="#c9d3e0" font-size="10">Physics Simulation</text>
+          <text x="211" y="222" class="venn-ol" fill="#e9eef4" font-size="10" font-weight="600">Tech</text>
+          <text x="211" y="234" class="venn-ol" fill="#e9eef4" font-size="10" font-weight="600">Leadership</text>
+          <text x="349" y="222" class="venn-ol" fill="#e9eef4" font-size="10" font-weight="600">Real-Time</text>
+          <text x="349" y="234" class="venn-ol" fill="#e9eef4" font-size="10" font-weight="600">Systems</text>
+          <text x="280" y="344" class="venn-ol" fill="#e9eef4" font-size="10" font-weight="600">Product &amp; IP</text>
+          <text x="280" y="358" class="venn-ol" fill="#e9eef4" font-size="10" font-weight="600">Strategy</text>
+          <text x="280" y="249" class="venn-ctr" fill="#ffffff" font-size="12" font-weight="700" letter-spacing="0.5">SOLUTION</text>
+          <text x="280" y="265" class="venn-ctr" fill="#ffffff" font-size="12" font-weight="700" letter-spacing="0.5">ARCHITECT</text>
         </g>
       </svg>
       <figcaption class="font-mono text-[13px] text-dim mt-3">The overlap is where I live — <span class="text-parchment">Solution Architecture</span>.</figcaption>
@@ -290,20 +316,20 @@ tailwind.config = {
 
     <p class="mt-12 font-display font-bold text-2xl">I love <span class="text-ember">getting things done</span>.<br>Constantly learning.</p>
 
-    <div class="mt-10">
+    <div id="skills-list" class="mt-10">
       <div class="font-mono text-[13px] leading-relaxed">
         <div class="skrow"><span class="t-p">hard skills</span> <span class="t-d">──────────────────────────</span></div>
-        <div class="skrow"><span class="t-c">lang</span>     C · C++ · Java · Python · JavaScript · TypeScript · Bash</div>
-        <div class="skrow"><span class="t-c">data</span>     SQL · Oracle PL/SQL · Microsoft SQL Server · PostgreSQL · Data Migration</div>
-        <div class="skrow"><span class="t-c">web</span>      Javascript, Typescript, Angular, Ruby on Rails</div>
-        <div class="skrow"><span class="t-c">arch</span>     Solution &amp; Software Architecture · OO Design · UML · CORBA · Multithreading · Embedded Systems</div>
-        <div class="skrow"><span class="t-c">eng</span>      Full-Stack · Algorithms · Unix · Shell Scripting · Real-Time &amp; Physics-Based Simulation</div>
-        <div class="skrow"><span class="t-c">ai</span>       OpenCode · Claude · Grok Code</div>
-        <div class="skrow"><span class="t-c">domain</span>   Intellectual Property · Innovation &amp; Patents · Telecommunications · SDH / Network Management · Pharma · Fire Training Engineering</div>
+        <div class="skrow"><span class="t-e">lang</span>     C · C++ · Java · Python · JavaScript · TypeScript · Bash</div>
+        <div class="skrow"><span class="t-e">data</span>     SQL · Oracle PL/SQL · Microsoft SQL Server · PostgreSQL · Data Migration</div>
+        <div class="skrow"><span class="t-e">web</span>      Javascript, Typescript, Angular, Ruby on Rails</div>
+        <div class="skrow"><span class="t-e">arch</span>     Solution &amp; Software Architecture · OO Design · UML · CORBA · Multithreading · Embedded Systems</div>
+        <div class="skrow"><span class="t-e">eng</span>      Full-Stack · Algorithms · Unix · Shell Scripting · Real-Time &amp; Physics-Based Simulation</div>
+        <div class="skrow"><span class="t-e">ai</span>       OpenCode · Claude · Grok Code</div>
+        <div class="skrow"><span class="t-e">domain</span>   Intellectual Property · Innovation &amp; Patents · Telecommunications · SDH / Network Management · Pharma · Fire Training Engineering</div>
         <div class="mt-2 skrow"><span class="t-p">soft skills</span> <span class="t-d">──────────────────────────</span></div>
-        <div class="skrow"><span class="t-c">deliver</span>  Business Process Automation · Requirements Analysis · Project Management</div>
-        <div class="skrow"><span class="t-c">lead</span>     Technical &amp; Team Leadership · Stakeholder Mgmt · Vendor / RFP Mgmt · Budget Mgmt · Product Mgmt &amp; Ownership</div>
-        <div class="mt-2 skrow"><span class="t-c">now</span>      learning Ruby on Rails · Zig · Rust</div>
+        <div class="skrow"><span class="t-e">deliver</span>  Business Process Automation · Requirements Analysis · Project Management</div>
+        <div class="skrow"><span class="t-e">lead</span>     Technical &amp; Team Leadership · Stakeholder Mgmt · Vendor / RFP Mgmt · Budget Mgmt · Product Mgmt &amp; Ownership</div>
+        <div class="mt-2 skrow"><span class="t-e">now</span>      learning Ruby on Rails · Zig · Rust</div>
       </div>
     </div>
   </header>
@@ -330,7 +356,7 @@ tailwind.config = {
       acquisitions, divestments, patents and launches.
     </p>
 
-    <div class="-mx-6 sm:-mx-12 xl:-mx-24 border-y border-line bg-[#0b0f18] overflow-hidden">
+    <div id="git-log-wrap" class="-mx-6 sm:-mx-12 xl:-mx-24 border-y border-line bg-[#0b0f18] overflow-hidden">
       <div class="flex items-center gap-2 px-6 sm:px-12 xl:px-24 py-3 border-b border-line">
         <span class="w-3 h-3 rounded-full bg-[#ff6b6b]/70"></span>
         <span class="w-3 h-3 rounded-full bg-ember/70"></span>
