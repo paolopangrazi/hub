@@ -57,6 +57,14 @@ tailwind.config = {
   .glow:hover { box-shadow:0 0 0 1px rgba(0,250,154,.4), 0 12px 44px -12px rgba(0,201,124,.35); }
   .card { transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease, border-color .35s ease; }
   .card:hover { transform:translateY(-4px); border-color:rgba(0,250,154,.45); }
+  .chip { transition:border-color .2s ease, color .2s ease; }
+  .chip:hover { border-color:rgba(0,250,154,.45); color:#e9eef4; }
+  html.light .chip:hover { border-color:rgba(0,201,124,.5); color:#16202e; }
+  a.acc-card { text-decoration:none; color:inherit; }
+  .acc-more { display:inline-block; margin-top:1rem; font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:#6fd3e0; opacity:.65; transition:opacity .25s ease, transform .25s ease; }
+  a.acc-card:hover .acc-more { opacity:1; transform:translateX(3px); color:#00FA9A; }
+  .dx-body li.dx-flash { animation:dxflash 1.8s ease; border-radius:6px; }
+  @keyframes dxflash { 0%,100%{ background:transparent; } 12%{ background:rgba(0,250,154,.16); } }
   .rail a { transition: color .2s ease, padding-left .2s ease; }
   .rail a:hover { color:#00FA9A; padding-left:.5rem; }
   .marquee { display:flex; gap:3.5rem; width:max-content; animation:scroll 30s linear infinite; }
@@ -152,7 +160,7 @@ tailwind.config = {
 <!-- ───────────────── NAV RAIL ───────────────── -->
 <nav class="hidden lg:flex fixed left-0 top-0 h-screen w-52 flex-col justify-between border-r border-line px-6 py-8 z-40 bg-ink/80 backdrop-blur">
   <div>
-    <a href="#top" class="font-display font-800 text-xl tracking-tight text-parchment font-bold">PP<span class="text-ember">_</span></a>
+    <a href="#top" class="font-display font-extrabold text-xl tracking-tight text-parchment">PP<span class="text-ember">_</span></a>
     <div class="rail mt-10 flex flex-col gap-3 font-mono text-[13px] uppercase tracking-widest text-dim">
       <span class="text-[10px] tracking-[.2em] text-dim/50 pb-0.5 border-b border-line">craft</span>
       <a href="#novartis">// novartis</a>
@@ -239,38 +247,73 @@ tailwind.config = {
   <!-- ───────────────── NOVARTIS ───────────────── -->
   <section id="novartis" class="px-6 sm:px-12 xl:px-24 py-24 reveal">
     <div class="flex items-baseline justify-between flex-wrap gap-2">
-      <div class="flex items-center gap-4 flex-wrap"><h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// novartis</h2></div>
+      <h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// novartis</h2>
       <span class="font-mono text-sm text-dim">▸ 2008 — 2026</span>
     </div>
     <div class="ember-line my-6"></div>
     <h3 class="font-display font-extrabold text-4xl sm:text-6xl mb-4">42k patents. 110k trademarks.<br class="hidden sm:block"> <span class="text-transparent bg-clip-text bg-gradient-to-r from-ember to-flame">Zero data lost.</span></h3>
     <p class="max-w-2xl text-dim leading-relaxed mb-10">
       Managing the full Novartis IP portfolio data lake — <span class="text-parchment">42k patents, 110k trademarks</span> —
-      while driving innovation, operations and project management for IP &amp; Legal Operations.
-      Technical consultant for <a href="https://clarivate.com/intellectual-property/ip-management-software/memotech/" target="_blank" rel="noopener" class="ilink">Clarivate IPMS Memotech</a>: <span class="text-parchment">900 users, 10 sites, 107k lines of PL/SQL</span>.
+      while driving innovation, operations and project management for IP &amp; Legal Operations.<br>
+      Technical consultant, end-to-end solution engineer for <a href="https://clarivate.com/intellectual-property/ip-management-software/memotech/" target="_blank" rel="noopener" class="ilink">Clarivate IPMS Memotech</a>: <span class="text-parchment">900 users, 10 sites, 107k lines of Oracle SQL and PL/SQL</span>.
     </p>
 
+    <div class="border border-line rounded-xl bg-panel/60 p-5 sm:p-6 mb-10">
+      <p class="font-mono text-xs text-cy uppercase tracking-[.25em] mb-4">Core skills</p>
+      <div class="flex flex-wrap gap-2 font-mono">
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">End-to-end Full-Stack Engineer</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Solution & Software Architecture</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">SQL</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Oracle PL/SQL</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Microsoft SQL Server</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Data Migration</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Business Process Automation</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Requirements Analysis</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Project Management</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Stakeholder Management</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Intellectual Property</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Vendor Management</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Technical Leadership</span>
+      </div>
+    </div>
+
     <div class="grid md:grid-cols-2 gap-4">
-      <div class="card border border-line bg-panel rounded-xl p-6">
-        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">Migration · 2023–2025</p>
-        <p class="font-semibold mb-1">Lead technical member: Memotech → Anaqua AQX</p>
-        <p class="text-base text-dim">RFI/RFP core member, data migration analyst, 50+ custom reports rebuilt (Oracle SQL → MSSQL SSRS), hundreds of custom merge codes, member of the "accelerators" team.</p>
-      </div>
-      <div class="card border border-line bg-panel rounded-xl p-6">
-        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">Automation · 2019–2021</p>
-        <p class="font-semibold mb-1">Trademark maintenance &amp; renewal, fully automated</p>
-        <p class="text-base text-dim">~120 emails auto-dispatched monthly with zero user intervention. Full portfolio renewal batch processing — outcome docketed automatically, no manual data entry.</p>
-      </div>
-      <div class="card border border-line bg-panel rounded-xl p-6">
-        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">Interfaces · 2018</p>
-        <p class="font-semibold mb-1">e-Filing with the Swiss Trademark Office</p>
-        <p class="text-base text-dim">Full-stack design &amp; development — complete XML data preparation and generation without user input.</p>
-      </div>
-      <div class="card border border-line bg-panel rounded-xl p-6">
-        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">Recognition &amp; M&amp;A</p>
+      <a href="#acc-migration" class="acc-card card block border border-line bg-panel rounded-xl p-6">
+        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">2023 – 2025</p>
+        <p class="font-semibold mb-1">Lead technical member of the IPMS migration</p>
+        <p class="text-base text-dim">Successful enterprise-wide migration from Memotech to Anaqua AQX.</p>
+        <span class="acc-more">▸ more details</span>
+      </a>
+      <a href="#acc-maintenance" class="acc-card card block border border-line bg-panel rounded-xl p-6">
+        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">2020 – 2021</p>
+        <p class="font-semibold mb-1">Automated trademark maintenance monitoring</p>
+        <p class="text-base text-dim">Impact: an average of 120 emails are automatically dispatched each month, requiring no user intervention.</p>
+        <span class="acc-more">▸ more details</span>
+      </a>
+      <a href="#acc-renewal" class="acc-card card block border border-line bg-panel rounded-xl p-6">
+        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">2019</p>
+        <p class="font-semibold mb-1">Automated trademark full portfolio renewal</p>
+        <p class="text-base text-dim">Impact: renewal process outcome fully automated and docketed, eliminating manual checks and data entry.</p>
+        <span class="acc-more">▸ more details</span>
+      </a>
+      <a href="#acc-efiling" class="acc-card card block border border-line bg-panel rounded-xl p-6">
+        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">2018</p>
+        <p class="font-semibold mb-1">e-Filing interface with the Swiss Trademark Office</p>
+        <p class="text-base text-dim">Full-stack design &amp; development. Impact: full XML data preparation and generation without requiring user input.</p>
+        <span class="acc-more">▸ more details</span>
+      </a>
+      <a href="#acc-award" class="acc-card card block border border-line bg-panel rounded-xl p-6">
+        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">2013</p>
         <p class="font-semibold mb-1">NI IT &amp; Group IGM Innovator Award 2013</p>
-        <p class="text-base text-dim">Alcon integration (2010–11) · Alcon divestment (2018–19) · Sandoz spin-off (2023–24). Data migration, verification &amp; cleanup at scale.</p>
-      </div>
+        <p class="text-base text-dim">Rewarded as a member of the Novartis IT team.</p>
+        <span class="acc-more">▸ more details</span>
+      </a>
+      <a href="#acc-mna" class="acc-card card block border border-line bg-panel rounded-xl p-6">
+        <p class="font-mono text-sm text-cy mb-2 uppercase tracking-widest">Acquisitions &amp; divestments</p>
+        <p class="font-semibold mb-1">M&amp;A data migration at scale</p>
+        <p class="text-base text-dim">Alcon integration (2010–11) · Alcon divestment (2018–19) · Sandoz spin-off (2023–24).</p>
+        <span class="acc-more">▸ more details</span>
+      </a>
     </div>
 
     <details class="dx mt-8">
@@ -344,12 +387,12 @@ tailwind.config = {
         </ul>
         <p class="dx-h">Accomplishments</p>
         <ul>
-          <li><strong>2023 – 2025:</strong> Lead technical member of the successful IPMS migration project from Memotech to Anaqua AQX.</li>
-          <li><strong>2020 – 2021:</strong> Full automated trademarks maintenance monitoring process design and development. Impact: an average of 120 emails are automatically dispatched each month, requiring no user intervention.</li>
-          <li><strong>2019:</strong> Design and development of automated trademarks full portfolio renewal process batch processing. Impact: renewal process outcome fully automated and docketed, eliminating the need for manual checks and data entry.</li>
-          <li><strong>2018:</strong> Design and full-stack development of the e-filing interface with the Swiss Trademark Office. Impact: full XML data preparation and generation without requiring user input.</li>
-          <li><strong>2013:</strong> Member of the Novartis IT team rewarded with the "NI IT &amp; Group IGM Innovator Award 2013".</li>
-          <li><strong>Acquisitions &amp; divestments:</strong> Alcon integration (2010–11), Alcon divestment (2018–19), Sandoz spin-off (2023–24).</li>
+          <li id="acc-migration"><strong>2023 – 2025:</strong> Lead technical member of the successful IPMS migration project from Memotech to Anaqua AQX.</li>
+          <li id="acc-maintenance"><strong>2020 – 2021:</strong> Full automated trademarks maintenance monitoring process design and development. Impact: an average of 120 emails are automatically dispatched each month, requiring no user intervention.</li>
+          <li id="acc-renewal"><strong>2019:</strong> Design and development of automated trademarks full portfolio renewal process batch processing. Impact: renewal process outcome fully automated and docketed, eliminating the need for manual checks and data entry.</li>
+          <li id="acc-efiling"><strong>2018:</strong> Design and full-stack development of the e-filing interface with the Swiss Trademark Office. Impact: full XML data preparation and generation without requiring user input.</li>
+          <li id="acc-award"><strong>2013:</strong> Member of the Novartis IT team rewarded with the "NI IT &amp; Group IGM Innovator Award 2013".</li>
+          <li id="acc-mna"><strong>Acquisitions &amp; divestments:</strong> Alcon integration (2010–11), Alcon divestment (2018–19), Sandoz spin-off (2023–24).</li>
         </ul>
       </div>
     </details>
@@ -358,7 +401,7 @@ tailwind.config = {
   <!-- ───────────────── AISCO ───────────────── -->
   <section id="aisco" class="px-6 sm:px-12 xl:px-24 py-24 border-t border-line reveal">
     <div class="flex items-baseline justify-between flex-wrap gap-2">
-      <div class="flex items-center gap-4 flex-wrap"><h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// aisco firetrainer</h2></div>
+      <h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// aisco firetrainer</h2>
       <span class="font-mono text-sm text-dim">▸ 2020 — 2023</span>
     </div>
     <div class="ember-line my-6"></div>
@@ -368,6 +411,22 @@ tailwind.config = {
       simulation — propagation and behaviour driven by particle systems and fluid dynamics.
       From invention phase to product launch, with full project accountability.
     </p>
+
+    <div class="border border-line rounded-xl bg-panel/60 p-5 sm:p-6 mb-10">
+      <p class="font-mono text-xs text-cy uppercase tracking-[.25em] mb-4">Core skills</p>
+      <div class="flex flex-wrap gap-2 font-mono">
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Solution Architecture</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Product Management</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Product Ownership</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Real-Time Simulation</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Physics-Based Simulation</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Embedded Systems</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Innovation &amp; Patents</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">RFP / Vendor Management</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Budget Management</span>
+        <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Team Leadership</span>
+      </div>
+    </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
       <div class="card border border-line bg-panel rounded-xl p-6">
@@ -434,7 +493,7 @@ tailwind.config = {
   <!-- ───────────────── ALCATEL ───────────────── -->
   <section id="alcatel" class="px-6 sm:px-12 xl:px-24 py-24 border-t border-line reveal">
     <div class="flex items-baseline justify-between flex-wrap gap-2">
-      <div class="flex items-center gap-4 flex-wrap"><h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// alcatel-lucent (nokia)</h2></div>
+      <h2 class="font-mono text-ember text-base tracking-[.35em] uppercase">// alcatel-lucent (nokia)</h2>
       <span class="font-mono text-sm text-dim">▸ 2006 — 2008</span>
     </div>
     <div class="ember-line my-6"></div>
@@ -449,6 +508,22 @@ tailwind.config = {
           The original code blindly examined every triplet of nodes with three nested loops.
           The rewrite: a customized <span class="text-parchment">BFS with a visited set</span> — each node processed exactly once.
         </p>
+        <div class="border border-line rounded-xl bg-panel/60 p-5 sm:p-6 mb-6">
+          <p class="font-mono text-xs text-cy uppercase tracking-[.25em] mb-4">Core skills</p>
+          <div class="flex flex-wrap gap-2 font-mono">
+            <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">C++</span>
+            <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Java</span>
+            <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Algorithms</span>
+            <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Object-Oriented Design</span>
+            <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">CORBA</span>
+            <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">UML</span>
+            <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Unix</span>
+            <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Shell Scripting</span>
+            <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Multithreading</span>
+            <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">Telecommunications</span>
+            <span class="chip border border-line bg-ink/80 text-dim text-sm rounded-full px-4 py-1.5">SDH / Network Management</span>
+          </div>
+        </div>
         <div class="border border-line rounded-xl overflow-hidden font-mono text-base">
           <div class="grid grid-cols-4 bg-panel text-dim text-sm uppercase tracking-widest px-4 py-3 border-b border-line">
             <span>Network</span><span>Before</span><span>After</span><span class="text-right">Speedup</span>
@@ -614,7 +689,7 @@ visited.<span class="text-ember">insert</span>(rootNode);
       </figure>
     </div>
 
-    <details class="dx mt-12">
+    <details class="dx mt-8">
       <summary>DETAILS</summary>
       <div class="dx-body">
         <p class="dx-h">Summary</p>
@@ -693,7 +768,7 @@ visited.<span class="text-ember">insert</span>(rootNode);
         <li><span class="text-ember">▪</span> Per-mailbox <code class="text-parchment">pthread_mutex_t</code> locking — no races, no corruption</li>
         <li><span class="text-ember">▪</span> Two independent listener threads, one process, flat mbox storage wired by hand</li>
       </ul>
-      <a href="https://github.com/paolopangrazi/liam" target="_blank" rel="noopener" class="inline-block font-mono text-base border border-ember/50 text-ember rounded-full px-5 py-2 hover:bg-ember hover:text-ink transition-colors">→ source on GitHub</a>
+      <a href="https://github.com/paolopangrazi/liam" target="_blank" rel="noopener" class="glow inline-block font-mono text-base border border-ember/50 text-ember rounded-full px-5 py-2 hover:bg-ember hover:text-ink transition-colors">→ source on GitHub</a>
     </div>
 
     <div class="mt-8 max-w-3xl space-y-4 text-dim leading-relaxed">
@@ -724,7 +799,7 @@ visited.<span class="text-ember">insert</span>(rootNode);
         <li><span class="text-ember">▪</span> CSV with auto-detected delimiters &amp; multi-sheet XLSX — <a href="https://github.com/ArthurSonzogni/FTXUI" target="_blank" rel="noopener" class="ilink">FTXUI</a> + OpenXLSX, all vendored</li>
         <li><span class="text-ember">▪</span> 16-slot ANSI theming, mouse &amp; drag, OSC 52 clipboard over SSH — sub-second cold start</li>
       </ul>
-      <a href="https://github.com/paolopangrazi/tuix" target="_blank" rel="noopener" class="inline-block font-mono text-base border border-ember/50 text-ember rounded-full px-5 py-2 hover:bg-ember hover:text-ink transition-colors">→ source on GitHub</a>
+      <a href="https://github.com/paolopangrazi/tuix" target="_blank" rel="noopener" class="glow inline-block font-mono text-base border border-ember/50 text-ember rounded-full px-5 py-2 hover:bg-ember hover:text-ink transition-colors">→ source on GitHub</a>
     </div>
 
     <div class="mt-16">
@@ -917,6 +992,26 @@ visited.<span class="text-ember">insert</span>(rootNode);
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Accomplishment cards → open DETAILS, scroll to the matching item and flash it.
+  function revealAccomplishment(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    const det = target.closest('details');
+    if (det && !det.open) det.open = true;
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.classList.remove('dx-flash');
+      void target.offsetWidth;
+      target.classList.add('dx-flash');
+    });
+  }
+  document.querySelectorAll('a.acc-card').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      revealAccomplishment(a.getAttribute('href').slice(1));
+    });
+  });
 </script>
 </body>
 </html>
