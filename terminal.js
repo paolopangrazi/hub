@@ -200,7 +200,12 @@
     termOverlay.classList.remove('hidden');
     if (!termBooted) {
       termBooted = true;
-      termPrint(['<span class="t-d">ppsh 1.0 — the paolo shell. type</span> <span class="t-e">help</span> <span class="t-d">to get started. press</span> <span class="t-p">ESC</span> <span class="t-d">to exit.</span>', '']);
+      termPrint([
+        '<span class="t-e">Hey, welcome!</span> <span class="t-d">Glad you found your way here.</span>',
+        '<span class="t-d">You\'re in</span> <span class="t-c">ppsh 1.0</span> <span class="t-d">— Paolo\'s personal shell. Poke around, make yourself at home.</span>',
+        '<span class="t-d">Type</span> <span class="t-e">help</span> <span class="t-d">to see what\'s possible · press</span> <span class="t-p">ESC</span> <span class="t-d">or click outside to exit.</span>',
+        ''
+      ]);
     }
     setTimeout(() => termIn.focus(), 50);
   }
