@@ -187,13 +187,26 @@ tailwind.config = {
 
   /* SVG caption that sits directly on the light panel */
   html.light .lag-caption { fill:#16202e; }
+
+  /* mobile nav drawer — the rail slides in below the lg breakpoint,
+     and is pinned open (no transform) at lg and up. */
+  #nav-rail { transform: translateX(-100%); transition: transform .3s ease; }
+  #nav-rail.open { transform: translateX(0); }
+  @media (min-width: 1024px) { #nav-rail { transform: none; transition: none; } }
 </style>
 </head>
 <body class="grain font-body text-parchment antialiased">
 <script>try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');}catch(e){}</script>
 
 <!-- ───────────────── NAV RAIL ───────────────── -->
-<nav class="hidden lg:flex fixed left-0 top-0 h-screen w-52 flex-col justify-between border-r border-line px-6 py-8 z-40 bg-ink/80 backdrop-blur">
+<!-- hamburger — only below the lg breakpoint, where the rail is collapsed -->
+<button id="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-rail"
+  class="lg:hidden fixed top-5 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-lg border border-line bg-ink/80 backdrop-blur text-parchment text-xl hover:text-ember transition-colors">
+  <span id="nav-toggle-icon">☰</span>
+</button>
+<!-- backdrop behind the open drawer -->
+<div id="nav-backdrop" onclick="toggleNav(false)" class="hidden lg:hidden fixed inset-0 z-30 bg-ink/60 backdrop-blur-sm"></div>
+<nav id="nav-rail" class="flex fixed left-0 top-0 h-screen w-52 flex-col justify-between border-r border-line px-6 py-8 z-40 bg-ink/80 backdrop-blur">
   <div>
     <a href="#top" class="font-display font-extrabold text-xl tracking-tight text-parchment">PP<span class="text-ember">_</span></a>
     <div class="rail mt-10 flex flex-col gap-3 font-mono text-[13px] uppercase tracking-widest text-dim">
@@ -1163,6 +1176,25 @@ visited.<span class="text-ember">insert</span>(rootNode);
     applyTheme(next);
   }
   applyTheme(localStorage.getItem('theme') || 'dark');
+
+  // Mobile nav drawer (below the lg breakpoint)
+  function toggleNav(force) {
+    const nav = document.getElementById('nav-rail'),
+          bd  = document.getElementById('nav-backdrop'),
+          btn = document.getElementById('nav-toggle');
+    const open = force === undefined ? !nav.classList.contains('open') : force;
+    nav.classList.toggle('open', open);
+    bd.classList.toggle('hidden', !open);
+    btn.setAttribute('aria-expanded', open);
+    document.getElementById('nav-toggle-icon').textContent = open ? '✕' : '☰';
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  // close the drawer after tapping a rail link
+  document.querySelectorAll('#nav-rail .rail a').forEach(a =>
+    a.addEventListener('click', () => toggleNav(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleNav(false); });
+  // reaching the lg breakpoint pins the rail open via CSS — clear any drawer state
+  window.addEventListener('resize', () => { if (window.innerWidth >= 1024) toggleNav(false); });
 
   function showCode(which) {
     const before = document.getElementById('code-before'),
