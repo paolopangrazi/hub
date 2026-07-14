@@ -431,6 +431,38 @@ tailwind.config = {
       </div>
     </div>
 
+    <!-- IPMS codebase at a glance -->
+    <div class="border border-line rounded-xl bg-panel/60 p-5 sm:p-6 mb-10">
+      <div class="flex items-baseline justify-between flex-wrap gap-2 mb-5">
+        <p class="font-mono text-xs text-ember uppercase tracking-[.25em]">The IPMS codebase — a custom Oracle build</p>
+        <p class="font-mono text-sm text-dim"><span class="text-parchment font-semibold">107,000+</span> lines of SQL &amp; PL/SQL</p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3 font-mono">
+        <div class="border border-line bg-ink/80 rounded-lg px-4 py-3 text-center">
+          <p class="text-2xl font-semibold text-ember">1,229</p><p class="text-sm text-dim mt-1">tables</p>
+        </div>
+        <div class="border border-line bg-ink/80 rounded-lg px-4 py-3 text-center">
+          <p class="text-2xl font-semibold text-ember">1,466</p><p class="text-sm text-dim mt-1 leading-tight">stored<br>procedures</p>
+        </div>
+        <div class="border border-line bg-ink/80 rounded-lg px-4 py-3 text-center">
+          <p class="text-2xl font-semibold text-ember">318</p><p class="text-sm text-dim mt-1">functions</p>
+        </div>
+        <div class="border border-line bg-ink/80 rounded-lg px-4 py-3 text-center">
+          <p class="text-2xl font-semibold text-ember">160</p><p class="text-sm text-dim mt-1">packages</p>
+        </div>
+        <div class="border border-line bg-ink/80 rounded-lg px-4 py-3 text-center">
+          <p class="text-2xl font-semibold text-ember">535</p><p class="text-sm text-dim mt-1">triggers</p>
+        </div>
+        <div class="border border-line bg-ink/80 rounded-lg px-4 py-3 text-center">
+          <p class="text-2xl font-semibold text-ember">17</p><p class="text-sm text-dim mt-1">Java classes</p>
+        </div>
+        <div class="border border-ember/50 bg-ember/15 rounded-lg px-4 py-3 text-center">
+          <p class="text-2xl font-semibold text-ember">107k+</p><p class="text-sm text-dim mt-1">lines of code</p>
+        </div>
+      </div>
+      <p class="font-mono text-[13px] text-dim mt-4">Functions include both standard and pipelined · powering data processing, reporting and automation across the full portfolio.</p>
+    </div>
+
     <div class="grid md:grid-cols-2 gap-4">
       <a href="#acc-migration" class="acc-card card block border border-line bg-panel rounded-xl p-6">
         <p class="font-mono text-sm text-ember mb-2 uppercase tracking-widest">2023 – 2025</p>
@@ -492,12 +524,14 @@ tailwind.config = {
         <ul>
           <li>Technical consultant for Clarivate IPMS Memotech, enhancements, data analysis, design and customization (900 users, 10 sites).</li>
           <li>User requirements or functional specifications gathering.</li>
-          <li>Design, development, testing, maintenance, monitoring, review and documentation of customized SQL / Oracle PL/SQL objects: packages, procedures, functions, scheduled jobs, pipelined functions, tables, views, triggers, etc. (107k lines of source code).</li>
+          <li>Design, development, testing, maintenance, monitoring, review and documentation of customized SQL / Oracle PL/SQL objects: packages, procedures, functions, scheduled jobs, pipelined functions, tables, views, triggers, etc.</li>
+          <li>The custom Oracle build in numbers: <strong>1,229 tables</strong>, <strong>1,466 stored procedures</strong>, <strong>318 functions</strong> (standard and pipelined), <strong>160 packages</strong>, <strong>535 triggers</strong> and <strong>17 Java classes</strong> — totaling <strong>107,000+ lines of custom SQL &amp; PL/SQL</strong> powering data processing, reporting and automation.</li>
           <li>Tools used: Toad, SQL Developer, SQL Plus.</li>
         </ul>
         <p class="dx-h">Interfaces</p>
         <ul>
           <li>Design, development and maintenance of mono and bidirectional interfaces between heterogeneous systems for migration and transfer of IP matters within the Novartis systems landscape (for instance eBilling).</li>
+          <li><strong>SAP eBilling interface:</strong> a bidirectional SAP integration processing around <strong>1,000 files per day</strong> — on average <strong>300 invoices daily</strong>, complete with metadata, attachments and <a href="https://ledes.org/" target="_blank" rel="noopener" class="ilink">LEDES</a>-format billing data.</li>
         </ul>
         <p class="dx-h">Reporting</p>
         <ul>
