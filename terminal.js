@@ -75,7 +75,7 @@
       '<span class="t-d">psst — recruiters may also try:</span> <span class="t-e">sudo hire-me</span>'
     ],
     whoami: () => [
-      '<span class="t-p">Paolo Pangrazi</span> — Technical Leader · Solution Architect',
+      '<span class="t-p">Paolo Pangrazi</span> — Technical Lead · Solution Architect',
       'Full-Stack Software &amp; Database Engineer',
       '<span class="t-d">Basel, CH · time · space · energy</span>'
     ],
@@ -157,7 +157,7 @@
       '<span class="t-c">pp@hub</span>\n' +
       '<span class="t-d">──────</span>\n' +
       '<span class="t-c">OS:</span>       Arch Linux (Omarchy)\n' +
-      '<span class="t-c">Role:</span>     Technical Leader · Solution Architect\n' +
+      '<span class="t-c">Role:</span>     Technical Lead · Solution Architect\n' +
       '<span class="t-c">Uptime:</span>   20 years in tech\n' +
       '<span class="t-c">Shell:</span>    ppsh 1.0\n' +
       '<span class="t-c">Kernel:</span>   C · C++ · SQL · caffeine\n' +
