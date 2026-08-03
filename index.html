@@ -282,6 +282,9 @@ tailwind.config = {
       <span class="text-xl sm:text-2xl text-dim">AI-Native Development</span>
     </div>
 
+    <!-- ───────────────── NEURAL BANNER ───────────────── -->
+    <div id="neural-banner" class="mt-8 rounded-xl border border-line" style="--nb-height:220px"></div>
+
     <div class="mt-8 flex flex-col lg:flex-row gap-8 items-center lg:items-stretch">
     <figure class="w-full max-w-xl lg:flex-1 lg:self-center">
       <svg viewBox="0 0 560 470" class="w-full h-auto" role="img" aria-label="Venn diagram of Paolo's skills: Engineering, Leadership and Innovation overlapping at Solution Architect">
@@ -370,9 +373,6 @@ tailwind.config = {
       </div>
     </div>
   </header>
-
-  <!-- ───────────────── NEURAL BANNER ───────────────── -->
-  <div id="neural-banner"></div>
 
   <!-- skill marquee -->
   <div class="border-y border-line overflow-hidden py-4 bg-panel/60">
@@ -1383,9 +1383,27 @@ visited.<span class="text-ember">insert</span>(rootNode);
     return [p, s];
   }
 
-  let last = performance.now();
+  let last = performance.now(), rafId = 0, visible = true;
+  const IDLE_INTERVAL = 66;   // ~15fps when nothing is happening
+
+  // idle = no cursor, no travelling pulses, every group fully dimmed
+  function idle() {
+    if (mouse.active || pulses.length) return false;
+    for (let g = 0; g < wakes.length; g++) if (wakes[g] > 0.01) return false;
+    return true;
+  }
+  function start() {
+    if (reduceMotion) return;
+    last = performance.now();
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(tick);
+  }
+
   function tick(now) {
-    const dt = Math.min(now - last, 50); last = now;
+    if (visible && !reduceMotion) rafId = requestAnimationFrame(tick);
+    const elapsed = now - last;
+    if (idle() && elapsed < IDLE_INTERVAL) return;   // throttle when nothing's happening
+    const dt = Math.min(elapsed, 50); last = now;
     ctx.clearRect(0, 0, W, H);
 
     [primary, secondary] = groupsUnderCursor();
@@ -1452,10 +1470,9 @@ visited.<span class="text-ember">insert</span>(rootNode);
         const strength = Math.min(a.energy, b.energy) * (1 - d / maxD) * wPair;
         if (strength < 0.02) continue;
         const hue = sameGroup ? CFG.hue.line : CFG.hue.bridge;
-        const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
-        grad.addColorStop(0, "rgba(" + hue + "," + (strength * a.energy) + ")");
-        grad.addColorStop(1, "rgba(" + hue + "," + (strength * b.energy) + ")");
-        ctx.strokeStyle = grad;
+        // flat stroke instead of a per-frame gradient allocation — no GC churn
+        const alpha = strength * (a.energy + b.energy) * 0.5;
+        ctx.strokeStyle = "rgba(" + hue + "," + alpha + ")";
         ctx.lineWidth = (sameGroup ? 0.8 : 1.1) + strength * 1.4;
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
       }
@@ -1465,10 +1482,13 @@ visited.<span class="text-ember">insert</span>(rootNode);
       const twinkle = 0.25 + 0.15 * Math.sin(now / 900 + n.phase);
       const w = wakeOf(n.group);
       const e = n.energy * w;
-      const glowSize = n.r * 6 + e * 26;
-      ctx.globalAlpha = 0.35 * twinkle + e;
-      ctx.drawImage(glow, n.x - glowSize / 2, n.y - glowSize / 2, glowSize, glowSize);
-      ctx.globalAlpha = 1;
+      const glowAlpha = 0.35 * twinkle + e;
+      if (glowAlpha > 0.09) {              // skip near-invisible glow sprites (most idle nodes)
+        const glowSize = n.r * 6 + e * 26;
+        ctx.globalAlpha = glowAlpha;
+        ctx.drawImage(glow, n.x - glowSize / 2, n.y - glowSize / 2, glowSize, glowSize);
+        ctx.globalAlpha = 1;
+      }
       ctx.fillStyle = "rgba(" + (e > 0.4 ? CFG.hue.hot : CFG.hue.node) + "," + (twinkle + e * 0.8) + ")";
       ctx.beginPath(); ctx.arc(n.x, n.y, n.r + e * 1.6, 0, Math.PI * 2); ctx.fill();
       const since = now - n.lastFire;
@@ -1480,7 +1500,6 @@ visited.<span class="text-ember">insert</span>(rootNode);
       }
     }
     ctx.globalCompositeOperation = "source-over";
-    if (!reduceMotion) requestAnimationFrame(tick);
   }
 
   root.addEventListener("pointermove", (e) => {
@@ -1497,7 +1516,12 @@ visited.<span class="text-ember">insert</span>(rootNode);
     wakes = wakes.map(() => 1);
     tick(performance.now());
   } else {
-    requestAnimationFrame(tick);
+    // pause the whole loop while the banner is scrolled off-screen
+    const io = new IntersectionObserver((es) => {
+      visible = es[0].isIntersecting;
+      if (visible) start(); else cancelAnimationFrame(rafId);
+    }, { threshold: 0 });
+    io.observe(root);
   }
 })();
 </script>
