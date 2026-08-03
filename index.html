@@ -209,6 +209,7 @@ tailwind.config = {
 <nav id="nav-rail" class="flex fixed left-0 top-0 h-screen w-52 flex-col justify-between border-r border-line px-6 py-8 z-40 bg-ink/80 backdrop-blur">
   <div>
     <a href="#top" class="font-display font-extrabold text-xl tracking-tight text-parchment">PP<span class="text-ember">_</span></a>
+    <p class="mt-1 font-mono text-[10px] tracking-widest uppercase text-dim">Paolo <span class="text-transparent bg-clip-text bg-gradient-to-r from-ember to-flame">Pangrazi</span></p>
     <div class="rail mt-10 flex flex-col gap-3 font-mono text-[13px] uppercase tracking-widest text-dim">
       <span class="text-[10px] tracking-[.2em] text-dim/50 pb-0.5 border-b border-line">craft</span>
       <a href="#timeline">// git log</a>
@@ -244,19 +245,17 @@ tailwind.config = {
   <!-- ───────────────── HERO ───────────────── -->
   <header class="min-h-screen flex flex-col justify-center px-6 sm:px-12 xl:px-24 py-24 relative">
     <p class="font-mono text-sm text-dim tracking-[.35em] uppercase mb-6">$ whoami<span class="cursor"></span></p>
-    <h1 class="font-display font-extrabold leading-[0.95] text-[clamp(2.5rem,10vw,6rem)] lg:text-[6.5vw] xl:text-[7rem] tracking-tight">
-      PAOLO<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-ember via-flame to-ember">PANGRAZI</span>
-    </h1>
-    <div class="mt-8 max-w-2xl font-light space-y-4">
-      <p class="text-xl sm:text-2xl text-parchment leading-snug">
-        Technical Lead · Solution Architect<br>Data Engineer<br>Full-Stack Software &amp; Database Engineer<br>AI-Native Development
+    <blockquote class="mt-0 pl-5 border-l-2 border-ember">
+      <p class="font-display font-bold text-[clamp(1.8rem,4.5vw,3.5rem)] leading-[1.1] text-parchment" style="text-shadow:0 0 40px rgba(0,250,154,.15);">
+        "I solve high-stakes problems where the playbook doesn't exist yet — and deliver them end to end, from first design to shipped system."
       </p>
-      <p class="text-base text-dim leading-relaxed">
-        <span class="text-parchment">Pharma · Fire Training · Telecom</span>
-      </p>
-      <p class="font-mono text-xs tracking-[.3em] uppercase text-ember">
-        Invent &nbsp;&nbsp;·&nbsp;&nbsp; Automate &nbsp;&nbsp;·&nbsp;&nbsp; Deliver
-      </p>
+    </blockquote>
+    <div class="mt-6 flex flex-wrap gap-x-8 gap-y-1 items-baseline">
+      <span class="text-xl sm:text-2xl text-dim">Technical Lead</span>
+      <span class="text-xl sm:text-2xl text-dim">Solution Architect</span>
+      <span class="text-xl sm:text-2xl text-dim">Data Engineer</span>
+      <span class="text-xl sm:text-2xl text-dim">Full-Stack Software &amp; Database Engineer</span>
+      <span class="text-xl sm:text-2xl text-dim">AI-Native Development</span>
     </div>
 
     <div class="mt-8 flex flex-col lg:flex-row gap-8 items-center lg:items-stretch">
@@ -302,18 +301,17 @@ tailwind.config = {
           <text x="280" y="265" class="venn-ctr" fill="#ffffff" font-size="12" font-weight="700" letter-spacing="0.5">ARCHITECT</text>
         </g>
       </svg>
-      <figcaption class="font-mono text-[13px] text-dim mt-3">The overlap is where I live — <span class="text-parchment">Solution Architecture</span>.</figcaption>
     </figure>
 
     <div class="w-full lg:flex-1 lg:max-w-md flex flex-col justify-center gap-4 font-mono text-base">
-      <a href="#novartis" class="card glow border border-line bg-panel rounded-lg p-4">
-        <span class="text-ember">▸ designed</span><br><span class="text-dim">enterprise architectures at Novartis</span>
-      </a>
       <a href="#aisco" class="card glow border border-line bg-panel rounded-lg p-4">
-        <span class="text-ember">▸ invented</span><br><span class="text-dim">a patented fire training system</span>
+        <span class="text-ember">▸ invented</span><br><span class="text-dim">a patented fire training system from scratch</span>
+      </a>
+      <a href="#novartis" class="card glow border border-line bg-panel rounded-lg p-4">
+        <span class="text-ember">▸ automated</span><br><span class="text-dim">enterprise IP workflows at Novartis</span>
       </a>
       <a href="#alcatel" class="card glow border border-line bg-panel rounded-lg p-4">
-        <span class="text-ember">▸ optimized</span><br><span class="text-dim">O(n³) → O(n²) at Alcatel-Lucent</span>
+        <span class="text-ember">▸ delivered</span><br><span class="text-dim">complex projects across multicultural, matrixed organizations</span>
       </a>
       <div class="font-mono text-sm text-dim flex flex-wrap gap-x-8 gap-y-1 pt-1">
         <div>DE <span class="text-ember">████</span><span class="text-dim">░</span></div>
