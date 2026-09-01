@@ -15,9 +15,10 @@
 <title>PP_</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Sora:wght@300;400;600&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Sora:wght@300;400;600&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script src="./js/tailwind.config.js"></script>
 <link rel="stylesheet" href="./css/styles.css">
+<link rel="stylesheet" href="./css/nerdy.css">
 </head>
 <body class="grain font-body text-parchment antialiased">
 <script>try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');if(localStorage.getItem('mode')==='nerdy')document.documentElement.classList.add('nerdy');}catch(e){}</script>
@@ -72,6 +73,13 @@
 
   <!-- ───────────────── HERO ───────────────── -->
   <header class="min-h-screen flex flex-col justify-center px-6 sm:px-12 xl:px-24 py-24 relative">
+    <!-- nerdy mode only — ANSI Shadow banner, hidden in fancy mode -->
+<pre id="nerdy-banner" aria-hidden="true">██████╗  █████╗  ██████╗ ██╗      ██████╗
+██╔══██╗██╔══██╗██╔═══██╗██║     ██╔═══██╗
+██████╔╝███████║██║   ██║██║     ██║   ██║
+██╔═══╝ ██╔══██║██║   ██║██║     ██║   ██║
+██║     ██║  ██║╚██████╔╝███████╗╚██████╔╝
+╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝ ╚═════╝ </pre>
     <p class="font-mono text-sm text-dim tracking-[.35em] uppercase mb-6">$ whoami<span class="cursor"></span></p>
     <blockquote class="mt-0 pl-5 border-l-2 border-ember">
       <p class="font-display font-bold text-[clamp(1.8rem,4.5vw,3.5rem)] leading-[1.1] text-parchment" style="text-shadow:0 0 40px rgba(0,250,154,.15);">
@@ -992,6 +1000,18 @@ visited.<span class="text-ember">insert</span>(rootNode);
     <p class="font-mono text-[13px] text-dim mt-10">© 2026 Paolo Pangrazi. All rights reserved. &nbsp;·&nbsp; time · space · energy &nbsp;·&nbsp; <a href="./index_prev.html" class="hover:text-ember transition-colors">prev. website</a> &nbsp;·&nbsp; <button onclick="termOpen()" class="hover:text-ember transition-colors">press <kbd class="border border-line rounded px-1 text-parchment">`</kbd> for terminal</button></p>
   </footer>
 </main>
+
+<!-- nerdy mode only — TUI status bar, hidden in fancy mode -->
+<div id="nerdy-bar" aria-hidden="true">
+  <span><b>j/↓</b> down</span>
+  <span><b>k/↑</b> up</span>
+  <span><b>g/G</b> top/end</span>
+  <span><b>n/p</b> section</span>
+  <span><b>⏎</b> shell</span>
+  <span><b>t</b> theme</span>
+  <span><b>f</b> fancy</span>
+  <span id="nerdy-bar-pos">0%</span>
+</div>
 
 <script src="./js/main.js"></script>
 

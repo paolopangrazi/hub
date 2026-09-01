@@ -14,8 +14,7 @@
   }
   applyTheme(localStorage.getItem('theme') || 'dark');
 
-  // Nerdy / fancy mode. Both currently share the same style; the nerdy
-  // look is still to be built — the switch is wired up and ready for it.
+  // Nerdy / fancy mode — the plain-text cut of the site (css/nerdy.css).
   function applyMode(m) {
     const isNerdy = m === 'nerdy';
     document.documentElement.classList.toggle('nerdy', isNerdy);
@@ -23,6 +22,9 @@
           label = document.getElementById('mode-label');
     if (icon)  icon.textContent  = isNerdy ? '✨' : '🤓';
     if (label) label.textContent = isNerdy ? 'Fancy mode' : 'Nerdy mode';
+    // the neural banner sizes its canvas off clientHeight and only listens
+    // for resize — nerdy mode changes that height, so nudge it.
+    window.dispatchEvent(new Event('resize'));
   }
   function toggleMode() {
     const next = document.documentElement.classList.contains('nerdy') ? 'fancy' : 'nerdy';
@@ -30,6 +32,57 @@
     applyMode(next);
   }
   applyMode(localStorage.getItem('mode') || 'fancy');
+
+  // ── nerdy mode keyboard layer ──────────────────────────────────────
+  // A TUI needs a keyboard. These bindings are live only in nerdy mode;
+  // the status bar at the bottom of the page advertises them.
+  // ` and Enter belong to the terminal (terminal.js) — left untouched.
+  function sectionTops() {
+    return Array.from(document.querySelectorAll('main > header, main > section, main > footer'))
+      .map(el => Math.round(el.getBoundingClientRect().top + window.scrollY));
+  }
+  function jumpSection(dir) {
+    const tops = sectionTops(), y = window.scrollY;
+    const target = dir > 0
+      ? tops.find(t => t > y + 8)
+      : tops.slice().reverse().find(t => t < y - 8);
+    window.scrollTo({
+      top: target === undefined ? (dir > 0 ? document.body.scrollHeight : 0) : target,
+      behavior: 'smooth'
+    });
+  }
+  document.addEventListener('keydown', e => {
+    if (!document.documentElement.classList.contains('nerdy')) return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (/^(INPUT|TEXTAREA)$/.test(e.target.tagName) || e.target.isContentEditable) return;
+    const term = document.getElementById('term-overlay');
+    if (term && !term.classList.contains('hidden')) return;   // the shell owns the keyboard
+    const step = Math.round(window.innerHeight * 0.18);
+    switch (e.key) {
+      case 'j': window.scrollBy({ top:  step, behavior: 'smooth' }); break;
+      case 'k': window.scrollBy({ top: -step, behavior: 'smooth' }); break;
+      case 'g': window.scrollTo({ top: 0, behavior: 'smooth' }); break;
+      case 'G': window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); break;
+      case 'n': jumpSection(1);  break;
+      case 'p': jumpSection(-1); break;
+      case 't': toggleTheme(); break;
+      case 'f': toggleMode();  break;
+      default: return;
+    }
+    e.preventDefault();
+  });
+
+  // scroll percentage in the status bar, like a pager
+  const barPos = document.getElementById('nerdy-bar-pos');
+  if (barPos) {
+    const updatePos = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      barPos.textContent = max <= 0 ? 'ALL' : Math.round(window.scrollY / max * 100) + '%';
+    };
+    window.addEventListener('scroll', updatePos, { passive: true });
+    window.addEventListener('resize', updatePos);
+    updatePos();
+  }
 
   // Mobile nav drawer (below the lg breakpoint)
   function toggleNav(force) {
