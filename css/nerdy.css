@@ -62,15 +62,19 @@ html.nerdy #nerdy-banner {
   display: block !important;
   white-space: pre !important;
   overflow: hidden !important;
-  color: #00FA9A !important;
-  font-size: clamp(6px, 2.05vw, 21px) !important;
+  color: #e9eef4 !important;
+  font-size: clamp(10px, 3.4vw, 34px) !important;
   line-height: 1.06 !important;
   letter-spacing: 0 !important;
   margin: 0 0 1.6rem !important;
   max-width: 100% !important;
   user-select: none;
 }
-html.light.nerdy #nerdy-banner { color: #00c97c !important; }
+/* the trailing underscore is the ember cursor, as in the PP_ logo.
+   weight stays inherited so the block glyphs keep the same advance. */
+html.nerdy #nerdy-banner b { color: #00FA9A !important; font-weight: inherit !important; }
+html.light.nerdy #nerdy-banner { color: #16202e !important; }
+html.light.nerdy #nerdy-banner b { color: #00c97c !important; }
 
 /* ═══ TUI STATUS BAR ═════════════════════════════════════════ */
 #nerdy-bar { display: none; }
