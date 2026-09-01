@@ -31,7 +31,7 @@
     try { localStorage.setItem('mode', next); } catch (e) {}
     applyMode(next);
   }
-  applyMode(localStorage.getItem('mode') || 'fancy');
+  applyMode(localStorage.getItem('mode') || 'nerdy');   // nerdy is the default
 
   // ── nerdy mode keyboard layer ──────────────────────────────────────
   // A TUI needs a keyboard. These bindings are live only in nerdy mode;
