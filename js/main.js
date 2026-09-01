@@ -14,6 +14,23 @@
   }
   applyTheme(localStorage.getItem('theme') || 'dark');
 
+  // Nerdy / fancy mode. Both currently share the same style; the nerdy
+  // look is still to be built — the switch is wired up and ready for it.
+  function applyMode(m) {
+    const isNerdy = m === 'nerdy';
+    document.documentElement.classList.toggle('nerdy', isNerdy);
+    const icon = document.getElementById('mode-icon'),
+          label = document.getElementById('mode-label');
+    if (icon)  icon.textContent  = isNerdy ? '✨' : '🤓';
+    if (label) label.textContent = isNerdy ? 'Fancy mode' : 'Nerdy mode';
+  }
+  function toggleMode() {
+    const next = document.documentElement.classList.contains('nerdy') ? 'fancy' : 'nerdy';
+    try { localStorage.setItem('mode', next); } catch (e) {}
+    applyMode(next);
+  }
+  applyMode(localStorage.getItem('mode') || 'fancy');
+
   // Mobile nav drawer (below the lg breakpoint)
   function toggleNav(force) {
     const nav = document.getElementById('nav-rail'),

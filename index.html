@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body class="grain font-body text-parchment antialiased">
-<script>try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');}catch(e){}</script>
+<script>try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');if(localStorage.getItem('mode')==='nerdy')document.documentElement.classList.add('nerdy');}catch(e){}</script>
 
 <!-- ───────────────── NAV RAIL ───────────────── -->
 <!-- hamburger — only below the lg breakpoint, where the rail is collapsed -->
@@ -54,8 +54,12 @@
       <span>▸</span><span>terminal</span>
     </button>
     <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light and dark theme"
-      class="mb-5 flex items-center gap-2 font-mono text-[12px] uppercase tracking-widest text-dim hover:text-ember transition-colors">
+      class="mb-3 flex items-center gap-2 font-mono text-[12px] uppercase tracking-widest text-dim hover:text-ember transition-colors">
       <span id="theme-icon">☾</span><span id="theme-label">Light mode</span>
+    </button>
+    <button id="mode-toggle" onclick="toggleMode()" aria-label="Toggle nerdy and fancy mode"
+      class="mb-5 flex items-center gap-2 font-mono text-[12px] uppercase tracking-widest text-dim hover:text-ember transition-colors">
+      <span id="mode-icon">🤓</span><span id="mode-label">Nerdy mode</span>
     </button>
     <div class="font-mono text-[12px] text-dim leading-relaxed">
       time · space · energy<br>
